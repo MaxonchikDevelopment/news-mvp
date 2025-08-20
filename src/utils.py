@@ -2,6 +2,7 @@
 
 import re
 
+
 def clean_text(text: str) -> str:
     """Clean and normalize text by removing extra whitespace and line breaks.
 
