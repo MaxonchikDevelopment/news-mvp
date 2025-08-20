@@ -1,18 +1,29 @@
 """Summarizer module for processing news with prompts."""
 
+from mistralai import Mistral
+from src.config import MISTRAL_API_KEY
 from src.prompts import PROMPT
 from src.utils import clean_text
 
 
 def summarize_news(news: str) -> str:
-    """Summarize a given news item using the predefined prompt.
+    """Summarize a given news article using Mistral API.
 
     Args:
-        news (str): The raw news text.
+        news (str): Raw news text.
 
     Returns:
-        str: Summary text based on the prompt and input news.
+        str: Summarized news text.
     """
+    client = Mistral(api_key=MISTRAL_API_KEY)
     cleaned_news = clean_text(news)
-    # Placeholder logic — here you will connect to Mistral/Ollama later
-    return cleaned_news
+
+    response = client.chat.complete(
+        model="mistral-small-latest",
+        messages=[
+            {"role": "system", "content": PROMPT},
+            {"role": "user", "content": cleaned_news},
+        ],
+    )
+
+    return response.choices[0].message.content
