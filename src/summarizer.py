@@ -3,27 +3,30 @@
 from mistralai import Mistral
 
 from src.config import MISTRAL_API_KEY
+from src.logging_config import get_logger
 from src.prompts import PROMPT
 from src.utils import clean_text
 
+logger = get_logger(__name__)
+
 
 def summarize_news(news: str) -> str:
-    """
-    Summarize a given news article using the Mistral API.
+    """Summarize a given news article using Mistral API.
 
     Args:
         news (str): Raw news text.
 
     Returns:
-        str: Summarized and formatted news text.
+        str: Summarized news text.
     """
-    # Initialize client
-    client = Mistral(api_key=MISTRAL_API_KEY)
+    logger.info("Received news for summarization.")
+    logger.debug(f"Raw news: {news}")
 
-    # Clean input text
+    client = Mistral(api_key=MISTRAL_API_KEY)
     cleaned_news = clean_text(news)
 
-    # Call Mistral API
+    logger.debug(f"Cleaned news: {cleaned_news}")
+
     response = client.chat.complete(
         model="mistral-small-latest",
         messages=[
@@ -32,11 +35,10 @@ def summarize_news(news: str) -> str:
         ],
     )
 
-    # Extract model response safely
-    message = response.choices[0].message
-    content = message.content if message and message.content else ""
+    result = response.choices[0].message.content
+    formatted_result = result.replace("- ", "\n- ")
 
-    # Ensure bullet points always start on a new line
-    formatted_result = content.replace("- ", "\n- ")
+    logger.info("Summarization completed successfully.")
+    logger.debug(f"Generated summary:\n{formatted_result}")
 
     return formatted_result
