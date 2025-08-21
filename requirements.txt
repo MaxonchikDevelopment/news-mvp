@@ -1,1 +1,6 @@
-requests
+mistralai
+python-dotenv
+rich
+black
+isort
+flake8

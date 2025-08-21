@@ -4,7 +4,7 @@ from mistralai import Mistral
 
 from src.config import MISTRAL_API_KEY
 from src.logging_config import get_logger
-from src.prompts import PROMPT
+from src.prompts import YNK_PROMPT
 from src.utils import clean_text
 
 logger = get_logger(__name__)
@@ -30,7 +30,7 @@ def summarize_news(news: str) -> str:
     response = client.chat.complete(
         model="mistral-small-latest",
         messages=[
-            {"role": "system", "content": PROMPT},
+            {"role": "system", "content": YNK_PROMPT},
             {"role": "user", "content": cleaned_news},
         ],
     )
