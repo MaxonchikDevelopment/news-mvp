@@ -8,7 +8,12 @@ from mistralai import Mistral
 
 from src.config import MISTRAL_API_KEY
 from src.logging_config import get_logger
-from src.prompts import CLASSIFY_AND_PRIORITIZE_PROMPT
+from src.prompts import (
+    CLASSIFY_AND_PRIORITIZE_PROMPT,
+    ECONOMY_SUBCATEGORY_PROMPT,
+    SPORTS_SUBCATEGORY_PROMPT,
+    TECH_SUBCATEGORY_PROMPT,
+)
 
 logger = get_logger(__name__)
 
@@ -41,11 +46,27 @@ SportSub = Literal[
     "other_sports",
 ]
 
+EconomySub = Literal[
+    "central_banks",
+    "corporate_earnings",
+    "markets",
+    "other_economy",
+]
+
+TechSub = Literal[
+    "semiconductors",
+    "consumer_products",
+    "ai_research",
+    "other_tech",
+]
+
 
 # ---- TypedDict for structured return type ----
 class ClassifierOutput(TypedDict):
     category: Category
     sports_subcategory: Optional[SportSub]
+    economy_subcategory: Optional[EconomySub]
+    tech_subcategory: Optional[TechSub]
     confidence: float
     reasons: str
     priority_llm: int
@@ -63,36 +84,37 @@ def _salvage_json(s: str) -> Dict[str, Any]:
 def _normalize(d: Dict[str, Any]) -> ClassifierOutput:
     allowed_cat = set(get_args(Category))
     allowed_sport = set(get_args(SportSub))
+    allowed_econ = set(get_args(EconomySub))
+    allowed_tech = set(get_args(TechSub))
 
-    # Category validation
     cat = str(d.get("category", "economy_finance"))
     if cat not in allowed_cat:
         cat = "economy_finance"
 
-    # Sports subcategory validation
     sports = d.get("sports_subcategory")
-    if cat != "sports":
-        sports = None
-    else:
-        sports = str(sports) if sports is not None else "other_sports"
-        if sports not in allowed_sport:
-            sports = "other_sports"
+    econ = d.get("economy_subcategory")
+    tech = d.get("tech_subcategory")
 
-    # Confidence score
+    # Validate subs
+    if sports and sports not in allowed_sport:
+        sports = "other_sports"
+    if econ and econ not in allowed_econ:
+        econ = "other_economy"
+    if tech and tech not in allowed_tech:
+        tech = "other_tech"
+
     try:
         conf = float(d.get("confidence", 0.7))
     except Exception:
         conf = 0.7
     conf = max(0.0, min(1.0, conf))
 
-    # Priority score
     try:
         pr = int(d.get("priority_llm", 5))
     except Exception:
         pr = 5
     pr = max(1, min(10, pr))
 
-    # Reasons truncation
     reasons = str(d.get("reasons", "")).strip()
     words = reasons.split()
     if len(words) > 25:
@@ -101,25 +123,37 @@ def _normalize(d: Dict[str, Any]) -> ClassifierOutput:
     return {
         "category": cat,
         "sports_subcategory": sports,
+        "economy_subcategory": econ,
+        "tech_subcategory": tech,
         "confidence": conf,
         "reasons": reasons,
         "priority_llm": pr,
     }
 
 
+def _ask_subcategory(
+    client: Mistral, prompt: str, text: str, key: str
+) -> Optional[str]:
+    """Call LLM to determine subcategory (sports/econ/tech)."""
+    resp = client.chat.complete(
+        model="mistral-small-latest",
+        temperature=0.0,
+        max_tokens=120,
+        messages=[
+            {"role": "system", "content": prompt},
+            {"role": "user", "content": text},
+        ],
+    )
+    raw = resp.choices[0].message.content.strip()
+    try:
+        data = json.loads(raw)
+    except Exception:
+        data = _salvage_json(raw)
+    return data.get(key)
+
+
 # ---- Main Function ----
 def classify_news(text: str, user_locale: Optional[str] = None) -> ClassifierOutput:
-    """
-    Classify a news article into a structured format.
-
-    Args:
-        text (str): Raw news article text
-        user_locale (Optional[str]): User's locale (e.g. "DE", "US", "RU").
-            Used only to adjust relevance/priority.
-
-    Returns:
-        ClassifierOutput: normalized structured classification result
-    """
     client = Mistral(api_key=MISTRAL_API_KEY)
 
     user_msg = (
@@ -148,5 +182,26 @@ def classify_news(text: str, user_locale: Optional[str] = None) -> ClassifierOut
         data = _salvage_json(raw)
 
     out = _normalize(data)
-    logger.debug("Normalized classification: %s", out)
+
+    # ---- Cascade subcategory refinement ----
+    if out["category"] == "sports":
+        sub = _ask_subcategory(
+            client, SPORTS_SUBCATEGORY_PROMPT, text, "sports_subcategory"
+        )
+        if sub:
+            out["sports_subcategory"] = sub
+    elif out["category"] == "economy_finance":
+        sub = _ask_subcategory(
+            client, ECONOMY_SUBCATEGORY_PROMPT, text, "economy_subcategory"
+        )
+        if sub:
+            out["economy_subcategory"] = sub
+    elif out["category"] == "technology_ai_science":
+        sub = _ask_subcategory(
+            client, TECH_SUBCATEGORY_PROMPT, text, "tech_subcategory"
+        )
+        if sub:
+            out["tech_subcategory"] = sub
+
+    logger.debug("Final classification with subcategory: %s", out)
     return out

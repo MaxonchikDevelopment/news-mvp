@@ -8,25 +8,28 @@ OUTPUT RULES:
 1. First line = **headline** (rewrite for clarity if needed).
 2. Second line = "YNotCare:" followed by:
    - One short plain summary sentence of the news (no bullet, just text).
-   - Then bullet points for consequences, using this exact structure:
-       - Household: ...
-       - Inflation & Costs: ...
-       - Real Estate: ...
-       - Investments/Markets: ...
-       - Career & Education / Policy & Geopolitics: ...
-3. Each bullet MUST start with "- " followed by category name and colon.
+   - Then bullet points for consequences, using the provided IMPACT ASPECTS list.
+3. Each bullet MUST start with "- " followed by aspect name and colon.
 4. Never merge multiple points into one line with semicolons — always new line per bullet.
 5. Use strong action verbs (buy, sell, hold, refinance, upskill, adjust).
 6. Focus on immediate, actionable consequences. No filler.
 7. Never invent sources. If unverified → state "I cannot verify this."
 
 INPUT FORMAT:
-The news item will be provided inside triple quotes:
+The news item will be provided inside triple quotes.
 
-[news content here]
+You will also be given a list of IMPACT ASPECTS that you MUST use instead of inventing your own.
 
+Example:
+IMPACT ASPECTS: Player impact, Team impact, League implications, Sports industry
+
+News:
+\"\"\"[news content here]\"\"\"
 """
 
+"""Centralized prompt definitions for LLM interactions (single unified prompt)."""
+
+# IMPORTANT: keep this prompt as the single source of truth for classification + priority.
 CLASSIFY_AND_PRIORITIZE_PROMPT = """
 You are a precise, context-aware news classifier and priority evaluator. 
 Your task: classify the news, assign priority, and return ONLY valid JSON.
@@ -65,4 +68,65 @@ Output: {"category":"economy_finance","sports_subcategory":null,"confidence":1.0
 
 Input: "Local mayor opens new park in small town."
 Output: {"category":"politics_geopolitics","sports_subcategory":null,"confidence":0.9,"reasons":"minor local political event","priority_llm":2}
+"""
+
+SPORTS_SUBCATEGORY_PROMPT = """
+You are an assistant for classifying sports news into precise subcategories.
+
+Valid subcategories:
+- football_epl (English Premier League, UK football)
+- football_laliga (Spain's La Liga)
+- football_bundesliga (Germany's Bundesliga)
+- football_other (football but not EPL, La Liga, Bundesliga)
+- basketball_nba
+- basketball_euroleague
+- american_football_nfl
+- tennis
+- formula1
+- ice_hockey
+- other_sports
+
+Task:
+- Read the news text.
+- Identify the correct subcategory.
+- If unsure, return "other_sports".
+
+Return JSON:
+{ "sports_subcategory": "<one_of_the_list>" }
+"""
+
+ECONOMY_SUBCATEGORY_PROMPT = """
+You are an assistant for classifying economy/finance news into precise subcategories.
+
+Valid subcategories:
+- central_banks (monetary policy, interest rates, Fed/ECB/BoE, etc.)
+- corporate_earnings (quarterly results, company profits/losses)
+- markets (stock/bond/forex/commodities movements, trading)
+- other_economy (macro trends, inflation, trade, fiscal policy)
+
+Task:
+- Read the news text.
+- Identify the correct subcategory.
+- If unsure, return "other_economy".
+
+Return JSON:
+{ "economy_subcategory": "<one_of_the_list>" }
+"""
+
+TECH_SUBCATEGORY_PROMPT = """
+You are an assistant for classifying technology/AI/science news into precise subcategories.
+
+Valid subcategories:
+- semiconductors (chip design, manufacturing, supply chain)
+- consumer_products (gadgets, smartphones, hardware launches)
+- ai_research (AI/ML breakthroughs, AI companies, large language models)
+- other_tech (space, biotech, scientific discoveries, etc.)
+
+Task:
+- Read the news text.
+- Identify the correct subcategory.
+- If unsure, return "other_tech".
+
+Return JSON:
+{ "tech_subcategory": "<one_of_the_list>" }
 """
