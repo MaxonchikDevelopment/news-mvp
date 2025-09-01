@@ -21,7 +21,6 @@ def summarize_news(news: str, category: str) -> str:
     Returns:
         str: Summarized news text.
     """
-    logger.info("Received news for summarization.")
     logger.debug(f"Raw news: {news}")
     logger.debug(f"Category for summarization: {category}")
 
@@ -47,7 +46,6 @@ def summarize_news(news: str, category: str) -> str:
 
     result = response.choices[0].message.content
 
-    logger.info("Summarization completed successfully.")
     logger.debug(f"Generated summary:\n{result}")
 
     return result

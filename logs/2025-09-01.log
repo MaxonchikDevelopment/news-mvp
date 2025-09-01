@@ -1,0 +1,432 @@
+2025-09-01 11:48:14 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "basketball_nba",
+  "confidence": 0.98,
+  "reasons": "NBA Finals Game 7, championship clinched, record significance",
+  "priority_llm": 7
+}
+```
+2025-09-01 11:48:15 [DEBUG] classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'basketball_nba', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.98, 'reasons': 'NBA Finals Game 7, championship clinched, record significance', 'priority_llm': 7}
+2025-09-01 11:48:15 [INFO] summarizer: Received news for summarization.
+2025-09-01 11:48:15 [DEBUG] summarizer: Raw news: In a thrilling NBA Finals Game 7, the Miami Heat edged out the Los Angeles Lakers 112-110
+        to clinch the championship. Jimmy Butler scored 35 points, including the game-winning free throws
+        with just seconds left. LeBron James had a triple-double for the Lakers but missed a potential
+        game-tying shot at the buzzer. The Heat’s victory marks their first championship since 2013
+        and solidifies Butler’s status as one of the league’s elite players.
+2025-09-01 11:48:15 [DEBUG] summarizer: Category for summarization: sports
+2025-09-01 11:48:15 [DEBUG] summarizer: Final prompt used:
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under 30 seconds.
+
+OUTPUT RULES:
+1. First line = **headline** (rewrite for clarity if needed).
+2. Second line = "YNotCare:" followed by:
+   - One short plain summary sentence of the news (no bullet, just text).
+   - Then bullet points for consequences, using the provided - Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ... list.
+3. Each bullet MUST start with "- " followed by aspect name and colon.
+4. Never merge multiple points into one line with semicolons — always new line per bullet.
+5. Use strong action verbs (buy, sell, hold, refinance, upskill, adjust).
+6. Focus on immediate, actionable consequences. No filler.
+7. Never invent sources. If unverified → state "I cannot verify this."
+
+INPUT FORMAT:
+The news item will be provided inside triple quotes.
+
+You will also be given a list of - Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ... that you MUST use instead of inventing your own.
+
+Example:
+- Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ...: Player impact, Team impact, League implications, Sports industry
+
+News:
+"""[news content here]"""
+
+2025-09-01 11:48:17 [INFO] summarizer: Summarization completed successfully.
+2025-09-01 11:48:17 [DEBUG] summarizer: Generated summary:
+**Miami Heat Win NBA Finals in Thrilling Game 7**
+
+YNotCare: The Miami Heat defeated the Los Angeles Lakers 112-110 in Game 7 of the NBA Finals, with Jimmy Butler scoring 35 points and securing the win with free throws.
+- Player impact: Jimmy Butler solidifies his status as an elite player and potential MVP candidate for next season.
+- Team impact: The Heat secure their first championship since 2013, boosting their franchise value and fan base.
+- League implications: The Heat's victory adds unpredictability to next season's standings and playoff picture.
+- Sports industry: The Heat's success may attract more sponsors and investors, while the Lakers face scrutiny over their off-season moves.
+2025-09-01 11:50:40 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "basketball_nba",
+  "confidence": 0.98,
+  "reasons": "NBA Finals Game 7, decisive win, record significance",
+  "priority_llm": 7
+}
+```
+2025-09-01 11:50:41 [DEBUG] classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'basketball_nba', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.98, 'reasons': 'NBA Finals Game 7, decisive win, record significance', 'priority_llm': 7}
+2025-09-01 11:50:41 [INFO] summarizer: Received news for summarization.
+2025-09-01 11:50:41 [DEBUG] summarizer: Raw news: In a thrilling NBA Finals Game 7, the Miami Heat edged out the Los Angeles Lakers 112-110
+        to clinch the championship. Jimmy Butler scored 35 points, including the game-winning free throws
+        with just seconds left. LeBron James had a triple-double for the Lakers but missed a potential
+        game-tying shot at the buzzer. The Heat’s victory marks their first championship since 2013
+        and solidifies Butler’s status as one of the league’s elite players.
+2025-09-01 11:50:41 [DEBUG] summarizer: Category for summarization: sports
+2025-09-01 11:50:41 [DEBUG] summarizer: Final prompt used:
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under 30 seconds.
+
+OUTPUT RULES:
+1. First line = **headline** (rewrite for clarity if needed).
+2. Second line = "YNotCare:" followed by:
+   - One short plain summary sentence of the news (no bullet, just text).
+   - Then bullet points for consequences, using the provided - Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ... list.
+3. Each bullet MUST start with "- " followed by aspect name and colon.
+4. Never merge multiple points into one line with semicolons — always new line per bullet.
+5. Use strong action verbs (buy, sell, hold, refinance, upskill, adjust).
+6. Focus on immediate, actionable consequences. No filler.
+7. Never invent sources. If unverified → state "I cannot verify this."
+
+INPUT FORMAT:
+The news item will be provided inside triple quotes.
+
+You will also be given a list of - Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ... that you MUST use instead of inventing your own.
+
+Example:
+- Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ...: Player impact, Team impact, League implications, Sports industry
+
+News:
+"""[news content here]"""
+
+2025-09-01 11:50:42 [INFO] summarizer: Summarization completed successfully.
+2025-09-01 11:50:42 [DEBUG] summarizer: Generated summary:
+**Miami Heat Win NBA Finals in Thrilling Game 7**
+
+YNotCare: The Miami Heat defeated the Los Angeles Lakers 112-110 in Game 7 of the NBA Finals, with Jimmy Butler scoring 35 points and securing the win with free throws.
+- Player impact: Jimmy Butler solidifies his status as an elite player, while LeBron James faces scrutiny for a missed buzzer-beater.
+- Team impact: The Heat win their first championship since 2013, while the Lakers fall short despite a strong playoff run.
+- League implications: The Heat's victory reshapes the Eastern Conference power dynamics.
+- Sports industry: The Heat's success could boost their merchandise sales and fan engagement.
+2025-09-01 11:56:31 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "basketball_nba",
+  "confidence": 0.98,
+  "reasons": "NBA Finals Game 7, championship clinched, record-breaking performance",
+  "priority_llm": 7
+}
+```
+2025-09-01 11:56:32 [DEBUG] classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'basketball_nba', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.98, 'reasons': 'NBA Finals Game 7, championship clinched, record-breaking performance', 'priority_llm': 7}
+2025-09-01 11:56:32 [INFO] summarizer: Received news for summarization.
+2025-09-01 11:56:32 [DEBUG] summarizer: Raw news: In a thrilling NBA Finals Game 7, the Miami Heat edged out the Los Angeles Lakers 112-110
+        to clinch the championship. Jimmy Butler scored 35 points, including the game-winning free throws
+        with just seconds left. LeBron James had a triple-double for the Lakers but missed a potential
+        game-tying shot at the buzzer. The Heat’s victory marks their first championship since 2013
+        and solidifies Butler’s status as one of the league’s elite players.
+2025-09-01 11:56:32 [DEBUG] summarizer: Category for summarization: sports
+2025-09-01 11:56:32 [DEBUG] summarizer: Final prompt used:
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under 30 seconds.
+
+OUTPUT RULES:
+1. First line = **headline** (rewrite for clarity if needed).
+2. Second line = "YNotCare:" followed by:
+   - One short plain summary sentence of the news (no bullet, just text).
+   - Then bullet points for consequences, using the provided - Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ... list.
+3. Each bullet MUST start with "- " followed by aspect name and colon.
+4. Never merge multiple points into one line with semicolons — always new line per bullet.
+5. Use strong action verbs (buy, sell, hold, refinance, upskill, adjust).
+6. Focus on immediate, actionable consequences. No filler.
+7. Never invent sources. If unverified → state "I cannot verify this."
+
+INPUT FORMAT:
+The news item will be provided inside triple quotes.
+
+You will also be given a list of - Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ... that you MUST use instead of inventing your own.
+
+Example:
+- Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ...: Player impact, Team impact, League implications, Sports industry
+
+News:
+"""[news content here]"""
+
+2025-09-01 11:56:34 [INFO] summarizer: Summarization completed successfully.
+2025-09-01 11:56:34 [DEBUG] summarizer: Generated summary:
+**Miami Heat Win NBA Finals in Thrilling Game 7**
+
+YNotCare: The Miami Heat defeated the Los Angeles Lakers 112-110 in a dramatic Game 7 to win the NBA championship, with Jimmy Butler delivering a clutch performance.
+- Player impact: Jimmy Butler's performance cements his status as an elite player and potential MVP candidate for next season.
+- Team impact: The Heat's victory validates their offseason moves and coaching strategies, setting them up as contenders for years to come.
+- League implications: The Heat's win adds intrigue to the Eastern Conference, making them a top team to watch in the upcoming season.
+- Sports industry: The thrilling finish boosts NBA viewership and merchandise sales, particularly for Heat and Butler-related items.
+2025-09-01 11:58:37 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "basketball_nba",
+  "confidence": 0.98,
+  "reasons": "NBA Finals Game 7, championship clinched, record-breaking performance",
+  "priority_llm": 7
+}
+```
+2025-09-01 11:58:38 [DEBUG] classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'basketball_nba', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.98, 'reasons': 'NBA Finals Game 7, championship clinched, record-breaking performance', 'priority_llm': 7}
+2025-09-01 11:58:38 [INFO] summarizer: Received news for summarization.
+2025-09-01 11:58:38 [DEBUG] summarizer: Raw news: In a thrilling NBA Finals Game 7, the Miami Heat edged out the Los Angeles Lakers 112-110
+        to clinch the championship. Jimmy Butler scored 35 points, including the game-winning free throws
+        with just seconds left. LeBron James had a triple-double for the Lakers but missed a potential
+        game-tying shot at the buzzer. The Heat’s victory marks their first championship since 2013
+        and solidifies Butler’s status as one of the league’s elite players.
+2025-09-01 11:58:38 [DEBUG] summarizer: Category for summarization: sports
+2025-09-01 11:58:38 [DEBUG] summarizer: Final prompt used:
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under 30 seconds.
+
+OUTPUT RULES:
+1. First line = **headline** (rewrite for clarity if needed).
+2. Second line = "YNotCare:" followed by:
+   - One short plain summary sentence of the news (no bullet, just text).
+   - Then bullet points for consequences, using the provided - Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ... list.
+3. Each bullet MUST start with "- " followed by aspect name and colon.
+4. Never merge multiple points into one line with semicolons — always new line per bullet.
+5. Use strong action verbs (buy, sell, hold, refinance, upskill, adjust).
+6. Focus on immediate, actionable consequences. No filler.
+7. Never invent sources. If unverified → state "I cannot verify this."
+
+INPUT FORMAT:
+The news item will be provided inside triple quotes.
+
+You will also be given a list of - Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ... that you MUST use instead of inventing your own.
+
+Example:
+- Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ...: Player impact, Team impact, League implications, Sports industry
+
+News:
+"""[news content here]"""
+
+2025-09-01 11:58:40 [INFO] summarizer: Summarization completed successfully.
+2025-09-01 11:58:40 [DEBUG] summarizer: Generated summary:
+**Miami Heat Win NBA Finals in Thrilling Game 7**
+
+YNotCare: The Miami Heat defeated the Los Angeles Lakers 112-110 in Game 7 of the NBA Finals, with Jimmy Butler scoring 35 points and securing the win with free throws. LeBron James had a triple-double for the Lakers but missed a crucial shot at the buzzer.
+- Player impact: Jimmy Butler solidifies his status as an elite player and potential MVP candidate.
+- Team impact: The Heat win their first championship since 2013, boosting their franchise's legacy.
+- League implications: The Heat's victory adds to the NBA's competitive narrative, showcasing their resilience.
+- Sports industry: The thrilling finish likely boosts TV ratings and merchandise sales for both teams.
+2025-09-01 12:00:03 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "basketball_nba",
+  "confidence": 0.98,
+  "reasons": "NBA Finals Game 7, decisive win, record significance",
+  "priority_llm": 7
+}
+```
+2025-09-01 12:00:03 [DEBUG] classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'basketball_nba', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.98, 'reasons': 'NBA Finals Game 7, decisive win, record significance', 'priority_llm': 7}
+2025-09-01 12:00:03 [INFO] summarizer: Received news for summarization.
+2025-09-01 12:00:03 [DEBUG] summarizer: Raw news: In a thrilling NBA Finals Game 7, the Miami Heat edged out the Los Angeles Lakers 112-110
+        to clinch the championship. Jimmy Butler scored 35 points, including the game-winning free throws
+        with just seconds left. LeBron James had a triple-double for the Lakers but missed a potential
+        game-tying shot at the buzzer. The Heat’s victory marks their first championship since 2013
+        and solidifies Butler’s status as one of the league’s elite players.
+2025-09-01 12:00:03 [DEBUG] summarizer: Category for summarization: sports
+2025-09-01 12:00:03 [DEBUG] summarizer: Final prompt used:
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under 30 seconds.
+
+OUTPUT RULES:
+1. First line = **headline** (rewrite for clarity if needed).
+2. Second line = "YNotCare:" followed by:
+   - One short plain summary sentence of the news (no bullet, just text).
+   - Then bullet points for consequences, using the provided - Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ... list.
+3. Each bullet MUST start with "- " followed by aspect name and colon.
+4. Never merge multiple points into one line with semicolons — always new line per bullet.
+5. Use strong action verbs (buy, sell, hold, refinance, upskill, adjust).
+6. Focus on immediate, actionable consequences. No filler.
+7. Never invent sources. If unverified → state "I cannot verify this."
+
+INPUT FORMAT:
+The news item will be provided inside triple quotes.
+
+You will also be given a list of - Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ... that you MUST use instead of inventing your own.
+
+Example:
+- Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ...: Player impact, Team impact, League implications, Sports industry
+
+News:
+"""[news content here]"""
+
+2025-09-01 12:00:05 [INFO] summarizer: Summarization completed successfully.
+2025-09-01 12:00:05 [DEBUG] summarizer: Generated summary:
+**Miami Heat Win NBA Finals in Thrilling Game 7**
+
+YNotCare: The Miami Heat defeated the Los Angeles Lakers 112-110 in Game 7 of the NBA Finals, with Jimmy Butler scoring 35 points and securing the win with free throws.
+- Player impact: Jimmy Butler solidifies his status as an elite player, while LeBron James faces scrutiny for a missed buzzer-beater.
+- Team impact: The Heat win their first championship since 2013, while the Lakers miss another opportunity to add to their title count.
+- League implications: The Heat's victory could shift power dynamics in the Eastern Conference.
+- Sports industry: The Heat's success may boost their merchandise sales and fan engagement.
+2025-09-01 12:00:16 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "basketball_nba",
+  "confidence": 0.98,
+  "reasons": "NBA Finals Game 7, decisive win, record significance",
+  "priority_llm": 7
+}
+```
+2025-09-01 12:00:16 [DEBUG] classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'basketball_nba', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.98, 'reasons': 'NBA Finals Game 7, decisive win, record significance', 'priority_llm': 7}
+2025-09-01 12:00:16 [INFO] summarizer: Received news for summarization.
+2025-09-01 12:00:16 [DEBUG] summarizer: Raw news: In a thrilling NBA Finals Game 7, the Miami Heat edged out the Los Angeles Lakers 112-110
+        to clinch the championship. Jimmy Butler scored 35 points, including the game-winning free throws
+        with just seconds left. LeBron James had a triple-double for the Lakers but missed a potential
+        game-tying shot at the buzzer. The Heat’s victory marks their first championship since 2013
+        and solidifies Butler’s status as one of the league’s elite players.
+2025-09-01 12:00:16 [DEBUG] summarizer: Category for summarization: sports
+2025-09-01 12:00:16 [DEBUG] summarizer: Final prompt used:
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under 30 seconds.
+
+OUTPUT RULES:
+1. First line = **headline** (rewrite for clarity if needed).
+2. Second line = "YNotCare:" followed by:
+   - One short plain summary sentence of the news (no bullet, just text).
+   - Then bullet points for consequences, using the provided - Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ... list.
+3. Each bullet MUST start with "- " followed by aspect name and colon.
+4. Never merge multiple points into one line with semicolons — always new line per bullet.
+5. Use strong action verbs (buy, sell, hold, refinance, upskill, adjust).
+6. Focus on immediate, actionable consequences. No filler.
+7. Never invent sources. If unverified → state "I cannot verify this."
+
+INPUT FORMAT:
+The news item will be provided inside triple quotes.
+
+You will also be given a list of - Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ... that you MUST use instead of inventing your own.
+
+Example:
+- Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ...: Player impact, Team impact, League implications, Sports industry
+
+News:
+"""[news content here]"""
+
+2025-09-01 12:00:18 [INFO] summarizer: Summarization completed successfully.
+2025-09-01 12:00:18 [DEBUG] summarizer: Generated summary:
+**Miami Heat Win NBA Finals in Game 7 Thriller**
+
+YNotCare: The Miami Heat defeated the Los Angeles Lakers 112-110 in Game 7 of the NBA Finals, with Jimmy Butler scoring 35 points and securing the win with free throws.
+- Player impact: Jimmy Butler's performance cements his reputation as an elite player, potentially increasing his market value and endorsement deals.
+- Team impact: The Heat's victory brings a championship to Miami, boosting the franchise's reputation and fan engagement.
+- League implications: The close, dramatic series could increase viewership and interest in next season's NBA.
+- Sports industry: The Heat's win may lead to increased merchandise sales and potential tourism boosts for Miami.
+2025-09-01 12:01:12 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "basketball_nba",
+  "confidence": 0.98,
+  "reasons": "NBA Finals Game 7, championship decided, record-breaking performance",
+  "priority_llm": 7
+}
+```
+2025-09-01 12:01:12 [DEBUG] classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'basketball_nba', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.98, 'reasons': 'NBA Finals Game 7, championship decided, record-breaking performance', 'priority_llm': 7}
+2025-09-01 12:01:12 [DEBUG] summarizer: Raw news: In a thrilling NBA Finals Game 7, the Miami Heat edged out the Los Angeles Lakers 112-110
+        to clinch the championship. Jimmy Butler scored 35 points, including the game-winning free throws
+        with just seconds left. LeBron James had a triple-double for the Lakers but missed a potential
+        game-tying shot at the buzzer. The Heat’s victory marks their first championship since 2013
+        and solidifies Butler’s status as one of the league’s elite players.
+2025-09-01 12:01:12 [DEBUG] summarizer: Category for summarization: sports
+2025-09-01 12:01:12 [DEBUG] summarizer: Final prompt used:
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under 30 seconds.
+
+OUTPUT RULES:
+1. First line = **headline** (rewrite for clarity if needed).
+2. Second line = "YNotCare:" followed by:
+   - One short plain summary sentence of the news (no bullet, just text).
+   - Then bullet points for consequences, using the provided - Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ... list.
+3. Each bullet MUST start with "- " followed by aspect name and colon.
+4. Never merge multiple points into one line with semicolons — always new line per bullet.
+5. Use strong action verbs (buy, sell, hold, refinance, upskill, adjust).
+6. Focus on immediate, actionable consequences. No filler.
+7. Never invent sources. If unverified → state "I cannot verify this."
+
+INPUT FORMAT:
+The news item will be provided inside triple quotes.
+
+You will also be given a list of - Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ... that you MUST use instead of inventing your own.
+
+Example:
+- Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ...: Player impact, Team impact, League implications, Sports industry
+
+News:
+"""[news content here]"""
+
+2025-09-01 12:01:16 [DEBUG] summarizer: Generated summary:
+**Heat Win NBA Finals in Thrilling Game 7**
+
+YNotCare: The Miami Heat defeated the Los Angeles Lakers 112-110 in a dramatic Game 7 to win the NBA championship, with Jimmy Butler scoring 35 points and securing the game-winning free throws.
+- Player impact: Jimmy Butler's performance cements his status as an elite player and raises his market value for future contracts or trades.
+- Team impact: The Heat's victory boosts their franchise value and fan engagement, potentially attracting more sponsors and investors.
+- League implications: The Heat's win adds excitement to the league's narrative, drawing more viewers and increasing TV ratings for next season.
+- Sports industry: The intense Game 7 boosts merchandise sales, particularly for Heat and Butler jerseys, and increases betting activity on future NBA games.

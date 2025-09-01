@@ -17,8 +17,6 @@ from src.prompts import (
 
 logger = get_logger(__name__)
 
-# ---- Category and Subcategory Definitions ----
-
 Category = Literal[
     "economy_finance",
     "politics_geopolitics",
@@ -61,7 +59,6 @@ TechSub = Literal[
 ]
 
 
-# ---- TypedDict for structured return type ----
 class ClassifierOutput(TypedDict):
     category: Category
     sports_subcategory: Optional[SportSub]
@@ -69,10 +66,9 @@ class ClassifierOutput(TypedDict):
     tech_subcategory: Optional[TechSub]
     confidence: float
     reasons: str
-    priority_llm: int
+    priority_llm: int  # ВНИМАНИЕ: шкала 1..10 — это лишь "хинт"
 
 
-# ---- Helpers ----
 def _salvage_json(s: str) -> Dict[str, Any]:
     start = s.find("{")
     end = s.rfind("}")
@@ -95,7 +91,6 @@ def _normalize(d: Dict[str, Any]) -> ClassifierOutput:
     econ = d.get("economy_subcategory")
     tech = d.get("tech_subcategory")
 
-    # Validate subs
     if sports and sports not in allowed_sport:
         sports = "other_sports"
     if econ and econ not in allowed_econ:
@@ -113,7 +108,7 @@ def _normalize(d: Dict[str, Any]) -> ClassifierOutput:
         pr = int(d.get("priority_llm", 5))
     except Exception:
         pr = 5
-    pr = max(1, min(10, pr))
+    pr = max(1, min(10, pr))  # БЕЗ масштабирования
 
     reasons = str(d.get("reasons", "")).strip()
     words = reasons.split()
@@ -134,7 +129,6 @@ def _normalize(d: Dict[str, Any]) -> ClassifierOutput:
 def _ask_subcategory(
     client: Mistral, prompt: str, text: str, key: str
 ) -> Optional[str]:
-    """Call LLM to determine subcategory (sports/econ/tech)."""
     resp = client.chat.complete(
         model="mistral-small-latest",
         temperature=0.0,
@@ -152,7 +146,6 @@ def _ask_subcategory(
     return data.get(key)
 
 
-# ---- Main Function ----
 def classify_news(text: str, user_locale: Optional[str] = None) -> ClassifierOutput:
     client = Mistral(api_key=MISTRAL_API_KEY)
 
@@ -183,7 +176,7 @@ def classify_news(text: str, user_locale: Optional[str] = None) -> ClassifierOut
 
     out = _normalize(data)
 
-    # ---- Cascade subcategory refinement ----
+    # Каскадное уточнение субкатегорий
     if out["category"] == "sports":
         sub = _ask_subcategory(
             client, SPORTS_SUBCATEGORY_PROMPT, text, "sports_subcategory"
