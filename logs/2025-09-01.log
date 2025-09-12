@@ -430,3 +430,841 @@ YNotCare: The Miami Heat defeated the Los Angeles Lakers 112-110 in a dramatic G
 - Team impact: The Heat's victory boosts their franchise value and fan engagement, potentially attracting more sponsors and investors.
 - League implications: The Heat's win adds excitement to the league's narrative, drawing more viewers and increasing TV ratings for next season.
 - Sports industry: The intense Game 7 boosts merchandise sales, particularly for Heat and Butler jerseys, and increases betting activity on future NBA games.
+2025-09-01 13:25:00 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "confidence": 1.0,
+  "reasons": "ECB rate cut impacts EU economy",
+  "priority_llm": 9
+}
+```
+2025-09-01 13:25:00 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "major tech launch with global implications",
+  "priority_llm": 8
+}
+```
+2025-09-01 13:25:00 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "basketball_nba",
+  "confidence": 0.98,
+  "reasons": "NBA Finals Game 7, decisive win",
+  "priority_llm": 7
+}
+```
+2025-09-01 13:25:01 [DEBUG] classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'consumer_products', 'confidence': 0.95, 'reasons': 'major tech launch with global implications', 'priority_llm': 8}
+2025-09-01 13:25:01 [DEBUG] classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'central_banks', 'tech_subcategory': None, 'confidence': 1.0, 'reasons': 'ECB rate cut impacts EU economy', 'priority_llm': 9}
+2025-09-01 13:25:01 [DEBUG] classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'basketball_nba', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.98, 'reasons': 'NBA Finals Game 7, decisive win', 'priority_llm': 7}
+2025-09-01 13:25:56 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "confidence": 0.98,
+  "reasons": "ECB rate cut impacts Eurozone economy and markets",
+  "priority_llm": 9
+}
+```
+2025-09-01 13:25:56 [DEBUG] classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'central_banks', 'tech_subcategory': None, 'confidence': 0.98, 'reasons': 'ECB rate cut impacts Eurozone economy and markets', 'priority_llm': 9}
+2025-09-01 13:25:56 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "basketball_nba",
+  "confidence": 0.98,
+  "reasons": "NBA Finals Game 7, decisive win",
+  "priority_llm": 7
+}
+```
+2025-09-01 13:25:57 [DEBUG] classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'basketball_nba', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.98, 'reasons': 'NBA Finals Game 7, decisive win', 'priority_llm': 7}
+2025-09-01 13:25:57 [DEBUG] summarizer: Raw news: In a thrilling NBA Finals Game 7, the Miami Heat edged out the Los Angeles Lakers 112-110
+        to clinch the championship. Jimmy Butler scored 35 points, including the game-winning free throws
+        with just seconds left. LeBron James had a triple-double for the Lakers but missed a potential
+        game-tying shot at the buzzer.
+2025-09-01 13:25:57 [DEBUG] summarizer: Category for summarization: sports
+2025-09-01 13:25:57 [DEBUG] summarizer: Raw news: ECB announces surprise interest rate cut to stimulate economic growth amid rising inflation concerns.
+        The move affects all Eurozone countries and impacts mortgage rates across the region. Financial markets
+        reacted positively to the unexpected decision.
+2025-09-01 13:25:57 [DEBUG] summarizer: Category for summarization: economy_finance
+2025-09-01 13:25:57 [DEBUG] summarizer: Final prompt used:
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under 30 seconds.
+
+OUTPUT RULES:
+1. First line = **headline** (rewrite for clarity if needed).
+2. Second line = "YNotCare:" followed by:
+   - One short plain summary sentence of the news (no bullet, just text).
+   - Then bullet points for consequences, using the provided - Household: ...
+- Inflation & Costs: ...
+- Real Estate: ...
+- Investments/Markets: ...
+- Career & Education / Policy & Geopolitics: ... list.
+3. Each bullet MUST start with "- " followed by aspect name and colon.
+4. Never merge multiple points into one line with semicolons — always new line per bullet.
+5. Use strong action verbs (buy, sell, hold, refinance, upskill, adjust).
+6. Focus on immediate, actionable consequences. No filler.
+7. Never invent sources. If unverified → state "I cannot verify this."
+
+INPUT FORMAT:
+The news item will be provided inside triple quotes.
+
+You will also be given a list of - Household: ...
+- Inflation & Costs: ...
+- Real Estate: ...
+- Investments/Markets: ...
+- Career & Education / Policy & Geopolitics: ... that you MUST use instead of inventing your own.
+
+Example:
+- Household: ...
+- Inflation & Costs: ...
+- Real Estate: ...
+- Investments/Markets: ...
+- Career & Education / Policy & Geopolitics: ...: Player impact, Team impact, League implications, Sports industry
+
+News:
+"""[news content here]"""
+
+2025-09-01 13:25:57 [DEBUG] summarizer: Final prompt used:
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under 30 seconds.
+
+OUTPUT RULES:
+1. First line = **headline** (rewrite for clarity if needed).
+2. Second line = "YNotCare:" followed by:
+   - One short plain summary sentence of the news (no bullet, just text).
+   - Then bullet points for consequences, using the provided - Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ... list.
+3. Each bullet MUST start with "- " followed by aspect name and colon.
+4. Never merge multiple points into one line with semicolons — always new line per bullet.
+5. Use strong action verbs (buy, sell, hold, refinance, upskill, adjust).
+6. Focus on immediate, actionable consequences. No filler.
+7. Never invent sources. If unverified → state "I cannot verify this."
+
+INPUT FORMAT:
+The news item will be provided inside triple quotes.
+
+You will also be given a list of - Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ... that you MUST use instead of inventing your own.
+
+Example:
+- Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ...: Player impact, Team impact, League implications, Sports industry
+
+News:
+"""[news content here]"""
+
+2025-09-01 13:25:58 [DEBUG] summarizer: Generated summary:
+**Miami Heat Win NBA Finals in Dramatic Game 7**
+
+YNotCare: The Miami Heat defeated the Los Angeles Lakers 112-110 in a nail-biting Game 7 to win the NBA championship, with Jimmy Butler scoring 35 points and LeBron James falling just short for the Lakers.
+- Player impact: Jimmy Butler solidifies his status as a clutch performer and potential MVP candidate for next season.
+- Team impact: The Heat prove their resilience and coaching prowess, setting a strong foundation for future success.
+- League implications: The NBA's parity is reinforced, with no clear dominant team, keeping the league competitive and exciting.
+- Sports industry: The Heat's victory boosts their merchandise sales and fan engagement, while the Lakers may see a temporary dip in merchandise sales.
+2025-09-01 13:25:58 [DEBUG] summarizer: Generated summary:
+**ECB Cuts Rates to Boost Growth Amid Inflation Fears**
+
+YNotCare: The European Central Bank (ECB) has unexpectedly lowered interest rates to stimulate economic growth despite rising inflation concerns, affecting mortgage rates across the Eurozone. Financial markets reacted positively.
+- Household: Refinance mortgages to lock in lower rates.
+- Inflation & Costs: Monitor price trends as inflation may persist.
+- Real Estate: Expect lower mortgage rates, boosting homebuyer demand.
+- Investments/Markets: Consider investing in Eurozone assets due to positive market reaction.
+- Career & Education / Policy & Geopolitics: Assess economic policies' impact on job markets and upskill for potential shifts in demand.
+2025-09-01 13:27:32 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "basketball_nba",
+  "confidence": 0.98,
+  "reasons": "NBA Finals Game 7, decisive win",
+  "priority_llm": 7
+}
+```
+2025-09-01 13:27:32 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "confidence": 0.98,
+  "reasons": "ECB rate cut impacts Eurozone economy and financial markets",
+  "priority_llm": 9
+}
+```
+2025-09-01 13:27:32 [DEBUG] classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'basketball_nba', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.98, 'reasons': 'NBA Finals Game 7, decisive win', 'priority_llm': 7}
+2025-09-01 13:27:32 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "major tech launch with significant performance claims",
+  "priority_llm": 7
+}
+```
+2025-09-01 13:27:33 [DEBUG] classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'central_banks', 'tech_subcategory': None, 'confidence': 0.98, 'reasons': 'ECB rate cut impacts Eurozone economy and financial markets', 'priority_llm': 9}
+2025-09-01 13:27:33 [DEBUG] classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'consumer_products', 'confidence': 0.95, 'reasons': 'major tech launch with significant performance claims', 'priority_llm': 7}
+2025-09-01 13:27:33 [DEBUG] summarizer: Raw news: In a thrilling NBA Finals Game 7, the Miami Heat edged out the Los Angeles Lakers 112-110
+        to clinch the championship. Jimmy Butler scored 35 points, including the game-winning free throws
+        with just seconds left. LeBron James had a triple-double for the Lakers but missed a potential
+        game-tying shot at the buzzer.
+2025-09-01 13:27:33 [DEBUG] summarizer: Raw news: ECB announces surprise interest rate cut to stimulate economic growth amid rising inflation concerns.
+        The move affects all Eurozone countries and impacts mortgage rates across the region. Financial markets
+        reacted positively to the unexpected decision.
+2025-09-01 13:27:33 [DEBUG] summarizer: Category for summarization: sports
+2025-09-01 13:27:33 [DEBUG] summarizer: Raw news: Apple unveils revolutionary AI chip for next-generation iPhones, promising 5x performance improvement
+        in machine learning tasks. The chip will be available in devices shipping later this year.
+2025-09-01 13:27:33 [DEBUG] summarizer: Category for summarization: economy_finance
+2025-09-01 13:27:33 [DEBUG] summarizer: Category for summarization: technology_ai_science
+2025-09-01 13:27:33 [DEBUG] summarizer: Final prompt used:
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under 30 seconds.
+
+OUTPUT RULES:
+1. First line = **headline** (rewrite for clarity if needed).
+2. Second line = "YNotCare:" followed by:
+   - One short plain summary sentence of the news (no bullet, just text).
+   - Then bullet points for consequences, using the provided - Household: ...
+- Inflation & Costs: ...
+- Real Estate: ...
+- Investments/Markets: ...
+- Career & Education / Policy & Geopolitics: ... list.
+3. Each bullet MUST start with "- " followed by aspect name and colon.
+4. Never merge multiple points into one line with semicolons — always new line per bullet.
+5. Use strong action verbs (buy, sell, hold, refinance, upskill, adjust).
+6. Focus on immediate, actionable consequences. No filler.
+7. Never invent sources. If unverified → state "I cannot verify this."
+
+INPUT FORMAT:
+The news item will be provided inside triple quotes.
+
+You will also be given a list of - Household: ...
+- Inflation & Costs: ...
+- Real Estate: ...
+- Investments/Markets: ...
+- Career & Education / Policy & Geopolitics: ... that you MUST use instead of inventing your own.
+
+Example:
+- Household: ...
+- Inflation & Costs: ...
+- Real Estate: ...
+- Investments/Markets: ...
+- Career & Education / Policy & Geopolitics: ...: Player impact, Team impact, League implications, Sports industry
+
+News:
+"""[news content here]"""
+
+2025-09-01 13:27:33 [DEBUG] summarizer: Final prompt used:
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under 30 seconds.
+
+OUTPUT RULES:
+1. First line = **headline** (rewrite for clarity if needed).
+2. Second line = "YNotCare:" followed by:
+   - One short plain summary sentence of the news (no bullet, just text).
+   - Then bullet points for consequences, using the provided - Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ... list.
+3. Each bullet MUST start with "- " followed by aspect name and colon.
+4. Never merge multiple points into one line with semicolons — always new line per bullet.
+5. Use strong action verbs (buy, sell, hold, refinance, upskill, adjust).
+6. Focus on immediate, actionable consequences. No filler.
+7. Never invent sources. If unverified → state "I cannot verify this."
+
+INPUT FORMAT:
+The news item will be provided inside triple quotes.
+
+You will also be given a list of - Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ... that you MUST use instead of inventing your own.
+
+Example:
+- Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ...: Player impact, Team impact, League implications, Sports industry
+
+News:
+"""[news content here]"""
+
+2025-09-01 13:27:33 [DEBUG] summarizer: Final prompt used:
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under 30 seconds.
+
+OUTPUT RULES:
+1. First line = **headline** (rewrite for clarity if needed).
+2. Second line = "YNotCare:" followed by:
+   - One short plain summary sentence of the news (no bullet, just text).
+   - Then bullet points for consequences, using the provided - Household: ...
+- Business adoption: ...
+- Investments/Markets: ...
+- Career & Education: ...
+- Policy & Regulation: ... list.
+3. Each bullet MUST start with "- " followed by aspect name and colon.
+4. Never merge multiple points into one line with semicolons — always new line per bullet.
+5. Use strong action verbs (buy, sell, hold, refinance, upskill, adjust).
+6. Focus on immediate, actionable consequences. No filler.
+7. Never invent sources. If unverified → state "I cannot verify this."
+
+INPUT FORMAT:
+The news item will be provided inside triple quotes.
+
+You will also be given a list of - Household: ...
+- Business adoption: ...
+- Investments/Markets: ...
+- Career & Education: ...
+- Policy & Regulation: ... that you MUST use instead of inventing your own.
+
+Example:
+- Household: ...
+- Business adoption: ...
+- Investments/Markets: ...
+- Career & Education: ...
+- Policy & Regulation: ...: Player impact, Team impact, League implications, Sports industry
+
+News:
+"""[news content here]"""
+
+2025-09-01 13:27:34 [DEBUG] summarizer: Generated summary:
+**ECB Cuts Rates to Boost Growth Amid Inflation Fears**
+
+YNotCare: The European Central Bank unexpectedly lowered interest rates to spur economic growth despite inflation worries, affecting Eurozone mortgages and markets.
+- Household: Refinance mortgages to lock in lower rates.
+- Inflation & Costs: Monitor price trends as ECB balances growth and inflation.
+- Real Estate: Expect lower mortgage rates, boosting homebuyer demand.
+- Investments/Markets: Capitalize on positive market reactions to the rate cut.
+- Career & Education / Policy & Geopolitics: Assess Eurozone economic policies for long-term career and investment strategies.
+2025-09-01 13:27:34 [DEBUG] summarizer: Generated summary:
+**Apple's New AI Chip to Boost iPhone Performance Fivefold**
+
+YNotCare: Apple's new AI chip will significantly enhance machine learning tasks in upcoming iPhones.
+- Household: Upgrade older iPhones to access new AI features.
+- Business adoption: Integrate AI-driven apps for improved efficiency.
+- Investments/Markets: Monitor Apple's stock for potential growth.
+- Career & Education: Upskill in AI to stay relevant in tech-driven jobs.
+- Policy & Regulation: Advocate for data privacy laws as AI usage increases.
+2025-09-01 13:27:37 [DEBUG] summarizer: Generated summary:
+**Miami Heat Win NBA Finals in Dramatic Game 7**
+
+YNotCare: The Miami Heat defeated the Los Angeles Lakers 112-110 in a thrilling NBA Finals Game 7, with Jimmy Butler scoring 35 points and securing the win with free throws. LeBron James had a triple-double for the Lakers but missed a final shot.
+- Player impact: Jimmy Butler solidifies his status as a clutch performer and potential Finals MVP.
+- Team impact: The Heat celebrate their first championship since 2013, while the Lakers face another disappointing loss.
+- League implications: The Heat's victory shifts the NBA's power dynamics, with Miami emerging as a strong contender.
+- Sports industry: The intense series boosts NBA viewership and merchandise sales for both teams.
+2025-09-01 15:32:26 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "basketball_nba",
+  "confidence": 0.98,
+  "reasons": "NBA Finals Game 7, decisive win, record-breaking performance",
+  "priority_llm": 7
+}
+```
+2025-09-01 15:32:26 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "confidence": 0.98,
+  "reasons": "ECB rate cut impacts Eurozone economy and financial markets",
+  "priority_llm": 9
+}
+```
+2025-09-01 15:32:26 [DEBUG] classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'basketball_nba', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.98, 'reasons': 'NBA Finals Game 7, decisive win, record-breaking performance', 'priority_llm': 7}
+2025-09-01 15:32:26 [DEBUG] classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'central_banks', 'tech_subcategory': None, 'confidence': 0.98, 'reasons': 'ECB rate cut impacts Eurozone economy and financial markets', 'priority_llm': 9}
+2025-09-01 15:32:26 [DEBUG] summarizer: Raw news: In a thrilling NBA Finals Game 7, the Miami Heat edged out the Los Angeles Lakers 112-110
+        to clinch the championship. Jimmy Butler scored 35 points, including the game-winning free throws
+        with just seconds left. LeBron James had a triple-double for the Lakers but missed a potential
+        game-tying shot at the buzzer.
+2025-09-01 15:32:26 [DEBUG] summarizer: Raw news: ECB announces surprise interest rate cut to stimulate economic growth amid rising inflation concerns.
+        The move affects all Eurozone countries and impacts mortgage rates across the region. Financial markets
+        reacted positively to the unexpected decision.
+2025-09-01 15:32:26 [DEBUG] summarizer: Category for summarization: sports
+2025-09-01 15:32:26 [DEBUG] summarizer: Category for summarization: economy_finance
+2025-09-01 15:32:26 [DEBUG] summarizer: Final prompt used:
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under 30 seconds.
+
+OUTPUT RULES:
+1. First line = **headline** (rewrite for clarity if needed).
+2. Second line = "YNotCare:" followed by:
+   - One short plain summary sentence of the news (no bullet, just text).
+   - Then bullet points for consequences, using the provided - Household: ...
+- Inflation & Costs: ...
+- Real Estate: ...
+- Investments/Markets: ...
+- Career & Education / Policy & Geopolitics: ... list.
+3. Each bullet MUST start with "- " followed by aspect name and colon.
+4. Never merge multiple points into one line with semicolons — always new line per bullet.
+5. Use strong action verbs (buy, sell, hold, refinance, upskill, adjust).
+6. Focus on immediate, actionable consequences. No filler.
+7. Never invent sources. If unverified → state "I cannot verify this."
+
+INPUT FORMAT:
+The news item will be provided inside triple quotes.
+
+You will also be given a list of - Household: ...
+- Inflation & Costs: ...
+- Real Estate: ...
+- Investments/Markets: ...
+- Career & Education / Policy & Geopolitics: ... that you MUST use instead of inventing your own.
+
+Example:
+- Household: ...
+- Inflation & Costs: ...
+- Real Estate: ...
+- Investments/Markets: ...
+- Career & Education / Policy & Geopolitics: ...: Player impact, Team impact, League implications, Sports industry
+
+News:
+"""[news content here]"""
+
+2025-09-01 15:32:26 [DEBUG] summarizer: Final prompt used:
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under 30 seconds.
+
+OUTPUT RULES:
+1. First line = **headline** (rewrite for clarity if needed).
+2. Second line = "YNotCare:" followed by:
+   - One short plain summary sentence of the news (no bullet, just text).
+   - Then bullet points for consequences, using the provided - Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ... list.
+3. Each bullet MUST start with "- " followed by aspect name and colon.
+4. Never merge multiple points into one line with semicolons — always new line per bullet.
+5. Use strong action verbs (buy, sell, hold, refinance, upskill, adjust).
+6. Focus on immediate, actionable consequences. No filler.
+7. Never invent sources. If unverified → state "I cannot verify this."
+
+INPUT FORMAT:
+The news item will be provided inside triple quotes.
+
+You will also be given a list of - Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ... that you MUST use instead of inventing your own.
+
+Example:
+- Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ...: Player impact, Team impact, League implications, Sports industry
+
+News:
+"""[news content here]"""
+
+2025-09-01 15:32:28 [DEBUG] summarizer: Generated summary:
+**ECB Cuts Rates to Boost Growth Amid Inflation Fears**
+
+YNotCare: The European Central Bank unexpectedly lowered interest rates to spur economic growth despite inflation worries, affecting Eurozone mortgages and markets.
+- Household: Refinance mortgages to lock in lower rates.
+- Inflation & Costs: Monitor price trends as ECB balances growth and inflation.
+- Real Estate: Expect lower mortgage rates, boosting homebuyer demand.
+- Investments/Markets: Capitalize on positive market reactions to the rate cut.
+- Career & Education / Policy & Geopolitics: Assess Eurozone economic policies for long-term career and investment strategies.
+2025-09-01 15:32:28 [DEBUG] summarizer: Generated summary:
+**Miami Heat Win NBA Finals in Thrilling Game 7**
+
+YNotCare: The Miami Heat defeated the Los Angeles Lakers 112-110 in a dramatic NBA Finals Game 7, with Jimmy Butler scoring 35 points and securing the win with late free throws.
+- Player impact: Jimmy Butler solidifies his reputation as a clutch performer, while LeBron James faces scrutiny for a missed buzzer-beater.
+- Team impact: The Heat celebrate their first championship in 15 years, while the Lakers suffer another Finals loss.
+- League implications: The Heat's victory reshapes the Eastern Conference power dynamics, while the Lakers must regroup.
+- Sports industry: Merchandise sales for the Heat spike, and sportsbooks adjust odds for next season.
+2025-09-01 15:33:18 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "basketball_nba",
+  "confidence": 0.98,
+  "reasons": "NBA Finals Game 7, decisive win, record-breaking performance",
+  "priority_llm": 7
+}
+```
+2025-09-01 15:33:18 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "confidence": 0.98,
+  "reasons": "ECB rate cut impacts Eurozone economy and financial markets",
+  "priority_llm": 9
+}
+```
+2025-09-01 15:33:19 [DEBUG] classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'basketball_nba', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.98, 'reasons': 'NBA Finals Game 7, decisive win, record-breaking performance', 'priority_llm': 7}
+2025-09-01 15:33:19 [DEBUG] classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'central_banks', 'tech_subcategory': None, 'confidence': 0.98, 'reasons': 'ECB rate cut impacts Eurozone economy and financial markets', 'priority_llm': 9}
+2025-09-01 15:33:19 [DEBUG] summarizer: Raw news: In a thrilling NBA Finals Game 7, the Miami Heat edged out the Los Angeles Lakers 112-110
+        to clinch the championship. Jimmy Butler scored 35 points, including the game-winning free throws
+        with just seconds left. LeBron James had a triple-double for the Lakers but missed a potential
+        game-tying shot at the buzzer.
+2025-09-01 15:33:19 [DEBUG] summarizer: Raw news: ECB announces surprise interest rate cut to stimulate economic growth amid rising inflation concerns.
+        The move affects all Eurozone countries and impacts mortgage rates across the region. Financial markets
+        reacted positively to the unexpected decision.
+2025-09-01 15:33:19 [DEBUG] summarizer: Category for summarization: sports
+2025-09-01 15:33:19 [DEBUG] summarizer: Category for summarization: economy_finance
+2025-09-01 15:33:19 [DEBUG] summarizer: Final prompt used:
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under 30 seconds.
+
+OUTPUT RULES:
+1. First line = **headline** (rewrite for clarity if needed).
+2. Second line = "YNotCare:" followed by:
+   - One short plain summary sentence of the news (no bullet, just text).
+   - Then bullet points for consequences, using the provided - Household: ...
+- Inflation & Costs: ...
+- Real Estate: ...
+- Investments/Markets: ...
+- Career & Education / Policy & Geopolitics: ... list.
+3. Each bullet MUST start with "- " followed by aspect name and colon.
+4. Never merge multiple points into one line with semicolons — always new line per bullet.
+5. Use strong action verbs (buy, sell, hold, refinance, upskill, adjust).
+6. Focus on immediate, actionable consequences. No filler.
+7. Never invent sources. If unverified → state "I cannot verify this."
+
+INPUT FORMAT:
+The news item will be provided inside triple quotes.
+
+You will also be given a list of - Household: ...
+- Inflation & Costs: ...
+- Real Estate: ...
+- Investments/Markets: ...
+- Career & Education / Policy & Geopolitics: ... that you MUST use instead of inventing your own.
+
+Example:
+- Household: ...
+- Inflation & Costs: ...
+- Real Estate: ...
+- Investments/Markets: ...
+- Career & Education / Policy & Geopolitics: ...: Player impact, Team impact, League implications, Sports industry
+
+News:
+"""[news content here]"""
+
+2025-09-01 15:33:19 [DEBUG] summarizer: Final prompt used:
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under 30 seconds.
+
+OUTPUT RULES:
+1. First line = **headline** (rewrite for clarity if needed).
+2. Second line = "YNotCare:" followed by:
+   - One short plain summary sentence of the news (no bullet, just text).
+   - Then bullet points for consequences, using the provided - Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ... list.
+3. Each bullet MUST start with "- " followed by aspect name and colon.
+4. Never merge multiple points into one line with semicolons — always new line per bullet.
+5. Use strong action verbs (buy, sell, hold, refinance, upskill, adjust).
+6. Focus on immediate, actionable consequences. No filler.
+7. Never invent sources. If unverified → state "I cannot verify this."
+
+INPUT FORMAT:
+The news item will be provided inside triple quotes.
+
+You will also be given a list of - Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ... that you MUST use instead of inventing your own.
+
+Example:
+- Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ...: Player impact, Team impact, League implications, Sports industry
+
+News:
+"""[news content here]"""
+
+2025-09-01 15:33:20 [DEBUG] summarizer: Generated summary:
+**ECB Cuts Rates to Boost Growth Amid Inflation Fears**
+
+YNotCare: The European Central Bank (ECB) has unexpectedly lowered interest rates to stimulate economic growth despite rising inflation concerns, affecting mortgage rates across the Eurozone. Financial markets reacted positively.
+- Household: Refinance mortgages to lock in lower rates.
+- Inflation & Costs: Monitor price trends as inflation may persist.
+- Real Estate: Expect lower mortgage rates, boosting homebuying.
+- Investments/Markets: Capitalize on positive market reactions.
+- Career & Education / Policy & Geopolitics: Assess economic policies' impact on job markets.
+2025-09-01 15:33:21 [DEBUG] summarizer: Generated summary:
+**Miami Heat Win NBA Finals in Thrilling Game 7**
+
+YNotCare: The Miami Heat defeated the Los Angeles Lakers 112-110 in a dramatic Game 7 to win the NBA championship, with Jimmy Butler scoring 35 points and securing the win with free throws.
+- Player impact: Jimmy Butler solidifies his status as a clutch performer and potential MVP candidate for next season.
+- Team impact: The Heat prove their resilience and coaching prowess, setting a strong foundation for future success.
+- League implications: The NBA's parity is reinforced, with mid-tier teams proving they can compete with superstar-laden franchises.
+- Sports industry: The Heat's victory boosts their merchandise sales and fan engagement, while the Lakers may face increased pressure to improve their roster.
+2025-09-01 15:35:22 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "confidence": 0.98,
+  "reasons": "ECB's surprise rate cut impacts Eurozone economy",
+  "priority_llm": 9
+}
+```
+2025-09-01 15:35:23 [DEBUG] classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'central_banks', 'tech_subcategory': None, 'confidence': 0.98, 'reasons': "ECB's surprise rate cut impacts Eurozone economy", 'priority_llm': 9}
+2025-09-01 15:35:25 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "basketball_nba",
+  "confidence": 0.98,
+  "reasons": "NBA Finals Game 7, decisive win, record-breaking performance",
+  "priority_llm": 7
+}
+```
+2025-09-01 15:35:26 [DEBUG] classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'basketball_nba', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.98, 'reasons': 'NBA Finals Game 7, decisive win, record-breaking performance', 'priority_llm': 7}
+2025-09-01 15:35:26 [DEBUG] summarizer: Raw news: In a thrilling NBA Finals Game 7, the Miami Heat edged out the Los Angeles Lakers 112-110
+        to clinch the championship. Jimmy Butler scored 35 points, including the game-winning free throws
+        with just seconds left. LeBron James had a triple-double for the Lakers but missed a potential
+        game-tying shot at the buzzer.
+2025-09-01 15:35:26 [DEBUG] summarizer: Raw news: ECB announces surprise interest rate cut to stimulate economic growth amid rising inflation concerns.
+        The move affects all Eurozone countries and impacts mortgage rates across the region. Financial markets
+        reacted positively to the unexpected decision.
+2025-09-01 15:35:26 [DEBUG] summarizer: Category for summarization: sports
+2025-09-01 15:35:26 [DEBUG] summarizer: Category for summarization: economy_finance
+2025-09-01 15:35:26 [DEBUG] summarizer: Final prompt used:
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under 30 seconds.
+
+OUTPUT RULES:
+1. First line = **headline** (rewrite for clarity if needed).
+2. Second line = "YNotCare:" followed by:
+   - One short plain summary sentence of the news (no bullet, just text).
+   - Then bullet points for consequences, using the provided - Household: ...
+- Inflation & Costs: ...
+- Real Estate: ...
+- Investments/Markets: ...
+- Career & Education / Policy & Geopolitics: ... list.
+3. Each bullet MUST start with "- " followed by aspect name and colon.
+4. Never merge multiple points into one line with semicolons — always new line per bullet.
+5. Use strong action verbs (buy, sell, hold, refinance, upskill, adjust).
+6. Focus on immediate, actionable consequences. No filler.
+7. Never invent sources. If unverified → state "I cannot verify this."
+
+INPUT FORMAT:
+The news item will be provided inside triple quotes.
+
+You will also be given a list of - Household: ...
+- Inflation & Costs: ...
+- Real Estate: ...
+- Investments/Markets: ...
+- Career & Education / Policy & Geopolitics: ... that you MUST use instead of inventing your own.
+
+Example:
+- Household: ...
+- Inflation & Costs: ...
+- Real Estate: ...
+- Investments/Markets: ...
+- Career & Education / Policy & Geopolitics: ...: Player impact, Team impact, League implications, Sports industry
+
+News:
+"""[news content here]"""
+
+2025-09-01 15:35:26 [DEBUG] summarizer: Final prompt used:
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under 30 seconds.
+
+OUTPUT RULES:
+1. First line = **headline** (rewrite for clarity if needed).
+2. Second line = "YNotCare:" followed by:
+   - One short plain summary sentence of the news (no bullet, just text).
+   - Then bullet points for consequences, using the provided - Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ... list.
+3. Each bullet MUST start with "- " followed by aspect name and colon.
+4. Never merge multiple points into one line with semicolons — always new line per bullet.
+5. Use strong action verbs (buy, sell, hold, refinance, upskill, adjust).
+6. Focus on immediate, actionable consequences. No filler.
+7. Never invent sources. If unverified → state "I cannot verify this."
+
+INPUT FORMAT:
+The news item will be provided inside triple quotes.
+
+You will also be given a list of - Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ... that you MUST use instead of inventing your own.
+
+Example:
+- Player impact: ...
+- Team impact: ...
+- League implications: ...
+- Sports industry: ...: Player impact, Team impact, League implications, Sports industry
+
+News:
+"""[news content here]"""
+
+2025-09-01 15:35:27 [DEBUG] summarizer: Generated summary:
+**ECB Cuts Rates to Boost Growth Amid Inflation Fears**
+
+YNotCare: The European Central Bank (ECB) has unexpectedly lowered interest rates to stimulate economic growth despite rising inflation concerns, affecting mortgage rates across the Eurozone. Financial markets reacted positively.
+- Household: Refinance mortgages to lock in lower rates.
+- Inflation & Costs: Monitor price trends as inflation may persist.
+- Real Estate: Expect lower mortgage rates, boosting homebuyer demand.
+- Investments/Markets: Consider investing in Eurozone assets due to positive market reaction.
+- Career & Education / Policy & Geopolitics: Assess economic policies' impact on job markets and upskill for potential shifts in demand.
+2025-09-01 15:35:28 [DEBUG] summarizer: Generated summary:
+**Miami Heat Win NBA Finals in Game 7 Thriller**
+
+YNotCare: The Miami Heat defeated the Los Angeles Lakers 112-110 in Game 7 of the NBA Finals, with Jimmy Butler scoring 35 points and securing the win with free throws.
+- Player impact: Jimmy Butler solidifies his reputation as a clutch performer, while LeBron James faces criticism for a missed buzzer-beater.
+- Team impact: The Heat celebrate their first championship since 2013, while the Lakers' title drought extends to 11 years.
+- League implications: The Heat's victory shifts the NBA's power dynamics, with Miami now seen as a top contender.
+- Sports industry: Merchandise sales for the Heat spike, and Miami prepares for championship celebrations.
+2025-09-01 15:41:46 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "confidence": 0.98,
+  "reasons": "ECB rate cut impacts Eurozone economy",
+  "priority_llm": 9
+}
+```
+2025-09-01 15:41:46 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "major tech launch with significant performance claims",
+  "priority_llm": 7
+}
+```
+2025-09-01 15:41:46 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "basketball_nba",
+  "confidence": 0.98,
+  "reasons": "NBA Finals Game 7, decisive win",
+  "priority_llm": 7
+}
+```
+2025-09-01 15:41:47 [DEBUG] classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'consumer_products', 'confidence': 0.95, 'reasons': 'major tech launch with significant performance claims', 'priority_llm': 7}
+2025-09-01 15:41:47 [DEBUG] classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'central_banks', 'tech_subcategory': None, 'confidence': 0.98, 'reasons': 'ECB rate cut impacts Eurozone economy', 'priority_llm': 9}
+2025-09-01 15:41:47 [DEBUG] classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'basketball_nba', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.98, 'reasons': 'NBA Finals Game 7, decisive win', 'priority_llm': 7}
+2025-09-01 15:41:48 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "energy_climate_environment",
+  "sports_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "significant national climate policy with global implications",
+  "priority_llm": 7
+}
+```
+2025-09-01 15:41:48 [DEBUG] classifier: Final classification with subcategory: {'category': 'energy_climate_environment', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'significant national climate policy with global implications', 'priority_llm': 7}
+2025-09-01 15:41:48 [DEBUG] summarizer: Raw news: Apple unveils revolutionary AI chip for next-generation iPhones, promising 5x performance improvement
+        in machine learning tasks. The chip will be available in devices shipping later this year.
+2025-09-01 15:41:48 [DEBUG] summarizer: Category for summarization: technology_ai_science
+2025-09-01 15:41:48 [DEBUG] summarizer: Raw news: Germany's government approves €50 billion climate investment package to accelerate renewable energy
+        transition and reduce carbon emissions by 2030. The plan includes major subsidies for solar and wind projects.
+2025-09-01 15:41:48 [DEBUG] summarizer: Category for summarization: energy_climate_environment
+2025-09-01 15:41:48 [DEBUG] summarizer: Final prompt used:
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under 30 seconds.
+
+OUTPUT RULES:
+1. First line = **headline** (rewrite for clarity if needed).
+2. Second line = "YNotCare:" followed by:
+   - One short plain summary sentence of the news (no bullet, just text).
+   - Then bullet points for consequences, using the provided - Household: ...
+- Infrastructure: ...
+- Investments/Markets: ...
+- Policy & Geopolitics: ...
+- Future resilience: ... list.
+3. Each bullet MUST start with "- " followed by aspect name and colon.
+4. Never merge multiple points into one line with semicolons — always new line per bullet.
+5. Use strong action verbs (buy, sell, hold, refinance, upskill, adjust).
+6. Focus on immediate, actionable consequences. No filler.
+7. Never invent sources. If unverified → state "I cannot verify this."
+
+INPUT FORMAT:
+The news item will be provided inside triple quotes.
+
+You will also be given a list of - Household: ...
+- Infrastructure: ...
+- Investments/Markets: ...
+- Policy & Geopolitics: ...
+- Future resilience: ... that you MUST use instead of inventing your own.
+
+Example:
+- Household: ...
+- Infrastructure: ...
+- Investments/Markets: ...
+- Policy & Geopolitics: ...
+- Future resilience: ...: Player impact, Team impact, League implications, Sports industry
+
+News:
+"""[news content here]"""
+
+2025-09-01 15:41:48 [DEBUG] summarizer: Final prompt used:
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under 30 seconds.
+
+OUTPUT RULES:
+1. First line = **headline** (rewrite for clarity if needed).
+2. Second line = "YNotCare:" followed by:
+   - One short plain summary sentence of the news (no bullet, just text).
+   - Then bullet points for consequences, using the provided - Household: ...
+- Business adoption: ...
+- Investments/Markets: ...
+- Career & Education: ...
+- Policy & Regulation: ... list.
+3. Each bullet MUST start with "- " followed by aspect name and colon.
+4. Never merge multiple points into one line with semicolons — always new line per bullet.
+5. Use strong action verbs (buy, sell, hold, refinance, upskill, adjust).
+6. Focus on immediate, actionable consequences. No filler.
+7. Never invent sources. If unverified → state "I cannot verify this."
+
+INPUT FORMAT:
+The news item will be provided inside triple quotes.
+
+You will also be given a list of - Household: ...
+- Business adoption: ...
+- Investments/Markets: ...
+- Career & Education: ...
+- Policy & Regulation: ... that you MUST use instead of inventing your own.
+
+Example:
+- Household: ...
+- Business adoption: ...
+- Investments/Markets: ...
+- Career & Education: ...
+- Policy & Regulation: ...: Player impact, Team impact, League implications, Sports industry
+
+News:
+"""[news content here]"""
+
+2025-09-01 15:41:49 [DEBUG] summarizer: Generated summary:
+**Germany Approves €50 Billion Climate Investment Package**
+
+YNotCare: Germany is investing €50 billion to boost renewable energy and cut carbon emissions by 2030, with major subsidies for solar and wind projects.
+- Household: Reduce energy bills by switching to subsidized solar or wind energy.
+- Infrastructure: Upgrade local grids to handle increased renewable energy capacity.
+- Investments/Markets: Invest in renewable energy stocks or bonds to capitalize on subsidies.
+- Policy & Geopolitics: Advocate for similar policies in your region to drive green investment.
+- Future resilience: Plan long-term energy use around renewable sources to future-proof your home or business.
+2025-09-01 15:41:50 [DEBUG] summarizer: Generated summary:
+**Apple's New AI Chip to Boost iPhone Performance Fivefold**
+
+YNotCare: Apple's new AI chip will significantly enhance machine learning capabilities in upcoming iPhones.
+- Household: Upgrade to the new iPhone for faster, more efficient AI-driven features.
+- Business adoption: Integrate AI-powered apps for improved productivity and user experience.
+- Investments/Markets: Consider investing in Apple or AI-related stocks for potential growth.
+- Career & Education: Upskill in AI and machine learning to stay competitive in the job market.
+- Policy & Regulation: Advocate for clear guidelines on AI ethics and data privacy.

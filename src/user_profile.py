@@ -130,22 +130,3 @@ USER_PROFILES: Dict[str, UserProfile] = {
 def get_user_profile(user_id: str) -> Optional[UserProfile]:
     """Fetch a user profile by its ID."""
     return USER_PROFILES.get(user_id)
-
-
-if __name__ == "__main__":
-    # Minimal manual test (not a full test suite)
-    print(
-        "u1:",
-        UserProfile(user_id="u1", interests=["tech"], locale="Germany", city="Berlin"),
-    )
-    print("u2:", UserProfile(user_id="u2", interests=["sports"], city="New York"))
-    print(
-        "u3:", UserProfile(user_id="u3", interests=["finance"], locale="United States")
-    )
-    print(
-        "u4:",
-        UserProfile(
-            user_id="u4", interests=["random"], city="asdasdasd", locale="Narnia"
-        ),
-    )
-    print("Maxonchik:", get_user_profile("Maxonchik"))
