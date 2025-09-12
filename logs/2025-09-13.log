@@ -202,3 +202,224 @@
 }
 ```
 2025-09-13 00:08:22 [DEBUG] classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'political violence and incitement', 'importance_score': 82, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 60, 'personal_relevance': 50, 'historical_significance': 80, 'emotional_intensity': 85}}
+2025-09-13 00:45:42 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "football_other",
+  "confidence": 0.95,
+  "reasons": "manager's statement on player's refusal to play",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 30,
+    "personal_relevance": 50,
+    "historical_significance": 10,
+    "emotional_intensity": 30
+  }
+}
+```
+2025-09-13 00:45:43 [DEBUG] classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'football_epl', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': "manager's statement on player's refusal to play", 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 30, 'personal_relevance': 50, 'historical_significance': 10, 'emotional_intensity': 30}}
+2025-09-13 00:45:44 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "football_other",
+  "confidence": 0.95,
+  "reasons": "major women's football league result",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 30,
+    "personal_relevance": 30,
+    "historical_significance": 20,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-13 00:45:44 [DEBUG] classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'football_other', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': "major women's football league result", 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 30, 'personal_relevance': 30, 'historical_significance': 20, 'emotional_intensity': 50}}
+2025-09-13 00:45:48 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "high-profile political statement after tragic event",
+  "importance_score": 78,
+  "contextual_factors": {
+    "time_sensitivity": 85,
+    "global_impact": 70,
+    "personal_relevance": 50,
+    "historical_significance": 65,
+    "emotional_intensity": 80
+  }
+}
+```
+2025-09-13 00:45:48 [DEBUG] classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'high-profile political statement after tragic event', 'importance_score': 78, 'contextual_factors': {'time_sensitivity': 85, 'global_impact': 70, 'personal_relevance': 50, 'historical_significance': 65, 'emotional_intensity': 80}}
+2025-09-13 00:45:49 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "culture_media_entertainment",
+  "sports_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "corrections and clarifications section",
+  "importance_score": 15,
+  "contextual_factors": {
+    "time_sensitivity": 10,
+    "global_impact": 10,
+    "personal_relevance": 20,
+    "historical_significance": 10,
+    "emotional_intensity": 5
+  }
+}
+```
+2025-09-13 00:45:49 [DEBUG] classifier: Final classification with subcategory: {'category': 'culture_media_entertainment', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'corrections and clarifications section', 'importance_score': 15, 'contextual_factors': {'time_sensitivity': 10, 'global_impact': 10, 'personal_relevance': 20, 'historical_significance': 10, 'emotional_intensity': 5}}
+2025-09-13 00:45:50 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "significant political redistricting",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 30,
+    "personal_relevance": 50,
+    "historical_significance": 60,
+    "emotional_intensity": 65
+  }
+}
+```
+2025-09-13 00:45:50 [DEBUG] classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'significant political redistricting', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 30, 'personal_relevance': 50, 'historical_significance': 60, 'emotional_intensity': 65}}
+2025-09-13 00:45:51 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "major humanitarian disaster",
+  "importance_score": 78,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 60,
+    "personal_relevance": 30,
+    "historical_significance": 50,
+    "emotional_intensity": 90
+  }
+}
+```
+2025-09-13 00:45:51 [DEBUG] classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'major humanitarian disaster', 'importance_score': 78, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 60, 'personal_relevance': 30, 'historical_significance': 50, 'emotional_intensity': 90}}
+2025-09-13 00:45:52 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "human rights violations by authoritarian regime",
+  "importance_score": 78,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 80,
+    "personal_relevance": 50,
+    "historical_significance": 60,
+    "emotional_intensity": 85
+  }
+}
+```
+2025-09-13 00:45:52 [DEBUG] classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'human rights violations by authoritarian regime', 'importance_score': 78, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 80, 'personal_relevance': 50, 'historical_significance': 60, 'emotional_intensity': 85}}
+2025-09-13 00:45:54 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "UN resolution on Israel-Palestine",
+  "importance_score": 82,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 90,
+    "personal_relevance": 50,
+    "historical_significance": 85,
+    "emotional_intensity": 75
+  }
+}
+```
+2025-09-13 00:45:54 [DEBUG] classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'UN resolution on Israel-Palestine', 'importance_score': 82, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 90, 'personal_relevance': 50, 'historical_significance': 85, 'emotional_intensity': 75}}
+2025-09-13 00:45:55 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "high-profile political assassination and arrest",
+  "importance_score": 82,
+  "contextual_factors": {
+    "time_sensitivity": 90,
+    "global_impact": 70,
+    "personal_relevance": 50,
+    "historical_significance": 60,
+    "emotional_intensity": 80
+  }
+}
+```
+2025-09-13 00:45:55 [DEBUG] classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'high-profile political assassination and arrest', 'importance_score': 82, 'contextual_factors': {'time_sensitivity': 90, 'global_impact': 70, 'personal_relevance': 50, 'historical_significance': 60, 'emotional_intensity': 80}}
+2025-09-13 00:45:56 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "high-profile assassination and suspect details",
+  "importance_score": 82,
+  "contextual_factors": {
+    "time_sensitivity": 90,
+    "global_impact": 85,
+    "personal_relevance": 50,
+    "historical_significance": 70,
+    "emotional_intensity": 80
+  }
+}
+```
+2025-09-13 00:45:56 [DEBUG] classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'high-profile assassination and suspect details', 'importance_score': 82, 'contextual_factors': {'time_sensitivity': 90, 'global_impact': 85, 'personal_relevance': 50, 'historical_significance': 70, 'emotional_intensity': 80}}
+2025-09-13 00:45:57 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "political violence and incitement",
+  "importance_score": 82,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 60,
+    "personal_relevance": 50,
+    "historical_significance": 80,
+    "emotional_intensity": 85
+  }
+}
+```
+2025-09-13 00:45:57 [DEBUG] classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'political violence and incitement', 'importance_score': 82, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 60, 'personal_relevance': 50, 'historical_significance': 80, 'emotional_intensity': 85}}
+2025-09-13 00:45:58 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "high-profile crime and political involvement",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 30,
+    "personal_relevance": 50,
+    "historical_significance": 40,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-13 00:45:58 [DEBUG] classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'high-profile crime and political involvement', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 30, 'personal_relevance': 50, 'historical_significance': 40, 'emotional_intensity': 60}}
+2025-09-13 00:45:59 [DEBUG] classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "UK political scandal involving high-profile figures",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 40,
+    "personal_relevance": 50,
+    "historical_significance": 60,
+    "emotional_intensity": 65
+  }
+}
+```
+2025-09-13 00:45:59 [DEBUG] classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'UK political scandal involving high-profile figures', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 40, 'personal_relevance': 50, 'historical_significance': 60, 'emotional_intensity': 65}}
