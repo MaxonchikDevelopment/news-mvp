@@ -6,10 +6,11 @@ Fetches from multiple sources, handles multilingual content, and prepares for MV
 import hashlib
 import json
 import os
+import re
 import sys
 import time
 from collections import defaultdict
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Optional, Set, Union
 
 import requests
@@ -46,9 +47,9 @@ class SmartNewsFetcher:
             # Reddit keys removed as per request
         }
 
-        # Configure quality filters - Relaxed criteria
+        # Configure quality filters - Relaxed but reasonable criteria
         self.quality_filters = {
-            "min_length": 50,  # Reduced minimum length
+            "min_length": 100,  # Slightly increased minimum length for better content
             # 'max_length': 100000, # Removed max length limit
             "required_fields": ["title"],  # Only title is strictly required now
             # Removed some overly restrictive banned keywords
@@ -56,7 +57,7 @@ class SmartNewsFetcher:
         }
 
         # RSS feed sources - Expanded and cleaned list for better global coverage
-        # Focused on increasing sports representation
+        # Focused on increasing sports representation and overall volume
         self.rss_feeds = [
             # Global English News
             "http://feeds.bbci.co.uk/news/rss.xml",
@@ -91,8 +92,8 @@ class SmartNewsFetcher:
             "https://www.nfl.com/feeds/rss/news",
             # Tennis
             "https://www.atptour.com/en/media/rss/news.xml",  # ATP
-            # Euroleague Basketball / Other Leagues
-            "https://www.euroleague.net/rss/news",  # Check if this works, or find alternative
+            # Euroleague Basketball
+            # 'https://www.euroleague.net/rss/news', # Check if this works, or find alternative
             # Olympics (if seasonal feeds are available, they can be added)
             # German News (for locale relevance)
             "https://www.spiegel.de/international/index.rss",
@@ -206,6 +207,36 @@ class SmartNewsFetcher:
 
         return articles
 
+    def _parse_rss_date(self, date_str: Optional[str]) -> Optional[datetime]:
+        """Parse various RSS date formats to datetime object."""
+        if not date_str:
+            return None
+        # Common formats (add more if needed)
+        formats = [
+            "%a, %d %b %Y %H:%M:%S %z",  # RFC 2822 (e.g., Wed, 02 Oct 2002 15:00:00 +0200)
+            "%Y-%m-%dT%H:%M:%SZ",  # ISO 8601 UTC (e.g., 2002-10-02T15:00:00Z)
+            "%Y-%m-%dT%H:%M:%S%z",  # ISO 8601 with timezone (e.g., 2002-10-02T15:00:00+02:00)
+            "%Y-%m-%d %H:%M:%S",  # Simple format (e.g., 2002-10-02 15:00:00)
+            "%Y-%m-%d",  # Date only (e.g., 2002-10-02)
+        ]
+        for fmt in formats:
+            try:
+                # Special handling for timezone offsets like '+0100'
+                if "%z" in fmt and "+" in date_str[-5:] or "-" in date_str[-5:]:
+                    # feedparser usually handles this, but let's be safe
+                    parsed_date = datetime.strptime(date_str, fmt)
+                else:
+                    parsed_date = datetime.strptime(date_str, fmt)
+                # Ensure timezone awareness
+                if parsed_date.tzinfo is None:
+                    parsed_date = parsed_date.replace(tzinfo=timezone.utc)
+                return parsed_date
+            except ValueError:
+                continue
+        # If parsing fails, return None
+        # print(f"  ⚠️ Could not parse date: {date_str}") # Uncomment for debugging
+        return None
+
     def _fetch_rss_articles(self) -> List[Dict]:
         """Fetch articles from RSS feeds."""
         try:
@@ -215,6 +246,15 @@ class SmartNewsFetcher:
             return []
 
         articles = []
+        # Get yesterday's date range for filtering
+        now = datetime.now(timezone.utc)
+        start_of_yesterday = (now - timedelta(days=1)).replace(
+            hour=0, minute=0, second=0, microsecond=0
+        )
+        end_of_yesterday = start_of_yesterday.replace(
+            hour=23, minute=59, second=59, microsecond=999999
+        )
+
         # Increase total RSS feeds processed to control volume
         feeds_to_process = self.rss_feeds[:35]  # Increased from 25
 
@@ -224,8 +264,33 @@ class SmartNewsFetcher:
                 if not clean_url:  # Skip empty strings
                     continue
                 feed = feedparser.parse(clean_url)
-                # Limit articles per feed
-                for entry in feed.entries[:10]:  # Increased from 7
+                # Increase articles per feed
+                entries_to_process = feed.entries[:10]  # Increased from 7
+                # print(f"  📊 Processing {len(entries_to_process)} entries from {clean_url}") # Debug log
+
+                for entry in entries_to_process:
+                    published_at_raw = getattr(entry, "published", None)
+                    published_at_dt = self._parse_rss_date(published_at_raw)
+
+                    # --- Date Filtering Logic ---
+                    # Include article if:
+                    # 1. Date is unknown/unclear (assume it's recent enough)
+                    # 2. Date is within yesterday
+                    include_article = True
+                    if published_at_dt:
+                        # Normalize to UTC for comparison
+                        entry_date_utc = published_at_dt.astimezone(timezone.utc)
+                        # print(f"    🕒 Entry date (UTC): {entry_date_utc}, Yesterday: {start_of_yesterday} - {end_of_yesterday}") # Debug log
+                        if not (
+                            start_of_yesterday <= entry_date_utc <= end_of_yesterday
+                        ):
+                            # print(f"    ❌ Rejected (not from yesterday): {entry.get('title', '')[:50]}...") # Debug log
+                            include_article = False
+
+                    if not include_article:
+                        continue
+                    # --- End Date Filtering ---
+
                     article = {
                         "source": getattr(feed.feed, "title", clean_url),
                         "title": getattr(entry, "title", ""),
@@ -234,7 +299,8 @@ class SmartNewsFetcher:
                         if hasattr(entry, "content")
                         else "",
                         "url": getattr(entry, "link", ""),
-                        "published_at": getattr(entry, "published", None),
+                        "published_at": published_at_raw,  # Keep original string
+                        "published_at_dt": published_at_dt,  # Add parsed datetime for potential later use
                     }
                     # Prioritize content, fallback to description
                     if not article["content"] and article["description"]:
@@ -243,6 +309,7 @@ class SmartNewsFetcher:
                     # Basic check to ensure we have at least a title
                     if article["title"]:
                         articles.append(article)
+                        # print(f"    ✅ Added article from {article['source']}: {article['title'][:50]}...") # Debug log
             except Exception as e:
                 # Minimal error logging for RSS to avoid spam
                 # print(f"⚠️ RSS fetch error for {url[:50]}...: {e}")
@@ -253,7 +320,7 @@ class SmartNewsFetcher:
     # Reddit method removed entirely
 
     def _is_high_quality_article(self, article: Dict) -> bool:
-        """Check if an article meets relaxed quality criteria."""
+        """Check if an article meets relaxed but reasonable quality criteria."""
         title = article.get("title", "")
 
         # Must have a title
@@ -297,8 +364,7 @@ class SmartNewsFetcher:
 
         classified_articles = []
         for i, article in enumerate(articles):
-            # Limit the text sent for classification to reduce token usage and time
-            # Improved text preparation: Title + Description + start of Content
+            # Improved text preparation for classification: Title + Description + start of Content
             title = article.get("title", "")
             description = article.get("description", "")
             content = article.get("content", "")
@@ -353,6 +419,8 @@ class SmartNewsFetcher:
     def _classify_single_article_keyword_fallback(self, article: Dict) -> Dict:
         """Classify a single article using keywords."""
         text = f"{article.get('title', '')} {article.get('description', '')}".lower()
+
+        # More detailed keywords, including subcategories for sports
         category_keywords = {
             "politics_geopolitics": [
                 "politic",
@@ -367,6 +435,12 @@ class SmartNewsFetcher:
                 "parliament",
                 "congress",
                 "senate",
+                "ukraine",
+                "russia",
+                "china",
+                "usa",
+                "eu",
+                "nato",
             ],
             "economy_finance": [
                 "economy",
@@ -385,6 +459,9 @@ class SmartNewsFetcher:
                 "crypto",
                 "fed",
                 "ecb",
+                "interest rate",
+                "unemployment",
+                "layoff",
             ],
             "technology_ai_science": [
                 "technology",
@@ -401,6 +478,15 @@ class SmartNewsFetcher:
                 "startup",
                 "cyber",
                 "data",
+                "quantum",
+                "robot",
+                "app",
+                "digital",
+                "semiconductor",
+                "nvidia",
+                "apple",
+                "google",
+                "microsoft",
             ],
             "sports": [
                 "sport",
@@ -418,9 +504,14 @@ class SmartNewsFetcher:
                 "world cup",
                 "nba",
                 "epl",
+                "premier league",
                 "bundesliga",
                 "formula 1",
                 "f1",
+                "nfl",
+                "atp",
+                "wta",
+                "olympic",
             ],
             "culture_media_entertainment": [
                 "culture",
@@ -437,6 +528,10 @@ class SmartNewsFetcher:
                 "tv",
                 "hollywood",
                 "award",
+                "festival",
+                "concert",
+                "netflix",
+                "streaming",
             ],
             "healthcare_pharma": [
                 "health",
@@ -452,6 +547,8 @@ class SmartNewsFetcher:
                 "drug",
                 "therapy",
                 "fda",
+                "who",
+                "mental health",
             ],
             "energy_climate_environment": [
                 "energy",
@@ -466,6 +563,10 @@ class SmartNewsFetcher:
                 "carbon",
                 "emission",
                 "greenhouse",
+                "climate change",
+                "sustainability",
+                "electric vehicle",
+                "ev",
             ],
             "real_estate_housing": [
                 "real estate",
@@ -477,6 +578,7 @@ class SmartNewsFetcher:
                 "rent",
                 "buy house",
                 "housing market",
+                "realtor",
             ],
             "career_education_labour": [
                 "job",
@@ -490,6 +592,8 @@ class SmartNewsFetcher:
                 "salary",
                 "unemployment",
                 "degree",
+                "remote work",
+                "layoff",
             ],
             "transport_auto_aviation": [
                 "car",
@@ -503,6 +607,8 @@ class SmartNewsFetcher:
                 "traffic",
                 "tesla",
                 "electric vehicle",
+                "boeing",
+                "airbus",
             ],
         }
 
@@ -513,7 +619,10 @@ class SmartNewsFetcher:
         best_category = max(scores, key=scores.get)
         # Avoid division by zero
         total_score = sum(scores.values())
-        confidence = scores[best_category] / max(1, total_score)
+        if total_score == 0:
+            confidence = 0.0
+        else:
+            confidence = scores[best_category] / total_score
 
         default_contextual_factors = {
             "time_sensitivity": 50,
@@ -524,7 +633,7 @@ class SmartNewsFetcher:
         }
 
         # Map confidence to importance score (0-100)
-        importance_from_confidence = int(confidence * 60)  # Max 60 from keywords
+        importance_from_confidence = int(confidence * 70)  # Max 70 from keywords
 
         return {
             "category": best_category,
