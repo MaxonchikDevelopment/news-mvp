@@ -7616,3 +7616,2012 @@ Provide clear guidance anyone can read, understand, and act on in under ...
 2025-09-15 00:44:02 [DEBUG] summarizer: Generated summary (first 150 chars): **US Economy Edges Closer to Stagflation**
 
 YNotCare: The US economy is showing signs of stagflation, with rising prices and slowing job growth. Econo...
+2025-09-15 00:58:13 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": "ai_research",
+  "confidence": 0.95,
+  "reasons": "Survey on AI adoption in UK workforce",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 60,
+    "personal_relevance": 70,
+    "historical_significance": 40,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 00:58:13 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'ai_research', 'confidence': 0.95, 'reasons': 'Survey on AI adoption in UK workforce', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 60, 'personal_relevance': 70, 'historical_significance': 40, 'emotional_intensity': 50}}
+2025-09-15 00:58:15 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "high-profile figure's political statement at a far-right rally",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 50,
+    "personal_relevance": 60,
+    "historical_significance": 40,
+    "emotional_intensity": 75
+  }
+}
+```
+2025-09-15 00:58:15 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': "high-profile figure's political statement at a far-right rally", 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 50, 'personal_relevance': 60, 'historical_significance': 40, 'emotional_intensity': 75}}
+2025-09-15 00:58:16 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "political scandal involving high-ranking officials",
+  "importance_score": 72,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 60,
+    "personal_relevance": 65,
+    "historical_significance": 50,
+    "emotional_intensity": 75
+  }
+}
+```
+2025-09-15 00:58:16 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'political scandal involving high-ranking officials', 'importance_score': 72, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 60, 'personal_relevance': 65, 'historical_significance': 50, 'emotional_intensity': 75}}
+2025-09-15 00:58:18 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "diplomatic relations and political analysis",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 50,
+    "personal_relevance": 30,
+    "historical_significance": 60,
+    "emotional_intensity": 45
+  }
+}
+```
+2025-09-15 00:58:18 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'diplomatic relations and political analysis', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 50, 'personal_relevance': 30, 'historical_significance': 60, 'emotional_intensity': 45}}
+2025-09-15 00:58:19 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "major public order event in central London",
+  "importance_score": 72,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 30,
+    "personal_relevance": 60,
+    "historical_significance": 40,
+    "emotional_intensity": 80
+  }
+}
+```
+2025-09-15 00:58:19 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'major public order event in central London', 'importance_score': 72, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 30, 'personal_relevance': 60, 'historical_significance': 40, 'emotional_intensity': 80}}
+2025-09-15 00:58:21 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "significant protest with clashes and arrests in central London",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 30,
+    "personal_relevance": 40,
+    "historical_significance": 20,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-15 00:58:21 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'significant protest with clashes and arrests in central London', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 30, 'personal_relevance': 40, 'historical_significance': 20, 'emotional_intensity': 70}}
+2025-09-15 00:58:22 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "healthcare_pharma",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "verified food recall due to potential health risk",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 40,
+    "personal_relevance": 60,
+    "historical_significance": 20,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 00:58:22 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'healthcare_pharma', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'verified food recall due to potential health risk', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 40, 'personal_relevance': 60, 'historical_significance': 20, 'emotional_intensity': 50}}
+2025-09-15 00:58:24 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": "other_economy",
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "potential conflict of interest in UK politics and business",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 40,
+    "personal_relevance": 80,
+    "historical_significance": 50,
+    "emotional_intensity": 55
+  }
+}
+```
+2025-09-15 00:58:24 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': 'other_economy', 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'potential conflict of interest in UK politics and business', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 40, 'personal_relevance': 80, 'historical_significance': 50, 'emotional_intensity': 55}}
+2025-09-15 00:58:25 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "economy_subcategory": "markets",
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "US economic data shows signs of stagflation",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 80,
+    "personal_relevance": 60,
+    "historical_significance": 70,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 00:58:26 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'other_economy', 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'US economic data shows signs of stagflation', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 80, 'personal_relevance': 60, 'historical_significance': 70, 'emotional_intensity': 50}}
+2025-09-15 00:58:28 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "death of a notable sports figure",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 50,
+    "personal_relevance": 40,
+    "historical_significance": 60,
+    "emotional_intensity": 80
+  }
+}
+```
+2025-09-15 00:58:28 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'death of a notable sports figure', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 50, 'personal_relevance': 40, 'historical_significance': 60, 'emotional_intensity': 80}}
+2025-09-15 00:58:30 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "statement by UK prime minister on national symbol",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 30,
+    "personal_relevance": 50,
+    "historical_significance": 20,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-15 00:58:30 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'statement by UK prime minister on national symbol', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 30, 'personal_relevance': 50, 'historical_significance': 20, 'emotional_intensity': 60}}
+2025-09-15 00:58:31 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "opinion piece on political appointment",
+  "importance_score": 35,
+  "contextual_factors": {
+    "time_sensitivity": 20,
+    "global_impact": 30,
+    "personal_relevance": 40,
+    "historical_significance": 25,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 00:58:31 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'opinion piece on political appointment', 'importance_score': 35, 'contextual_factors': {'time_sensitivity': 20, 'global_impact': 30, 'personal_relevance': 40, 'historical_significance': 25, 'emotional_intensity': 50}}
+2025-09-15 00:58:33 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.7,
+  "reasons": "political statement about ongoing legal case",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 20,
+    "personal_relevance": 50,
+    "historical_significance": 30,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-15 00:58:33 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.7, 'reasons': 'political statement about ongoing legal case', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 20, 'personal_relevance': 50, 'historical_significance': 30, 'emotional_intensity': 40}}
+2025-09-15 00:58:35 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "energy_climate_environment",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "Met Office weather warning for UK",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 20,
+    "personal_relevance": 30,
+    "historical_significance": 10,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-15 00:58:35 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'energy_climate_environment', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'Met Office weather warning for UK', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 20, 'personal_relevance': 30, 'historical_significance': 10, 'emotional_intensity': 40}}
+2025-09-15 00:58:37 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "unverified single-source claim in active conflict",
+  "importance_score": 40,
+  "contextual_factors": {
+    "time_sensitivity": 65,
+    "global_impact": 35,
+    "personal_relevance": 25,
+    "historical_significance": 15,
+    "emotional_intensity": 85
+  }
+}
+```
+2025-09-15 00:58:37 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'unverified single-source claim in active conflict', 'importance_score': 40, 'contextual_factors': {'time_sensitivity': 65, 'global_impact': 35, 'personal_relevance': 25, 'historical_significance': 15, 'emotional_intensity': 85}}
+2025-09-15 00:58:39 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "verified major disruption to a significant sporting event",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 50,
+    "personal_relevance": 40,
+    "historical_significance": 30,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-15 00:58:39 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'verified major disruption to a significant sporting event', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 50, 'personal_relevance': 40, 'historical_significance': 30, 'emotional_intensity': 60}}
+2025-09-15 00:58:40 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "unverified claims in active conflict",
+  "importance_score": 50,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 60,
+    "personal_relevance": 40,
+    "historical_significance": 50,
+    "emotional_intensity": 80
+  }
+}
+```
+2025-09-15 00:58:40 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'unverified claims in active conflict', 'importance_score': 50, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 60, 'personal_relevance': 40, 'historical_significance': 50, 'emotional_intensity': 80}}
+2025-09-15 00:58:42 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "human interest story in active conflict zone",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 40,
+    "personal_relevance": 50,
+    "historical_significance": 30,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-15 00:58:42 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'human interest story in active conflict zone', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 40, 'personal_relevance': 50, 'historical_significance': 30, 'emotional_intensity': 70}}
+2025-09-15 00:58:44 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "verified protest disrupting major sporting event",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 50,
+    "personal_relevance": 40,
+    "historical_significance": 30,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-15 00:58:44 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'verified protest disrupting major sporting event', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 50, 'personal_relevance': 40, 'historical_significance': 30, 'emotional_intensity': 70}}
+2025-09-15 00:58:45 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "major cricket match result in a high-profile tournament",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 50,
+    "personal_relevance": 40,
+    "historical_significance": 30,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-15 00:58:46 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'major cricket match result in a high-profile tournament', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 50, 'personal_relevance': 40, 'historical_significance': 30, 'emotional_intensity': 70}}
+2025-09-15 00:58:47 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.6,
+  "reasons": "unverified single-source claim in active conflict",
+  "importance_score": 40,
+  "contextual_factors": {
+    "time_sensitivity": 65,
+    "global_impact": 35,
+    "personal_relevance": 25,
+    "historical_significance": 15,
+    "emotional_intensity": 85
+  }
+}
+```
+2025-09-15 00:58:47 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.6, 'reasons': 'unverified single-source claim in active conflict', 'importance_score': 40, 'contextual_factors': {'time_sensitivity': 65, 'global_impact': 35, 'personal_relevance': 25, 'historical_significance': 15, 'emotional_intensity': 85}}
+2025-09-15 00:58:48 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "diplomatic statements ahead of regional summit",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 50,
+    "personal_relevance": 40,
+    "historical_significance": 50,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-15 00:58:48 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'diplomatic statements ahead of regional summit', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 50, 'personal_relevance': 40, 'historical_significance': 50, 'emotional_intensity': 60}}
+2025-09-15 00:58:51 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "football_epl",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "major Premier League match result",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 50,
+    "personal_relevance": 60,
+    "historical_significance": 40,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 00:58:52 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'football_epl', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'major Premier League match result', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 50, 'personal_relevance': 60, 'historical_significance': 40, 'emotional_intensity': 50}}
+2025-09-15 00:58:53 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.5,
+  "reasons": "heavily opinionated, unverified claims",
+  "importance_score": 30,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 30,
+    "personal_relevance": 20,
+    "historical_significance": 10,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-15 00:58:53 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.5, 'reasons': 'heavily opinionated, unverified claims', 'importance_score': 30, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 30, 'personal_relevance': 20, 'historical_significance': 10, 'emotional_intensity': 70}}
+2025-09-15 00:58:55 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": "ai_research",
+  "confidence": 0.9,
+  "reasons": "AI bubble discussion by OpenAI board chair",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 70,
+    "personal_relevance": 60,
+    "historical_significance": 55,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-15 00:58:55 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'ai_research', 'confidence': 0.9, 'reasons': 'AI bubble discussion by OpenAI board chair', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 70, 'personal_relevance': 60, 'historical_significance': 55, 'emotional_intensity': 40}}
+2025-09-15 00:58:57 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": "ai_research",
+  "confidence": 0.85,
+  "reasons": "expert opinions on AI-generated code trends",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 60,
+    "personal_relevance": 70,
+    "historical_significance": 55,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-15 00:58:59 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'ai_research', 'confidence': 0.85, 'reasons': 'expert opinions on AI-generated code trends', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 60, 'personal_relevance': 70, 'historical_significance': 55, 'emotional_intensity': 40}}
+2025-09-15 00:59:01 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": "ai_research",
+  "confidence": 0.9,
+  "reasons": "analysis of AI industry trends and OpenAI's impact",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 70,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-15 00:59:02 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'ai_research', 'confidence': 0.9, 'reasons': "analysis of AI industry trends and OpenAI's impact", 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 70, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 40}}
+2025-09-15 00:59:03 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": "consumer_products",
+  "confidence": 0.95,
+  "reasons": "major Apple product announcements",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 70,
+    "personal_relevance": 85,
+    "historical_significance": 60,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 00:59:03 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'consumer_products', 'confidence': 0.95, 'reasons': 'major Apple product announcements', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 70, 'personal_relevance': 85, 'historical_significance': 60, 'emotional_intensity': 50}}
+2025-09-15 00:59:05 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": "other_tech",
+  "confidence": 0.9,
+  "reasons": "major lawsuit involving AI and monopoly power",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 00:59:05 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'ai_research', 'confidence': 0.9, 'reasons': 'major lawsuit involving AI and monopoly power', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 50}}
+2025-09-15 00:59:06 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "economy_subcategory": "corporate_earnings",
+  "tech_subcategory": "other_tech",
+  "confidence": 0.85,
+  "reasons": "IPO funding and regional relevance to German automakers",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 60,
+    "personal_relevance": 75,
+    "historical_significance": 50,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-15 00:59:07 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': 'corporate_earnings', 'tech_subcategory': 'other_tech', 'confidence': 0.85, 'reasons': 'IPO funding and regional relevance to German automakers', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 60, 'personal_relevance': 75, 'historical_significance': 50, 'emotional_intensity': 40}}
+2025-09-15 00:59:08 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": "ai_research",
+  "confidence": 0.9,
+  "reasons": "analysis of AI industry dynamics",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 70,
+    "personal_relevance": 65,
+    "historical_significance": 60,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-15 00:59:09 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'ai_research', 'confidence': 0.9, 'reasons': 'analysis of AI industry dynamics', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 70, 'personal_relevance': 65, 'historical_significance': 60, 'emotional_intensity': 40}}
+2025-09-15 00:59:10 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": "consumer_products",
+  "confidence": 0.85,
+  "reasons": "product review of a new consumer tech device",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 30,
+    "personal_relevance": 60,
+    "historical_significance": 20,
+    "emotional_intensity": 30
+  }
+}
+```
+2025-09-15 00:59:10 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'consumer_products', 'confidence': 0.85, 'reasons': 'product review of a new consumer tech device', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 30, 'personal_relevance': 60, 'historical_significance': 20, 'emotional_intensity': 30}}
+2025-09-15 00:59:13 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": "other_tech",
+  "confidence": 0.9,
+  "reasons": "informational guide on switching mobile carriers",
+  "importance_score": 35,
+  "contextual_factors": {
+    "time_sensitivity": 20,
+    "global_impact": 25,
+    "personal_relevance": 40,
+    "historical_significance": 10,
+    "emotional_intensity": 15
+  }
+}
+```
+2025-09-15 00:59:14 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'consumer_products', 'confidence': 0.9, 'reasons': 'informational guide on switching mobile carriers', 'importance_score': 35, 'contextual_factors': {'time_sensitivity': 20, 'global_impact': 25, 'personal_relevance': 40, 'historical_significance': 10, 'emotional_intensity': 15}}
+2025-09-15 00:59:15 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "culture_media_entertainment",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "product review in a reputable tech publication",
+  "importance_score": 35,
+  "contextual_factors": {
+    "time_sensitivity": 20,
+    "global_impact": 25,
+    "personal_relevance": 40,
+    "historical_significance": 10,
+    "emotional_intensity": 20
+  }
+}
+```
+2025-09-15 00:59:15 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'culture_media_entertainment', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'product review in a reputable tech publication', 'importance_score': 35, 'contextual_factors': {'time_sensitivity': 20, 'global_impact': 25, 'personal_relevance': 40, 'historical_significance': 10, 'emotional_intensity': 20}}
+2025-09-15 00:59:16 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": "ai_research",
+  "confidence": 0.9,
+  "reasons": "significant development in theoretical computer science",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 70,
+    "personal_relevance": 55,
+    "historical_significance": 75,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-15 00:59:17 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'other_tech', 'confidence': 0.9, 'reasons': 'significant development in theoretical computer science', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 70, 'personal_relevance': 55, 'historical_significance': 75, 'emotional_intensity': 40}}
+2025-09-15 00:59:18 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "culture_media_entertainment",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "film festival highlights from a major event",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 50,
+    "personal_relevance": 45,
+    "historical_significance": 40,
+    "emotional_intensity": 55
+  }
+}
+```
+2025-09-15 00:59:18 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'culture_media_entertainment', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'film festival highlights from a major event', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 50, 'personal_relevance': 45, 'historical_significance': 40, 'emotional_intensity': 55}}
+2025-09-15 00:59:20 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": "ai_research",
+  "confidence": 0.9,
+  "reasons": "scientific discovery using advanced analysis techniques",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 20,
+    "global_impact": 60,
+    "personal_relevance": 50,
+    "historical_significance": 70,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-15 00:59:20 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'other_tech', 'confidence': 0.9, 'reasons': 'scientific discovery using advanced analysis techniques', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 20, 'global_impact': 60, 'personal_relevance': 50, 'historical_significance': 70, 'emotional_intensity': 40}}
+2025-09-15 00:59:22 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": "ai_research",
+  "confidence": 0.95,
+  "reasons": "major scientific breakthrough in agriculture",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 80,
+    "personal_relevance": 60,
+    "historical_significance": 70,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-15 00:59:22 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'other_tech', 'confidence': 0.95, 'reasons': 'major scientific breakthrough in agriculture', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 80, 'personal_relevance': 60, 'historical_significance': 70, 'emotional_intensity': 40}}
+2025-09-15 00:59:24 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "healthcare_pharma",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "major health trend with significant demographic impact",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 40,
+    "personal_relevance": 55,
+    "historical_significance": 45,
+    "emotional_intensity": 30
+  }
+}
+```
+2025-09-15 00:59:24 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'healthcare_pharma', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'major health trend with significant demographic impact', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 40, 'personal_relevance': 55, 'historical_significance': 45, 'emotional_intensity': 30}}
+2025-09-15 00:59:25 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": "ai_research",
+  "confidence": 0.95,
+  "reasons": "major scientific breakthrough in spintronics",
+  "importance_score": 88,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 90,
+    "personal_relevance": 85,
+    "historical_significance": 75,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-15 00:59:25 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'other_tech', 'confidence': 0.95, 'reasons': 'major scientific breakthrough in spintronics', 'importance_score': 88, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 90, 'personal_relevance': 85, 'historical_significance': 75, 'emotional_intensity': 60}}
+2025-09-15 00:59:27 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": "ai_research",
+  "confidence": 0.95,
+  "reasons": "major scientific breakthrough in quantum physics",
+  "importance_score": 88,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 85,
+    "personal_relevance": 75,
+    "historical_significance": 80,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-15 00:59:27 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'other_tech', 'confidence': 0.95, 'reasons': 'major scientific breakthrough in quantum physics', 'importance_score': 88, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 85, 'personal_relevance': 75, 'historical_significance': 80, 'emotional_intensity': 60}}
+2025-09-15 00:59:29 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": "ai_research",
+  "confidence": 0.9,
+  "reasons": "scientific research on Mars' past climate",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 70,
+    "personal_relevance": 50,
+    "historical_significance": 80,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 00:59:29 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'other_tech', 'confidence': 0.9, 'reasons': "scientific research on Mars' past climate", 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 70, 'personal_relevance': 50, 'historical_significance': 80, 'emotional_intensity': 50}}
+2025-09-15 00:59:32 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": "ai_research",
+  "confidence": 0.9,
+  "reasons": "significant astronomical discovery with potential scientific implications",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 80,
+    "personal_relevance": 50,
+    "historical_significance": 70,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-15 00:59:33 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'other_tech', 'confidence': 0.9, 'reasons': 'significant astronomical discovery with potential scientific implications', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 80, 'personal_relevance': 50, 'historical_significance': 70, 'emotional_intensity': 40}}
+2025-09-15 00:59:35 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "healthcare_pharma",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "major medical study with significant health implications",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 70,
+    "personal_relevance": 80,
+    "historical_significance": 65,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-15 00:59:35 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'healthcare_pharma', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'major medical study with significant health implications', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 70, 'personal_relevance': 80, 'historical_significance': 65, 'emotional_intensity': 70}}
+2025-09-15 00:59:38 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": "ai_research",
+  "confidence": 0.95,
+  "reasons": "major medical AI breakthrough",
+  "importance_score": 85,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 85,
+    "personal_relevance": 80,
+    "historical_significance": 75,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-15 00:59:38 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'ai_research', 'confidence': 0.95, 'reasons': 'major medical AI breakthrough', 'importance_score': 85, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 85, 'personal_relevance': 80, 'historical_significance': 75, 'emotional_intensity': 60}}
+2025-09-15 00:59:39 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "healthcare_pharma",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "large-scale study on widely used weight-loss drug",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 70,
+    "personal_relevance": 80,
+    "historical_significance": 50,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-15 00:59:39 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'healthcare_pharma', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'large-scale study on widely used weight-loss drug', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 70, 'personal_relevance': 80, 'historical_significance': 50, 'emotional_intensity': 40}}
+2025-09-15 00:59:41 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "statement by a US governor on political violence",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 40,
+    "personal_relevance": 30,
+    "historical_significance": 45,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-15 00:59:41 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'statement by a US governor on political violence', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 40, 'personal_relevance': 30, 'historical_significance': 45, 'emotional_intensity': 60}}
+2025-09-15 00:59:42 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "economy_subcategory": "markets",
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "Major shift in French debt markets",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 65,
+    "personal_relevance": 50,
+    "historical_significance": 60,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-15 00:59:42 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'markets', 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'Major shift in French debt markets', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 65, 'personal_relevance': 50, 'historical_significance': 60, 'emotional_intensity': 40}}
+2025-09-15 00:59:44 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "verified drone violation of NATO airspace",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 00:59:44 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'verified drone violation of NATO airspace', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 50}}
+2025-09-15 00:59:45 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": "ai_research",
+  "confidence": 0.85,
+  "reasons": "AI-controlled drone swarms represent a significant military technology advancement",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 80,
+    "personal_relevance": 60,
+    "historical_significance": 75,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 00:59:45 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'other_tech', 'confidence': 0.85, 'reasons': 'AI-controlled drone swarms represent a significant military technology advancement', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 80, 'personal_relevance': 60, 'historical_significance': 75, 'emotional_intensity': 50}}
+2025-09-15 00:59:48 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "american_football_nfl",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "verified NFL game result with injury update",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 40,
+    "personal_relevance": 50,
+    "historical_significance": 30,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 00:59:49 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'american_football_nfl', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'verified NFL game result with injury update', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 40, 'personal_relevance': 50, 'historical_significance': 30, 'emotional_intensity': 50}}
+2025-09-15 00:59:51 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "american_football_nfl",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "verified signing of a notable NFL player",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 40,
+    "personal_relevance": 30,
+    "historical_significance": 40,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 00:59:51 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'american_football_nfl', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'verified signing of a notable NFL player', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 40, 'personal_relevance': 30, 'historical_significance': 40, 'emotional_intensity': 50}}
+2025-09-15 00:59:52 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "american_football_nfl",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "specific play analysis in NFL game",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 20,
+    "personal_relevance": 50,
+    "historical_significance": 10,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-15 00:59:53 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'american_football_nfl', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'specific play analysis in NFL game', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 20, 'personal_relevance': 50, 'historical_significance': 10, 'emotional_intensity': 40}}
+2025-09-15 00:59:54 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "american_football_nfl",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "coach's job security after poor start",
+  "importance_score": 45,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 10,
+    "personal_relevance": 30,
+    "historical_significance": 10,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-15 00:59:55 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'american_football_nfl', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': "coach's job security after poor start", 'importance_score': 45, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 10, 'personal_relevance': 30, 'historical_significance': 10, 'emotional_intensity': 40}}
+2025-09-15 00:59:58 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "major sports record tied",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 60,
+    "personal_relevance": 40,
+    "historical_significance": 70,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 00:59:58 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'major sports record tied', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 60, 'personal_relevance': 40, 'historical_significance': 70, 'emotional_intensity': 50}}
+2025-09-15 00:59:59 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "american_football_nfl",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "coach statement on QB change after loss",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 20,
+    "personal_relevance": 30,
+    "historical_significance": 20,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-15 01:00:00 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'american_football_nfl', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'coach statement on QB change after loss', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 20, 'personal_relevance': 30, 'historical_significance': 20, 'emotional_intensity': 40}}
+2025-09-15 01:00:01 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "basketball_euroleague",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "post-game comments from a coach",
+  "importance_score": 35,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 20,
+    "personal_relevance": 30,
+    "historical_significance": 10,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 01:00:01 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'post-game comments from a coach', 'importance_score': 35, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 20, 'personal_relevance': 30, 'historical_significance': 10, 'emotional_intensity': 50}}
+2025-09-15 01:00:03 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "football_other",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "major football match result",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 40,
+    "personal_relevance": 60,
+    "historical_significance": 30,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 01:00:03 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'football_epl', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'major football match result', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 40, 'personal_relevance': 60, 'historical_significance': 30, 'emotional_intensity': 50}}
+2025-09-15 01:00:04 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "football_other",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "record sale of sports memorabilia",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 50,
+    "personal_relevance": 60,
+    "historical_significance": 50,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-15 01:00:05 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'football_other', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'record sale of sports memorabilia', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 50, 'personal_relevance': 60, 'historical_significance': 50, 'emotional_intensity': 40}}
+2025-09-15 01:00:06 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "football_other",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "pre-season statement by a top manager",
+  "importance_score": 45,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 30,
+    "personal_relevance": 50,
+    "historical_significance": 20,
+    "emotional_intensity": 30
+  }
+}
+```
+2025-09-15 01:00:06 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'football_epl', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'pre-season statement by a top manager', 'importance_score': 45, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 30, 'personal_relevance': 50, 'historical_significance': 20, 'emotional_intensity': 30}}
+2025-09-15 01:00:08 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "football_other",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "manager's statement after a significant defeat",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 40,
+    "personal_relevance": 70,
+    "historical_significance": 30,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 01:00:08 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'football_epl', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': "manager's statement after a significant defeat", 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 40, 'personal_relevance': 70, 'historical_significance': 30, 'emotional_intensity': 50}}
+2025-09-15 01:00:10 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "football_laliga",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "verified sports performance in major league",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 40,
+    "personal_relevance": 60,
+    "historical_significance": 30,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 01:00:10 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'football_laliga', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'verified sports performance in major league', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 40, 'personal_relevance': 60, 'historical_significance': 30, 'emotional_intensity': 50}}
+2025-09-15 01:00:12 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "football_other",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "verified sports result with notable player achievement",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 40,
+    "personal_relevance": 60,
+    "historical_significance": 30,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 01:00:12 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'football_other', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'verified sports result with notable player achievement', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 40, 'personal_relevance': 60, 'historical_significance': 30, 'emotional_intensity': 50}}
+2025-09-15 01:00:14 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "football_other",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "tribute to sports legend at major football event",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 30,
+    "personal_relevance": 60,
+    "historical_significance": 40,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-15 01:00:14 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'football_epl', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'tribute to sports legend at major football event', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 30, 'personal_relevance': 60, 'historical_significance': 40, 'emotional_intensity': 70}}
+2025-09-15 01:00:16 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "football_other",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "debuts of notable players in Turkish Super Lig",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 40,
+    "personal_relevance": 60,
+    "historical_significance": 30,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 01:00:16 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'football_other', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'debuts of notable players in Turkish Super Lig', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 40, 'personal_relevance': 60, 'historical_significance': 30, 'emotional_intensity': 50}}
+2025-09-15 01:00:17 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "football_epl",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "post-match comments from a Premier League manager",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 40,
+    "personal_relevance": 50,
+    "historical_significance": 20,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-15 01:00:18 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'football_epl', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'post-match comments from a Premier League manager', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 40, 'personal_relevance': 50, 'historical_significance': 20, 'emotional_intensity': 40}}
+2025-09-15 01:00:19 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "football_other",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "verified sports news about a notable athlete",
+  "importance_score": 35,
+  "contextual_factors": {
+    "time_sensitivity": 20,
+    "global_impact": 25,
+    "personal_relevance": 30,
+    "historical_significance": 10,
+    "emotional_intensity": 20
+  }
+}
+```
+2025-09-15 01:00:19 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'verified sports news about a notable athlete', 'importance_score': 35, 'contextual_factors': {'time_sensitivity': 20, 'global_impact': 25, 'personal_relevance': 30, 'historical_significance': 10, 'emotional_intensity': 20}}
+2025-09-15 01:00:21 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "preparations for major golf event",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 40,
+    "personal_relevance": 50,
+    "historical_significance": 30,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-15 01:00:21 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'preparations for major golf event', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 40, 'personal_relevance': 50, 'historical_significance': 30, 'emotional_intensity': 40}}
+2025-09-15 01:00:22 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "football_epl",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "major football match result in a top league",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 40,
+    "personal_relevance": 50,
+    "historical_significance": 30,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-15 01:00:23 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'football_epl', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'major football match result in a top league', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 40, 'personal_relevance': 50, 'historical_significance': 30, 'emotional_intensity': 60}}
+2025-09-15 01:00:24 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "football_other",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "major football match result",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 40,
+    "personal_relevance": 60,
+    "historical_significance": 30,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 01:00:25 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'football_epl', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'major football match result', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 40, 'personal_relevance': 60, 'historical_significance': 30, 'emotional_intensity': 50}}
+2025-09-15 01:00:26 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "tribute to a notable sports figure",
+  "importance_score": 35,
+  "contextual_factors": {
+    "time_sensitivity": 10,
+    "global_impact": 20,
+    "personal_relevance": 30,
+    "historical_significance": 40,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 01:00:27 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'tribute to a notable sports figure', 'importance_score': 35, 'contextual_factors': {'time_sensitivity': 10, 'global_impact': 20, 'personal_relevance': 30, 'historical_significance': 40, 'emotional_intensity': 50}}
+2025-09-15 01:00:28 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "injury update for a key England rugby player",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 40,
+    "personal_relevance": 70,
+    "historical_significance": 20,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 01:00:29 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'injury update for a key England rugby player', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 40, 'personal_relevance': 70, 'historical_significance': 20, 'emotional_intensity': 50}}
+2025-09-15 01:00:30 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "England cricket team news ahead of Ashes series",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 40,
+    "personal_relevance": 50,
+    "historical_significance": 45,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 01:00:30 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'England cricket team news ahead of Ashes series', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 40, 'personal_relevance': 50, 'historical_significance': 45, 'emotional_intensity': 50}}
+2025-09-15 01:00:31 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "major rugby world cup match result",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 50,
+    "personal_relevance": 60,
+    "historical_significance": 55,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-15 01:00:32 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'major rugby world cup match result', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 50, 'personal_relevance': 60, 'historical_significance': 55, 'emotional_intensity': 60}}
+2025-09-15 01:00:33 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "major sports event result",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 40,
+    "personal_relevance": 60,
+    "historical_significance": 45,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 01:00:34 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'major sports event result', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 40, 'personal_relevance': 60, 'historical_significance': 45, 'emotional_intensity': 50}}
+2025-09-15 01:00:35 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "formula1",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "unique personal challenge related to F1",
+  "importance_score": 35,
+  "contextual_factors": {
+    "time_sensitivity": 20,
+    "global_impact": 10,
+    "personal_relevance": 40,
+    "historical_significance": 10,
+    "emotional_intensity": 30
+  }
+}
+```
+2025-09-15 01:00:36 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'formula1', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'unique personal challenge related to F1', 'importance_score': 35, 'contextual_factors': {'time_sensitivity': 20, 'global_impact': 10, 'personal_relevance': 40, 'historical_significance': 10, 'emotional_intensity': 30}}
+2025-09-15 01:00:37 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "formula1",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "preparations for a major F1 team's debut",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 50,
+    "personal_relevance": 45,
+    "historical_significance": 40,
+    "emotional_intensity": 30
+  }
+}
+```
+2025-09-15 01:00:38 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'formula1', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': "preparations for a major F1 team's debut", 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 50, 'personal_relevance': 45, 'historical_significance': 40, 'emotional_intensity': 30}}
+2025-09-15 01:00:39 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "formula1",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "confirmed major event announcement",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 30,
+    "personal_relevance": 50,
+    "historical_significance": 40,
+    "emotional_intensity": 30
+  }
+}
+```
+2025-09-15 01:00:39 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'formula1', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'confirmed major event announcement', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 30, 'personal_relevance': 50, 'historical_significance': 40, 'emotional_intensity': 30}}
+2025-09-15 01:00:41 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "formula1",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "significant penalty review in F1",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 60,
+    "personal_relevance": 50,
+    "historical_significance": 40,
+    "emotional_intensity": 55
+  }
+}
+```
+2025-09-15 01:00:41 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'formula1', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'significant penalty review in F1', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 60, 'personal_relevance': 50, 'historical_significance': 40, 'emotional_intensity': 55}}
+2025-09-15 01:00:43 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "formula1",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "profile of F1 driver Franco Colapinto",
+  "importance_score": 45,
+  "contextual_factors": {
+    "time_sensitivity": 30,
+    "global_impact": 40,
+    "personal_relevance": 50,
+    "historical_significance": 20,
+    "emotional_intensity": 30
+  }
+}
+```
+2025-09-15 01:00:44 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'formula1', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'profile of F1 driver Franco Colapinto', 'importance_score': 45, 'contextual_factors': {'time_sensitivity': 30, 'global_impact': 40, 'personal_relevance': 50, 'historical_significance': 20, 'emotional_intensity': 30}}
+2025-09-15 01:00:45 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "formula1",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "major sports event announcement in user's locale",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 40,
+    "personal_relevance": 80,
+    "historical_significance": 30,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 01:00:45 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'formula1', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': "major sports event announcement in user's locale", 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 40, 'personal_relevance': 80, 'historical_significance': 30, 'emotional_intensity': 50}}
+2025-09-15 01:00:47 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "formula1",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "historical F1 race with title implications",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 10,
+    "global_impact": 40,
+    "personal_relevance": 50,
+    "historical_significance": 60,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 01:00:47 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'formula1', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'historical F1 race with title implications', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 10, 'global_impact': 40, 'personal_relevance': 50, 'historical_significance': 60, 'emotional_intensity': 50}}
+2025-09-15 01:00:48 [WARNING] src.classifier: Rate limit (429) encountered in classifier. Retrying in 1.0 seconds... (Attempt 1/4)
+2025-09-15 01:00:50 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "culture_media_entertainment",
+  "sports_subcategory": "formula1",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "historical overview of F1 fashion partnerships",
+  "importance_score": 45,
+  "contextual_factors": {
+    "time_sensitivity": 20,
+    "global_impact": 40,
+    "personal_relevance": 30,
+    "historical_significance": 50,
+    "emotional_intensity": 30
+  }
+}
+```
+2025-09-15 01:00:50 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'culture_media_entertainment', 'sports_subcategory': 'formula1', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'historical overview of F1 fashion partnerships', 'importance_score': 45, 'contextual_factors': {'time_sensitivity': 20, 'global_impact': 40, 'personal_relevance': 30, 'historical_significance': 50, 'emotional_intensity': 30}}
+2025-09-15 01:00:51 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "formula1",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "Red Bull's F1 engine development plans",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 50,
+    "personal_relevance": 70,
+    "historical_significance": 40,
+    "emotional_intensity": 30
+  }
+}
+```
+2025-09-15 01:00:52 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'formula1', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': "Red Bull's F1 engine development plans", 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 50, 'personal_relevance': 70, 'historical_significance': 40, 'emotional_intensity': 30}}
+2025-09-15 01:00:53 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "formula1",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "interview with F1 team principal",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 40,
+    "personal_relevance": 60,
+    "historical_significance": 30,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-15 01:00:54 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'formula1', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'interview with F1 team principal', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 40, 'personal_relevance': 60, 'historical_significance': 30, 'emotional_intensity': 40}}
+2025-09-15 01:00:56 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "culture_media_entertainment",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "major religious figure's milestone birthday",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 30,
+    "global_impact": 60,
+    "personal_relevance": 40,
+    "historical_significance": 50,
+    "emotional_intensity": 55
+  }
+}
+```
+2025-09-15 01:00:56 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'culture_media_entertainment', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': "major religious figure's milestone birthday", 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 30, 'global_impact': 60, 'personal_relevance': 40, 'historical_significance': 50, 'emotional_intensity': 55}}
+2025-09-15 01:00:57 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "verified election results in major German state",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 50,
+    "personal_relevance": 90,
+    "historical_significance": 60,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-15 01:00:57 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'verified election results in major German state', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 50, 'personal_relevance': 90, 'historical_significance': 60, 'emotional_intensity': 70}}
+2025-09-15 01:00:59 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "death of a notable sports figure",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 50,
+    "personal_relevance": 60,
+    "historical_significance": 60,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-15 01:01:00 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'death of a notable sports figure', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 50, 'personal_relevance': 60, 'historical_significance': 60, 'emotional_intensity': 70}}
+2025-09-15 01:01:01 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "high-level diplomatic visit in active conflict zone",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-15 01:01:01 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'high-level diplomatic visit in active conflict zone', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 70}}
+2025-09-15 01:01:03 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "culture_media_entertainment",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "verified investigation into illegal wildlife activity",
+  "importance_score": 35,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 30,
+    "personal_relevance": 20,
+    "historical_significance": 10,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 01:01:03 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'culture_media_entertainment', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'verified investigation into illegal wildlife activity', 'importance_score': 35, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 30, 'personal_relevance': 20, 'historical_significance': 10, 'emotional_intensity': 50}}
+2025-09-15 01:01:05 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "major political unrest with significant casualties",
+  "importance_score": 72,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 60,
+    "personal_relevance": 30,
+    "historical_significance": 65,
+    "emotional_intensity": 75
+  }
+}
+```
+2025-09-15 01:01:05 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'major political unrest with significant casualties', 'importance_score': 72, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 60, 'personal_relevance': 30, 'historical_significance': 65, 'emotional_intensity': 75}}
+2025-09-15 01:01:06 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": "markets",
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "high-level diplomatic and trade discussions between major economies",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 80,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 01:01:06 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': 'markets', 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'high-level diplomatic and trade discussions between major economies', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 80, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 50}}
+2025-09-15 01:01:07 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": "other_economy",
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "investigative report on systemic issues in prison economy",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 60,
+    "personal_relevance": 70,
+    "historical_significance": 55,
+    "emotional_intensity": 65
+  }
+}
+```
+2025-09-15 01:01:07 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': 'other_economy', 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'investigative report on systemic issues in prison economy', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 60, 'personal_relevance': 70, 'historical_significance': 55, 'emotional_intensity': 65}}
+2025-09-15 01:01:09 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "healthcare_pharma",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "scientific study on health impact",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 60,
+    "personal_relevance": 70,
+    "historical_significance": 40,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 01:01:09 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'healthcare_pharma', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'scientific study on health impact', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 60, 'personal_relevance': 70, 'historical_significance': 40, 'emotional_intensity': 50}}
+2025-09-15 01:01:10 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "basketball_euroleague",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "major international sports event with national significance",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 40,
+    "personal_relevance": 80,
+    "historical_significance": 70,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-15 01:01:10 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'basketball_euroleague', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'major international sports event with national significance', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 40, 'personal_relevance': 80, 'historical_significance': 70, 'emotional_intensity': 60}}
+2025-09-15 01:01:11 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "major disruption to a significant sporting event",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 40,
+    "personal_relevance": 30,
+    "historical_significance": 20,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-15 01:01:12 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'major disruption to a significant sporting event', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 40, 'personal_relevance': 30, 'historical_significance': 20, 'emotional_intensity': 70}}
+2025-09-15 01:01:13 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "large-scale protest with potential political implications",
+  "importance_score": 72,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 60,
+    "personal_relevance": 50,
+    "historical_significance": 65,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-15 01:01:13 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'large-scale protest with potential political implications', 'importance_score': 72, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 60, 'personal_relevance': 50, 'historical_significance': 65, 'emotional_intensity': 70}}
+2025-09-15 01:01:15 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "verified diplomatic response to airspace breach",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 65,
+    "personal_relevance": 50,
+    "historical_significance": 60,
+    "emotional_intensity": 55
+  }
+}
+```
+2025-09-15 01:01:15 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'verified diplomatic response to airspace breach', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 65, 'personal_relevance': 50, 'historical_significance': 60, 'emotional_intensity': 55}}
+2025-09-15 01:01:16 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "culture_media_entertainment",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "major awards event in entertainment industry",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 50,
+    "personal_relevance": 45,
+    "historical_significance": 50,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-15 01:01:16 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'culture_media_entertainment', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'major awards event in entertainment industry', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 50, 'personal_relevance': 45, 'historical_significance': 50, 'emotional_intensity': 40}}
+2025-09-15 01:01:18 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "unverified single-source claim in geopolitical dispute",
+  "importance_score": 45,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 40,
+    "personal_relevance": 20,
+    "historical_significance": 25,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-15 01:01:18 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'unverified single-source claim in geopolitical dispute', 'importance_score': 45, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 40, 'personal_relevance': 20, 'historical_significance': 25, 'emotional_intensity': 50}}
+2025-09-15 01:01:19 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "EU-wide policy with significant privacy and security implications",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 70,
+    "personal_relevance": 85,
+    "historical_significance": 60,
+    "emotional_intensity": 75
+  }
+}
+```
+2025-09-15 01:01:19 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'EU-wide policy with significant privacy and security implications', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 70, 'personal_relevance': 85, 'historical_significance': 60, 'emotional_intensity': 75}}
+2025-09-15 01:01:21 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "political activism and job-related consequences",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 40,
+    "personal_relevance": 70,
+    "historical_significance": 30,
+    "emotional_intensity": 75
+  }
+}
+```
+2025-09-15 01:01:21 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'political activism and job-related consequences', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 40, 'personal_relevance': 70, 'historical_significance': 30, 'emotional_intensity': 75}}
+2025-09-15 01:01:21 [DEBUG] summarizer: Raw news (first 100 chars): The ‘Right of Review’ submitted by Williams over the penalty handed to Carlos Sainz for his collisio...
+2025-09-15 01:01:21 [DEBUG] summarizer: Category for summarization: sports
+2025-09-15 01:01:21 [DEBUG] summarizer: Using YNK_PROMPT_SPORTS for sports
+2025-09-15 01:01:21 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert specializing in Sports. 
+Provide clear guidance on the significance and implications of the sports news for fans, athletes, an...
+2025-09-15 01:01:22 [DEBUG] summarizer: Generated summary (first 150 chars): **Williams' Right of Review Over Sainz Penalty Upheld**
+
+YNotCare: Williams successfully challenged the penalty given to Carlos Sainz for his collisio...
+2025-09-15 01:01:22 [DEBUG] summarizer: Raw news (first 100 chars): City dominate the Manchester, England derby, as Erling Haaland grabs a brace after Phil Foden opens ...
+2025-09-15 01:01:22 [DEBUG] summarizer: Category for summarization: sports
+2025-09-15 01:01:23 [DEBUG] summarizer: Using YNK_PROMPT_SPORTS for sports
+2025-09-15 01:01:23 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert specializing in Sports. 
+Provide clear guidance on the significance and implications of the sports news for fans, athletes, an...
+2025-09-15 01:01:24 [DEBUG] summarizer: Generated summary (first 150 chars): **City Dominates Manchester Derby with Haaland's Brace**
+
+YNotCare: City secured a commanding victory in the Manchester derby, with Phil Foden and Erl...
+2025-09-15 01:01:24 [DEBUG] summarizer: Raw news (first 100 chars): Scientists in Korea have engineered magnetic nanohelices that can control electron spin with extraor...
+2025-09-15 01:01:24 [DEBUG] summarizer: Category for summarization: technology_ai_science
+2025-09-15 01:01:24 [DEBUG] summarizer: Using YNK_PROMPT_TECH for technology_ai_science
+2025-09-15 01:01:24 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert specializing in Technology, AI, and Science. 
+Provide clear guidance on the implications of the news for individuals, business...
+2025-09-15 01:01:26 [DEBUG] summarizer: Generated summary (first 150 chars): **Korean Scientists Develop Room-Temperature Magnetic Nanohelices for Spin Control**
+
+YNotCare: Scientists in Korea have created magnetic nanohelices ...
+2025-09-15 01:01:26 [DEBUG] summarizer: Raw news (first 100 chars): Researchers at UBC have found a way to mimic the elusive Schwinger effect using superfluid helium, w...
+2025-09-15 01:01:26 [DEBUG] summarizer: Category for summarization: technology_ai_science
+2025-09-15 01:01:26 [DEBUG] summarizer: Using YNK_PROMPT_TECH for technology_ai_science
+2025-09-15 01:01:26 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert specializing in Technology, AI, and Science. 
+Provide clear guidance on the implications of the news for individuals, business...
+2025-09-15 01:01:27 [DEBUG] summarizer: Generated summary (first 150 chars): **UBC Researchers Mimic Quantum Effect Using Superfluid Helium**
+
+YNotCare: Researchers at UBC have replicated the Schwinger effect using superfluid h...
+2025-09-15 01:01:27 [DEBUG] summarizer: Raw news (first 100 chars): Researchers trained AI on tens of thousands of eye scans, enabling doctors to predict which keratoco...
+2025-09-15 01:01:27 [DEBUG] summarizer: Category for summarization: technology_ai_science
+2025-09-15 01:01:27 [DEBUG] summarizer: Using YNK_PROMPT_TECH for technology_ai_science
+2025-09-15 01:01:27 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert specializing in Technology, AI, and Science. 
+Provide clear guidance on the implications of the news for individuals, business...
+2025-09-15 01:01:28 [DEBUG] summarizer: Generated summary (first 150 chars): **AI Predicts Keratoconus Treatment Needs, Reducing Unnecessary Procedures**
+
+YNotCare: Researchers trained AI on eye scans to predict which keratocon...
+2025-09-15 01:01:28 [DEBUG] summarizer: Raw news (first 100 chars): Country’s defence minister calls Russia’s behaviour ‘reckless’ after second breach of Nato territory...
+2025-09-15 01:01:28 [DEBUG] summarizer: Category for summarization: politics_geopolitics
+2025-09-15 01:01:28 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-15 01:01:28 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-15 01:01:29 [DEBUG] summarizer: Generated summary (first 150 chars): **Defence Minister Labels Russia's Actions 'Reckless' Following Second NATO Territory Breach**
+
+YNotCare: Russia's repeated incursions into NATO airsp...
+2025-09-15 01:01:29 [DEBUG] summarizer: Raw news (first 100 chars): <p>It’s a strange time for the <a href="https://www.theguardian.com/business/useconomy">US economy</...
+2025-09-15 01:01:29 [DEBUG] summarizer: Category for summarization: economy_finance
+2025-09-15 01:01:29 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['Household', 'Inflation & Costs', 'Real Estate', 'Investments/Markets', 'Career & Education / Policy & Geopolitics']
+2025-09-15 01:01:29 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-15 01:01:30 [DEBUG] summarizer: Generated summary (first 150 chars): **US Economy Edges Closer to Stagflation**
+
+YNotCare: The US economy is showing signs of stagflation, with rising prices and slowing job growth. Econo...

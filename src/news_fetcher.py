@@ -6,7 +6,7 @@ Fetches from multiple sources, handles multilingual content, and prepares for MV
 import hashlib
 import json
 import os
-import re
+import re  # Added for potential content cleaning
 import sys
 import time
 from collections import defaultdict
@@ -47,7 +47,7 @@ class SmartNewsFetcher:
             # Reddit keys removed as per request
         }
 
-        # Configure quality filters - Relaxed but reasonable criteria
+        # Configure quality filters - Relaxed criteria
         self.quality_filters = {
             "min_length": 100,  # Slightly increased minimum length for better content
             # 'max_length': 100000, # Removed max length limit
@@ -93,13 +93,15 @@ class SmartNewsFetcher:
             # Tennis
             "https://www.atptour.com/en/media/rss/news.xml",  # ATP
             # Euroleague Basketball
-            # 'https://www.euroleague.net/rss/news', # Check if this works, or find alternative
+            "https://www.euroleague.net/rss/news",  # Check if this works
             # Olympics (if seasonal feeds are available, they can be added)
             # German News (for locale relevance)
             "https://www.spiegel.de/international/index.rss",
             "https://www.dw.com/search/en/rss?searchNavigationId=9038",
-            # Additional sources for variety
+            # Additional General/World News
             "https://rss.dw.com/xml/rss-en-all",
+            "https://www.france24.com/en/rss",
+            "https://www.bbc.com/news/rss.xml",  # BBC World
         ]
 
         # Map user interest categories to Guardian section IDs
@@ -164,7 +166,7 @@ class SmartNewsFetcher:
                 )
                 continue
 
-            # Increase page size to limit articles
+            # Increase page size to get more articles
             params = {
                 "api-key": self.api_keys["guardian"],
                 "section": guardian_section,
@@ -222,7 +224,7 @@ class SmartNewsFetcher:
         for fmt in formats:
             try:
                 # Special handling for timezone offsets like '+0100'
-                if "%z" in fmt and "+" in date_str[-5:] or "-" in date_str[-5:]:
+                if "%z" in fmt and ("+" in date_str[-5:] or "-" in date_str[-5:]):
                     # feedparser usually handles this, but let's be safe
                     parsed_date = datetime.strptime(date_str, fmt)
                 else:
@@ -246,16 +248,14 @@ class SmartNewsFetcher:
             return []
 
         articles = []
-        # Get yesterday's date range for filtering
+        # Get today's date range for filtering (in UTC)
         now = datetime.now(timezone.utc)
-        start_of_yesterday = (now - timedelta(days=1)).replace(
-            hour=0, minute=0, second=0, microsecond=0
-        )
-        end_of_yesterday = start_of_yesterday.replace(
+        start_of_today = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        end_of_today = start_of_today.replace(
             hour=23, minute=59, second=59, microsecond=999999
         )
 
-        # Increase total RSS feeds processed to control volume
+        # Increase total RSS feeds processed to get more variety
         feeds_to_process = self.rss_feeds[:35]  # Increased from 25
 
         for url in feeds_to_process:
@@ -266,30 +266,25 @@ class SmartNewsFetcher:
                 feed = feedparser.parse(clean_url)
                 # Increase articles per feed
                 entries_to_process = feed.entries[:10]  # Increased from 7
-                # print(f"  📊 Processing {len(entries_to_process)} entries from {clean_url}") # Debug log
 
                 for entry in entries_to_process:
                     published_at_raw = getattr(entry, "published", None)
                     published_at_dt = self._parse_rss_date(published_at_raw)
 
-                    # --- Date Filtering Logic ---
+                    # --- NEW DATE FILTERING LOGIC ---
                     # Include article if:
                     # 1. Date is unknown/unclear (assume it's recent enough)
-                    # 2. Date is within yesterday
+                    # 2. Date is within TODAY (UTC)
                     include_article = True
                     if published_at_dt:
                         # Normalize to UTC for comparison
                         entry_date_utc = published_at_dt.astimezone(timezone.utc)
-                        # print(f"    🕒 Entry date (UTC): {entry_date_utc}, Yesterday: {start_of_yesterday} - {end_of_yesterday}") # Debug log
-                        if not (
-                            start_of_yesterday <= entry_date_utc <= end_of_yesterday
-                        ):
-                            # print(f"    ❌ Rejected (not from yesterday): {entry.get('title', '')[:50]}...") # Debug log
+                        if not (start_of_today <= entry_date_utc <= end_of_today):
                             include_article = False
 
                     if not include_article:
                         continue
-                    # --- End Date Filtering ---
+                    # --- END NEW DATE FILTERING ---
 
                     article = {
                         "source": getattr(feed.feed, "title", clean_url),
@@ -309,7 +304,6 @@ class SmartNewsFetcher:
                     # Basic check to ensure we have at least a title
                     if article["title"]:
                         articles.append(article)
-                        # print(f"    ✅ Added article from {article['source']}: {article['title'][:50]}...") # Debug log
             except Exception as e:
                 # Minimal error logging for RSS to avoid spam
                 # print(f"⚠️ RSS fetch error for {url[:50]}...: {e}")
@@ -530,8 +524,6 @@ class SmartNewsFetcher:
                 "award",
                 "festival",
                 "concert",
-                "netflix",
-                "streaming",
             ],
             "healthcare_pharma": [
                 "health",
@@ -566,7 +558,6 @@ class SmartNewsFetcher:
                 "climate change",
                 "sustainability",
                 "electric vehicle",
-                "ev",
             ],
             "real_estate_housing": [
                 "real estate",
@@ -609,6 +600,7 @@ class SmartNewsFetcher:
                 "electric vehicle",
                 "boeing",
                 "airbus",
+                "tesla",
             ],
         }
 
@@ -677,19 +669,19 @@ class SmartNewsFetcher:
                 subcats = interest[main_cat]
                 if isinstance(subcats, list):
                     # Check if article's subcategory matches user's specific interests
-                    if (main_cat == article_category) and (
-                        (article_sports_subcat and article_sports_subcat in subcats)
-                        or (article_econ_subcat and article_econ_subcat in subcats)
-                        or (article_tech_subcat and article_tech_subcat in subcats)
+                    if (
+                        (main_cat == article_category)
+                        and (
+                            not article_sports_subcat
+                            or article_sports_subcat in subcats
+                        )
+                        and (not article_econ_subcat or article_econ_subcat in subcats)
+                        and (not article_tech_subcat or article_tech_subcat in subcats)
                     ):
                         interest_bonus = max(
                             interest_bonus, 15
                         )  # Bonus for matching specific subcategory
                         break
-                    # Fallback to main category match if no specific subcat match
-                    elif main_cat == article_category:
-                        interest_bonus = max(interest_bonus, 13)  # Increased from 12
-                        # break # Don't break, keep checking for potentially higher subcat bonus
 
         locale_bonus = 0
         # Bonus for locale relevance (increased potential max bonus)
@@ -777,22 +769,17 @@ class SmartNewsFetcher:
             # Note: Errors in scoring will silently drop the article from the scored list
             # Consider if you want a default score for articles that fail scoring
             try:
-                score = self._score_article_relevance(
-                    article, user_interests, user_locale
-                )
+                self._score_article_relevance(article, user_interests, user_locale)
                 scored_articles.append(article)
-            except Exception as e:
-                # print(f"    ⚠️ Error scoring article '{article.get('title', 'No Title')[:30]}...': {e}") # Minimized log
+            except Exception:
                 pass  # Article dropped if scoring fails
         print(f"\r   ✅ Relevance scoring: {len(scored_articles)} articles")
 
-        # Group articles by category
         category_bundles = defaultdict(list)
         for article in scored_articles:
             category = article.get("category", "general")
             category_bundles[category].append(article)
 
-        # Sort articles within each category by relevance score
         for category, category_articles in category_bundles.items():
             category_articles.sort(
                 key=lambda x: x.get("relevance_score", 0), reverse=True
@@ -827,7 +814,6 @@ class SmartNewsFetcher:
         print(f"   🌍 Locale: {user_locale} | 🗣️  Language: {user_language}")
         print(f"   🎯 Interests: {user_interests} | 🏙️  City: {user_city}")
 
-        # --- News Collection ---
         raw_articles = []
 
         # Fetch from Guardian
@@ -848,7 +834,6 @@ class SmartNewsFetcher:
         # Reddit fetching removed
         print(f"📦 Raw articles collected: {len(raw_articles)}")
 
-        # --- News Processing Pipeline ---
         print("⚙️  Processing articles through smart pipeline...")
 
         # 1. Quality Filter
