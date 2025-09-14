@@ -1,3 +1,4 @@
+# src/classifier.py
 """News classifier with category detection and priority assessment."""
 
 from __future__ import annotations
@@ -5,10 +6,13 @@ from __future__ import annotations
 import json
 import os
 import sys
+import time  # Added for retry backoff
 from datetime import datetime
 from typing import Any, Dict, Literal, Optional, TypedDict, get_args
 
 from mistralai import Mistral
+
+# --- НЕТ ИМПОРТА MistralAPIException ---
 
 # Setup paths for correct imports
 current_dir = os.path.dirname(__file__)
@@ -18,6 +22,9 @@ if root_dir not in sys.path:
 
 from config import MISTRAL_API_KEY
 from logging_config import get_logger
+
+# Import prompts correctly from prompts.py
+from prompts import CLASSIFY_AND_PRIORITIZE_PROMPT  # Import the main prompt
 from prompts import (
     ECONOMY_SUBCATEGORY_PROMPT,
     SPORTS_SUBCATEGORY_PROMPT,
@@ -26,60 +33,7 @@ from prompts import (
 
 logger = get_logger(__name__)
 
-# Enhanced prompt with 100-point importance scale and contextual analysis
-CLASSIFY_AND_PRIORITIZE_PROMPT = """
-You are a precise, context-aware news classifier and priority evaluator. 
-Your task: classify the news, assign priority, and return ONLY valid JSON.
-
-Schema:
-{
- "category": "<one of: economy_finance | politics_geopolitics | technology_ai_science | real_estate_housing | career_education_labour | sports | energy_climate_environment | culture_media_entertainment | healthcare_pharma | transport_auto_aviation>",
- "sports_subcategory": "<one of: football_bundesliga | football_epl | football_laliga | football_other | basketball_nba | basketball_euroleague | american_football_nfl | tennis | formula1 | ice_hockey | other_sports | null>",
- "confidence": <float 0..1>,
- "reasons": "<≤25 words, concise, plain>",
- "importance_score": <int 0..100>,  # 100-point importance scale
- "contextual_factors": {             # NEW: Contextual analysis
-   "time_sensitivity": <int 0..100>,
-   "global_impact": <int 0..100>,
-   "personal_relevance": <int 0..100>,
-   "historical_significance": <int 0..100>,
-   "emotional_intensity": <int 0..100>
- }
-}
-
-Rules for importance_score (0-100):
-- 90-100: HISTORIC/GLOBAL - pandemics, wars, unmatched records, global crises
-- 80-89: MAJOR NATIONAL - central bank decisions, major elections, national emergencies  
-- 70-79: SIGNIFICANT REGIONAL - state-level decisions, major corporate moves
-- 60-69: NOTABLE LOCAL - city-wide impacts, important local news
-- 50-59: ROUTINE INTEREST - regular sports results, quarterly reports
-- 40-49: MINOR RELEVANCE - small updates, gossip
-- 30-39: BACKGROUND NOISE - very minor local events
-- 20-29: TRIVIAL - advertisements disguised as news
-- 10-19: SPAM - clearly irrelevant content
-- 0-9: JUNK - completely unrelated/offensive content
-
-Context factors:
-- GLOBAL IMPACT multiplies score by 1.5-2.0
-- HISTORIC FIRST-EVER adds +15-25 points
-- PERSONAL RELEVANCE (based on user locale) adds +5-15 points
-- TIME SENSITIVITY (breaking news) adds +10-20 points
-- EMOTIONAL INTENSITY (crisis, celebration) adds +5-10 points
-
-Examples:
-Input: "World War III declared between US and China"
-Output: {"category":"politics_geopolitics","sports_subcategory":null,"confidence":0.99,"reasons":"global war declaration","importance_score":98,"contextual_factors":{"time_sensitivity":95,"global_impact":100,"personal_relevance":70,"historical_significance":100,"emotional_intensity":90}}
-
-Input: "Local mayor opens new park in small town."
-Output: {"category":"politics_geopolitics","sports_subcategory":null,"confidence":0.9,"reasons":"minor local political event","importance_score":62,"contextual_factors":{"time_sensitivity":30,"global_impact":20,"personal_relevance":60,"historical_significance":10,"emotional_intensity":25}}
-
-Input: "Nvidia releases groundbreaking AI chip for consumer market"
-Output: {"category":"technology_ai_science","sports_subcategory":null,"confidence":0.95,"reasons":"major tech breakthrough","importance_score":85,"contextual_factors":{"time_sensitivity":80,"global_impact":90,"personal_relevance":85,"historical_significance":75,"emotional_intensity":70}}
-
-Input: "China seeks to triple output of AI chips in race with the US"
-Output: {"category":"technology_ai_science","sports_subcategory":null,"confidence":0.92,"reasons":"geopolitical tech competition","importance_score":88,"contextual_factors":{"time_sensitivity":85,"global_impact":95,"personal_relevance":90,"historical_significance":80,"emotional_intensity":85}}
-"""
-
+# --- Type definitions remain the same ---
 Category = Literal[
     "economy_finance",
     "politics_geopolitics",
@@ -138,7 +92,11 @@ class ClassifierOutput(TypedDict):
     confidence: float
     reasons: str
     importance_score: int
-    contextual_factors: ContextualFactors  # NEW: Contextual analysis
+    contextual_factors: ContextualFactors
+
+
+# --- Helper functions (_salvage_json, _normalize, _ask_subcategory) remain largely the same ---
+# (Only adding retry logic to the main classify_news function)
 
 
 def _salvage_json(s: str) -> Dict[str, Any]:
@@ -228,6 +186,9 @@ def _ask_subcategory(
     client: Mistral, prompt: str, text: str, key: str
 ) -> Optional[str]:
     """Ask for subcategory clarification."""
+    # This helper function can also benefit from retries, but for simplicity,
+    # we apply retry logic primarily to the main classification call.
+    # If needed, _ask_subcategory can be wrapped similarly.
     resp = client.chat.complete(
         model="mistral-small-latest",
         temperature=0.0,
@@ -245,6 +206,80 @@ def _ask_subcategory(
     return data.get(key)
 
 
+# --- Retry logic helper function (БЕЗ MistralAPIException) ---
+def _retry_with_backoff(func, *args, max_retries=4, base_delay=1.0, **kwargs):
+    """
+    Retries a function call with exponential backoff upon receiving a 429 error.
+
+    Args:
+        func: The function to call.
+        args: Positional arguments for the function.
+        max_retries: Maximum number of retry attempts.
+        base_delay: Initial delay in seconds.
+        kwargs: Keyword arguments for the function.
+
+    Returns:
+        The result of the function call.
+
+    Raises:
+        Exception: The last exception encountered if all retries fail.
+    """
+    # Определяем код ошибки "Rate Limited"
+    RATE_LIMIT_ERROR_CODE = 429
+
+    for attempt in range(max_retries + 1):
+        try:
+            return func(*args, **kwargs)
+        except Exception as e:
+            # --- Проверка на ошибку Rate Limit ---
+            # Проверяем, есть ли у исключения атрибут status_code и равен ли он 429
+            # Это работает как для MistralAPIException, так и для других типов исключений,
+            # которые могут содержать этот атрибут (например, в старых/новых версиях SDK)
+            is_rate_limit_error = (
+                hasattr(e, "status_code") and e.status_code == RATE_LIMIT_ERROR_CODE
+            )
+            # --- Конец проверки ---
+
+            if is_rate_limit_error and attempt < max_retries:
+                delay = base_delay * (2**attempt)  # Exponential backoff
+                logger.warning(
+                    f"Rate limit ({RATE_LIMIT_ERROR_CODE}) encountered in classifier. Retrying in {delay} seconds... (Attempt {attempt + 1}/{max_retries})"
+                )
+                time.sleep(delay)
+            else:
+                # If it's not a 429, or we've exhausted retries, re-log and re-raise the original exception
+                if is_rate_limit_error:
+                    logger.error(
+                        f"Classifier API call failed after {max_retries} retries due to rate limiting: {e}"
+                    )
+                else:
+                    # Проверим, не является ли это ошибкой аутентификации (частая проблема)
+                    auth_error_indicators = [
+                        "401",
+                        "Unauthorized",
+                        "invalid_api_key",
+                        "authentication",
+                    ]
+                    error_message_lower = str(e).lower()
+                    if any(
+                        indicator in error_message_lower
+                        for indicator in auth_error_indicators
+                    ):
+                        logger.error(
+                            f"Authentication error likely in classifier: {e}. Check MISTRAL_API_KEY."
+                        )
+                    else:
+                        logger.error(
+                            f"Non-retryable error or retries exhausted in classifier API call: {e}"
+                        )
+                raise e  # Re-raise the original exception
+    # Этот случай маловероятен из-за `raise e` выше, но добавлен для полноты картины
+    raise Exception(
+        "Classifier retry logic failed unexpectedly in _retry_with_backoff."
+    )
+
+
+# --- Main classification function with retry ---
 def classify_news(text: str, user_locale: Optional[str] = None) -> ClassifierOutput:
     """Classify news text and determine importance score with contextual analysis.
 
@@ -265,45 +300,60 @@ def classify_news(text: str, user_locale: Optional[str] = None) -> ClassifierOut
         f"News:\n'''\n{text.strip()}\n'''"
     )
 
-    resp = client.chat.complete(
-        model="mistral-small-latest",
-        temperature=0.0,
-        max_tokens=300,  # Increased for more detailed contextual analysis
-        messages=[
-            {"role": "system", "content": CLASSIFY_AND_PRIORITIZE_PROMPT},
-            {"role": "user", "content": user_msg},
-        ],
-    )
-
-    raw = resp.choices[0].message.content.strip()
-    logger.debug("Raw classifier response: %s", raw)
+    # Define the API call as a nested function for retry wrapper
+    def _make_classification_call():
+        return client.chat.complete(
+            model="mistral-small-latest",
+            temperature=0.0,
+            max_tokens=300,  # Increased for more detailed contextual analysis
+            messages=[
+                {
+                    "role": "system",
+                    "content": CLASSIFY_AND_PRIORITIZE_PROMPT,
+                },  # Use imported prompt
+                {"role": "user", "content": user_msg},
+            ],
+        )
 
     try:
-        data = json.loads(raw)
-    except Exception:
-        data = _salvage_json(raw)
+        # Wrap the API call with retry logic
+        resp = _retry_with_backoff(_make_classification_call)
 
-    out = _normalize(data)
+        raw = resp.choices[0].message.content.strip()
+        logger.debug("Raw classifier response: %s", raw)
 
-    # Cascade subcategory refinement
-    if out["category"] == "sports":
-        sub = _ask_subcategory(
-            client, SPORTS_SUBCATEGORY_PROMPT, text, "sports_subcategory"
-        )
-        if sub:
-            out["sports_subcategory"] = sub
-    elif out["category"] == "economy_finance":
-        sub = _ask_subcategory(
-            client, ECONOMY_SUBCATEGORY_PROMPT, text, "economy_subcategory"
-        )
-        if sub:
-            out["economy_subcategory"] = sub
-    elif out["category"] == "technology_ai_science":
-        sub = _ask_subcategory(
-            client, TECH_SUBCATEGORY_PROMPT, text, "tech_subcategory"
-        )
-        if sub:
-            out["tech_subcategory"] = sub
+        try:
+            data = json.loads(raw)
+        except Exception:
+            data = _salvage_json(raw)
 
-    logger.debug("Final classification with subcategory: %s", out)
-    return out
+        out = _normalize(data)
+
+        # Cascade subcategory refinement (can also be wrapped if needed, but less critical)
+        if out["category"] == "sports":
+            sub = _ask_subcategory(
+                client, SPORTS_SUBCATEGORY_PROMPT, text, "sports_subcategory"
+            )
+            if sub:
+                out["sports_subcategory"] = sub
+        elif out["category"] == "economy_finance":
+            sub = _ask_subcategory(
+                client, ECONOMY_SUBCATEGORY_PROMPT, text, "economy_subcategory"
+            )
+            if sub:
+                out["economy_subcategory"] = sub
+        elif out["category"] == "technology_ai_science":
+            sub = _ask_subcategory(
+                client, TECH_SUBCATEGORY_PROMPT, text, "tech_subcategory"
+            )
+            if sub:
+                out["tech_subcategory"] = sub
+
+        logger.debug("Final classification with subcategory: %s", out)
+        return out
+
+    except Exception as e:
+        # Log the final error after retries are exhausted
+        logger.error(f"Classification failed after retries: {e}")
+        # Re-raise the exception so the calling code (e.g., news_fetcher) knows it failed
+        raise e

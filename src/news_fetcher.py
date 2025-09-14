@@ -1,5 +1,6 @@
+# src/news_fetcher.py
 """Smart News Fetcher - Custom implementation for global personalized news delivery.
-   Fetches from multiple sources, handles multilingual content, and prepares for MVP.
+Fetches from multiple sources, handles multilingual content, and prepares for MVP.
 """
 
 import hashlib
@@ -9,884 +10,381 @@ import sys
 import time
 from collections import defaultdict
 from datetime import datetime, timedelta
-from typing import Dict, List, Optional, Set
+from typing import Any, Dict, List, Optional, Set, Union
 
 import requests
 from dotenv import load_dotenv
 
-load_dotenv()  # Загружает переменные из .env файла
+# --- Path setup for internal imports ---
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(current_dir)
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
+# Import classifier module
+try:
+    from src.classifier import classify_news
+
+    CLASSIFIER_AVAILABLE = True
+except ImportError as e:
+    print(f"⚠️ Classifier module not available: {e}")
+    CLASSIFIER_AVAILABLE = False
+    classify_news = None
+
+# Load environment variables
+load_dotenv()
 
 
 class SmartNewsFetcher:
     """Intelligent news fetching with global coverage and smart filtering."""
 
     def __init__(self):
-        """Initialize with all available sources and smart configuration."""
-        # Debug: Print current environment variables
-        print("🔍 Debug - Environment variables:")
-        newsapi_key_env = os.getenv("NEWSAPI_KEY")
-        guardian_key_env = os.getenv("GUARDIAN_KEY")
-        reddit_client_id_env = os.getenv("REDDIT_CLIENT_ID")
-        reddit_client_secret_env = os.getenv("REDDIT_CLIENT_SECRET")
-        mistral_api_key_env = os.getenv("MISTRAL_API_KEY")
-        print(f"   NEWSAPI_KEY: {'SET' if newsapi_key_env else 'NOT SET'}")
-        print(f"   GUARDIAN_KEY: {'SET' if guardian_key_env else 'NOT SET'}")
-        print(f"   REDDIT_CLIENT_ID: {'SET' if reddit_client_id_env else 'NOT SET'}")
-        print(
-            f"   REDDIT_CLIENT_SECRET: {'SET' if reddit_client_secret_env else 'NOT SET'}"
-        )
-        print(f"   MISTRAL_API_KEY: {'SET' if mistral_api_key_env else 'NOT SET'}")
-        if newsapi_key_env:
-            print(
-                f"   NEWSAPI_KEY value: {newsapi_key_env[:4]}...{newsapi_key_env[-4:]}"
-            )
-        if guardian_key_env:
-            print(
-                f"   GUARDIAN_KEY value: {guardian_key_env[:4]}...{guardian_key_env[-4:]}"
-            )
-        if reddit_client_id_env:
-            print(
-                f"   REDDIT_CLIENT_ID value: {reddit_client_id_env[:4]}...{reddit_client_id_env[-4:]}"
-            )
-        if reddit_client_secret_env:
-            print(
-                f"   REDDIT_CLIENT_SECRET value: {reddit_client_secret_env[:4]}...{reddit_client_secret_env[-4:]}"
-            )
-        if mistral_api_key_env:
-            print(
-                f"   MISTRAL_API_KEY value: {mistral_api_key_env[:4]}...{mistral_api_key_env[-4:]}"
-            )
-
-        # Setup paths for correct imports
-        current_dir = os.path.dirname(__file__)
-        root_dir = os.path.dirname(current_dir)
-        if root_dir not in sys.path:
-            sys.path.insert(0, root_dir)
-            print(f"   🔧 Added to path: {root_dir}")
-
-        # API Keys
-        self.newsapi_key = os.getenv("NEWSAPI_KEY", "")
-        self.guardian_key = os.getenv("GUARDIAN_KEY", "")
-        self.reddit_client_id = os.getenv("REDDIT_CLIENT_ID", "")
-        self.reddit_client_secret = os.getenv("REDDIT_CLIENT_SECRET", "")
-        self.mistral_api_key = os.getenv("MISTRAL_API_KEY", "")
-
-        # Check for optional dependencies
-        self.feedparser_available = self._check_feedparser()
-        self.langdetect_available = self._check_langdetect()
-
-        # Global news sources configuration
-        self.sources_config = {
-            "premium": {
-                "newsapi": {
-                    "enabled": bool(self.newsapi_key),
-                    "daily_limit": 100,  # Free tier limit
-                    "categories": [
-                        "business",
-                        "sports",
-                        "technology",
-                        "general",
-                        "health",
-                        "science",
-                        "entertainment",
-                    ],
-                },
-                "guardian": {
-                    "enabled": bool(self.guardian_key),
-                    "daily_limit": 500,  # Higher limit
-                    "categories": [
-                        "world",
-                        "sport",
-                        "technology",
-                        "business",
-                        "environment",
-                    ],
-                },
-            },
-            "free": {
-                "rss": {
-                    "enabled": self.feedparser_available,
-                    "sources": self._get_global_rss_feeds(),
-                },
-                "reddit": {
-                    "enabled": bool(
-                        self.reddit_client_id and self.reddit_client_secret
-                    ),
-                    "subreddits": [
-                        "worldnews",
-                        "technology",
-                        "sports",
-                        "business",
-                        "economics",
-                    ],
-                },
-            },
+        """Initialize the news fetcher with configuration."""
+        self.api_keys = {
+            "newsapi": os.getenv("NEWSAPI_KEY"),
+            "guardian": os.getenv("GUARDIAN_KEY"),
+            # Reddit keys removed as per request
         }
 
-        # Content quality filters
+        # Configure quality filters - Relaxed criteria
         self.quality_filters = {
-            "min_length": 150,  # Minimum characters for quality content
-            "max_length": 50000,  # Maximum to avoid huge articles
-            "required_fields": ["title", "description"],
-            "banned_keywords": [
-                "advertisement",
-                "sponsored",
-                "promo",
-                "deal",
-                "welcome",
-                "rules",
-                "faq",
-                "introduction",
-            ],
-            "duplicate_threshold": 0.8,  # Similarity threshold for deduplication
+            "min_length": 50,  # Reduced minimum length
+            # 'max_length': 100000, # Removed max length limit
+            "required_fields": ["title"],  # Only title is strictly required now
+            # Removed some overly restrictive banned keywords
+            "banned_keywords": ["advertisement", "sponsored", "deal of the day"],
         }
 
-        # Translation support
-        self.translation_enabled = True
-        self.target_language = "en"  # Default target language
+        # RSS feed sources - Expanded and cleaned list for better global coverage
+        # Focused on increasing sports representation
+        self.rss_feeds = [
+            # Global English News
+            "http://feeds.bbci.co.uk/news/rss.xml",
+            "https://rss.cnn.com/rss/edition.rss",
+            "https://feeds.reuters.com/reuters/topNews",
+            "https://www.aljazeera.com/xml/rss/all.xml",
+            # Technology & Science
+            "https://feeds.feedburner.com/oreilly/radar",
+            "https://techcrunch.com/feed/",
+            "https://www.wired.com/feed/rss",
+            "https://www.coindesk.com/arc/outboundfeeds/rss/",
+            "https://www.sciencedaily.com/rss/all.xml",
+            # Finance & Economics
+            "https://www.ft.com/rss/home",
+            "https://www.economist.com/the-world-this-week/rss.xml",
+            "https://www.economist.com/finance-and-economics/rss.xml",
+            # Culture & Entertainment
+            "https://www.reddit.com/r/entertainment/.rss",  # Using Reddit for this category as content source
+            # --- Sports RSS Feeds ---
+            # General Sports
+            "https://www.espn.com/espn/rss/news",
+            # Football/Soccer
+            "http://www.espnfc.com/rss",  # ESPN FC
+            "https://www.skysports.com/rss/12040",  # Sky Sports Football
+            # NBA
+            "https://www.nba.com/rss/news",
+            # Formula 1
+            "https://www.formula1.com/en/latest/all.xml",
+            # Bundesliga
+            "https://www.bundesliga.com/en/news/rss.xml",
+            # NFL
+            "https://www.nfl.com/feeds/rss/news",
+            # Tennis
+            "https://www.atptour.com/en/media/rss/news.xml",  # ATP
+            # Euroleague Basketball / Other Leagues
+            "https://www.euroleague.net/rss/news",  # Check if this works, or find alternative
+            # Olympics (if seasonal feeds are available, they can be added)
+            # German News (for locale relevance)
+            "https://www.spiegel.de/international/index.rss",
+            "https://www.dw.com/search/en/rss?searchNavigationId=9038",
+            # Additional sources for variety
+            "https://rss.dw.com/xml/rss-en-all",
+        ]
 
+        # Map user interest categories to Guardian section IDs
+        self.guardian_category_map = {
+            "politics_geopolitics": "politics",
+            "economy_finance": "business",
+            "technology_ai_science": "technology",
+            "sports": "sport",
+            "culture_media_entertainment": "culture",
+            "healthcare_pharma": "society/health",
+            "energy_climate_environment": "environment",
+            "real_estate_housing": "money/property",
+            "career_education_labour": "education",
+            "transport_auto_aviation": "business/aviation",
+        }
+
+        # Print initialization status
+        self._print_initialization_status()
+
+    def _print_initialization_status(self):
+        """Print the initialization status of different sources."""
         print("🌍 SmartNewsFetcher initialized with global coverage")
-        self._print_source_status()
-
-    def _check_feedparser(self) -> bool:
-        """Check if feedparser is available."""
-        try:
-            import feedparser
-
-            return True
-        except ImportError:
-            print("⚠️  feedparser not installed. RSS feeds will be disabled.")
-            print("   To enable RSS: pip install feedparser")
-            return False
-
-    def _check_langdetect(self) -> bool:
-        """Check if langdetect is available."""
-        try:
-            import langdetect
-
-            return True
-        except ImportError:
-            print("⚠️  langdetect not installed. Language detection will be basic.")
-            print("   To enable advanced language detection: pip install langdetect")
-            return False
-
-    def _get_global_rss_feeds(self) -> Dict[str, List[str]]:
-        """Get comprehensive global RSS feeds by region and language."""
-        return {
-            # English sources
-            "en": [
-                "http://feeds.bbci.co.uk/news/rss.xml",
-                "https://rss.cnn.com/rss/edition.rss",
-                "https://feeds.reuters.com/reuters/topNews",
-                "https://www.aljazeera.com/xml/rss/all.xml",
-            ],
-            # German sources
-            "de": [
-                "https://www.tagesschau.de/xml/rss2",
-                "https://www.spiegel.de/schlagzeilen/index.rss",
-            ],
-            # Global financial sources
-            "financial": [
-                "https://www.ft.com/rss/home",  # <<< TARGET RSS FEED <<<
-                "https://www.economist.com/latest/rss.xml",
-            ],
-        }
-
-    def _print_source_status(self):
-        """Print current source configuration status."""
         print("📊 Source Configuration:")
-        for tier, sources in self.sources_config.items():
-            print(f"  {tier.upper()}:")
-            for source, config in sources.items():
-                status = "✅ ENABLED" if config["enabled"] else "❌ DISABLED"
-                print(f"    {source}: {status}")
-
-    def fetch_daily_news_bundle(self, user_preferences: Dict) -> Dict[str, List[Dict]]:
-        """
-        Fetch comprehensive daily news bundle with smart filtering.
-
-        Args:
-            user_preferences: User profile with locale, interests, language preferences
-
-        Returns:
-            Dictionary with categorized news articles ready for processing
-        """
-        user_locale = user_preferences.get("locale", "en")
-        user_language = user_preferences.get("language", "en")
-        user_interests = user_preferences.get("interests", [])
-        user_city = user_preferences.get("city", "")
-
-        print(f"📡 Fetching global news bundle for user preferences:")
-        print(f"   🌍 Locale: {user_locale} | 🗣️  Language: {user_language}")
-        print(f"   🎯 Interests: {user_interests} | 🏙️  City: {user_city}")
-
-        # Fetch from all enabled sources
-        all_articles = []
-
-        # 1. Premium sources (limited by free tier)
-        if self.sources_config["premium"]["newsapi"]["enabled"]:
-            print("🔄 Fetching from NewsAPI...")
-            newsapi_articles = self._fetch_newsapi_articles(user_locale, user_interests)
-            all_articles.extend(newsapi_articles)
-            print(f"   ✅ NewsAPI: {len(newsapi_articles)} articles")
-
-        if self.sources_config["premium"]["guardian"]["enabled"]:
-            print("🔄 Fetching from The Guardian...")
-            guardian_articles = self._fetch_guardian_articles(
-                user_locale, user_interests
-            )
-            all_articles.extend(guardian_articles)
-            print(f"   ✅ Guardian: {len(guardian_articles)} articles")
-
-        # 2. Free sources (unlimited)
-        if self.sources_config["free"]["rss"]["enabled"]:
-            print("🔄 Fetching from RSS feeds...")
-            rss_articles = self._fetch_rss_articles(user_locale, user_language)
-            all_articles.extend(rss_articles)
-            print(f"   ✅ RSS: {len(rss_articles)} articles")
-        else:
-            print("⏭️  RSS feeds disabled (feedparser not available)")
-
-        # 3. Reddit (if enabled)
-        if self.sources_config["free"]["reddit"]["enabled"]:
-            print("🔄 Fetching from Reddit...")
-            reddit_articles = self._fetch_reddit_articles(user_interests)
-            all_articles.extend(reddit_articles)
-            print(f"   ✅ Reddit: {len(reddit_articles)} articles")
-
-        print(f"📦 Raw articles collected: {len(all_articles)}")
-
-        # Smart processing pipeline
-        processed_articles = self._process_articles_pipeline(
-            all_articles, user_preferences
-        )
-
-        # Categorize and prepare final bundle
-        news_bundle = self._prepare_news_bundle(processed_articles, user_interests)
-
-        print(
-            f"🎯 Final news bundle ready: {sum(len(articles) for articles in news_bundle.values())} articles"
-        )
-        for category, articles in news_bundle.items():
-            print(f"   {category}: {len(articles)} articles")
-
-        return news_bundle
-
-    def _fetch_newsapi_articles(self, locale: str, interests: List[str]) -> List[Dict]:
-        """Fetch articles from NewsAPI with smart category mapping."""
-        if not self.newsapi_key:
-            return []
-
-        try:
-            # Map our categories to NewsAPI categories
-            category_mapping = {
-                "economy_finance": "business",
-                "sports": "sports",
-                "technology_ai_science": "technology",
-                "healthcare_pharma": "health",
-                "politics_geopolitics": "general",
-                "energy_climate_environment": "general",
-            }
-
-            articles = []
-            fetch_limit = 15  # Conservative limit for MVP
-
-            # Fetch general news + category-specific news
-            categories_to_fetch = ["general"]
-            for interest in interests:
-                if interest in category_mapping:
-                    mapped_category = category_mapping[interest]
-                    if mapped_category not in categories_to_fetch:
-                        categories_to_fetch.append(mapped_category)
-
-            for category in categories_to_fetch[
-                :3
-            ]:  # Limit categories to avoid quota issues
-                params = {
-                    "apiKey": self.newsapi_key,
-                    "language": locale[:2],
-                    "category": category,
-                    "sortBy": "publishedAt",
-                    "pageSize": min(fetch_limit, 20),
-                }
-
-                response = requests.get(
-                    "https://newsapi.org/v2/top-headlines",  # Исправлено: убраны лишние пробелы
-                    params=params,
-                    timeout=15,
-                )
-                response.raise_for_status()
-
-                data = response.json()
-                category_articles = data.get("articles", [])
-
-                for article in category_articles:
-                    if article.get("title") and article.get("description"):
-                        # Skip articles with banned keywords
-                        title = article["title"].lower()
-                        if any(
-                            keyword in title
-                            for keyword in self.quality_filters["banned_keywords"]
-                        ):
-                            continue
-
-                        processed_article = {
-                            "title": article["title"],
-                            "description": article["description"],
-                            "content": f"{article['title']}\n\n{article['description']}\n\n{article.get('content', '')}",
-                            "url": article["url"],
-                            "published_at": article["publishedAt"],
-                            "source": article.get("source", {}).get("name", "NewsAPI"),
-                            "category": "general",  # Will be classified by AI
-                            "language": locale[:2],
-                            "original_language": locale[:2],
-                            "relevance_score": 0.5,  # Will be calculated later
-                            "ai_classified": False,
-                        }
-                        articles.append(processed_article)
-
-            return articles
-
-        except Exception as e:
-            print(f"⚠️  NewsAPI fetch error: {e}")
-            return []
-
-    def _fetch_guardian_articles(self, locale: str, interests: List[str]) -> List[Dict]:
-        """Fetch articles from The Guardian API."""
-        if not self.guardian_key:
-            return []
-
-        try:
-            params = {
-                "api-key": self.guardian_key,
-                "page-size": 20,
-                "order-by": "newest",
-                "show-fields": "headline,trailText,body,byline",
-                "from-date": (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
-                # Убираем параметр 'lang' - Guardian API его не поддерживает
-            }
-
-            response = requests.get(
-                "https://content.guardianapis.com/search",  # Исправлено: убраны лишние пробелы
-                params=params,
-                timeout=15,
-            )
-            response.raise_for_status()
-
-            data = response.json()
-            results = data.get("response", {}).get("results", [])
-
-            print(f"   📊 Guardian API response: {len(results)} total articles")
-
-            articles = []
-            for article in results:
-                fields = article.get("fields", {})
-                if (
-                    fields.get("headline")
-                    and fields.get("trailText")
-                    and fields["headline"].strip()
-                    and fields["trailText"].strip()
-                ):
-                    # Skip articles with banned keywords
-                    title = fields["headline"].lower()
-                    if any(
-                        keyword in title
-                        for keyword in self.quality_filters["banned_keywords"]
-                    ):
-                        continue
-
-                    processed_article = {
-                        "title": fields["headline"],
-                        "description": fields["trailText"],
-                        "content": f"{fields['headline']}\n\n{fields['trailText']}\n\n{fields.get('body', '')}",
-                        "url": article["webUrl"],
-                        "published_at": article["webPublicationDate"],
-                        "source": "The Guardian",
-                        "category": "general",  # Will be classified by AI
-                        "language": "en",
-                        "original_language": "en",
-                        "relevance_score": 0.5,
-                        "ai_classified": False,
-                    }
-                    articles.append(processed_article)
-
-            print(f"   ✅ Guardian: {len(articles)} valid articles after filtering")
-            return articles
-
-        except Exception as e:
-            print(f"⚠️  Guardian fetch error: {e}")
-            # Добавим отладочную информацию
-            try:
-                error_data = response.json() if "response" in locals() else {}
-                print(f"   🐛 Guardian API error details: {error_data}")
-            except:
-                pass
-            return []
-
-    def _fetch_rss_articles(self, locale: str, target_language: str) -> List[Dict]:
-        """Fetch articles from global RSS feeds."""
-        # Double-check that feedparser is available
-        if not self.feedparser_available:
-            return []
-
+        print("  PREMIUM:")
+        status_newsapi = "✅ ENABLED" if self.api_keys["newsapi"] else "❌ DISABLED"
+        status_guardian = "✅ ENABLED" if self.api_keys["guardian"] else "❌ DISABLED"
+        print(f"    newsapi: {status_newsapi}")
+        print(f"    guardian: {status_guardian}")
+        print("  FREE:")
         try:
             import feedparser
 
-            # Get relevant RSS feeds
-            rss_feeds = self.sources_config["free"]["rss"]["sources"]
+            status_rss = "✅ ENABLED"
+        except ImportError:
+            status_rss = "❌ DISABLED (feedparser not installed)"
+        print(f"    rss: {status_rss}")
+        # Reddit explicitly removed
+        print("    reddit: ❌ DISABLED (Removed by user request)")
 
-            # Select feeds based on locale and target language
-            selected_feeds = []
-            if locale[:2] in rss_feeds:
-                selected_feeds.extend(rss_feeds[locale[:2]])
-            if target_language in rss_feeds:
-                selected_feeds.extend(rss_feeds[target_language])
-            if "en" in rss_feeds:
-                selected_feeds.extend(rss_feeds["en"][:3])  # Top English feeds
-            if "financial" in rss_feeds:
-                selected_feeds.extend(rss_feeds["financial"][:2])  # Financial feeds
-
-            # Remove duplicates and limit
-            selected_feeds = list(set(selected_feeds))[:6]  # Limit to 6 feeds for MVP
-
-            articles = []
-            for feed_url in selected_feeds:
-                try:
-                    feed = feedparser.parse(feed_url)
-                    # Take top 3 articles from each feed
-                    for entry in feed.entries[:3]:
-                        if hasattr(entry, "title") and hasattr(entry, "summary"):
-                            # Skip articles with banned keywords
-                            title = entry.title.lower() if entry.title else ""
-                            if any(
-                                keyword in title
-                                for keyword in self.quality_filters["banned_keywords"]
-                            ):
-                                continue
-
-                            # Detect language
-                            article_language = self._detect_language(entry.title)
-
-                            processed_article = {
-                                "title": entry.title,
-                                "description": entry.summary,
-                                "content": f"{entry.title}\n\n{entry.summary}",
-                                "url": entry.link,
-                                "published_at": entry.get(
-                                    "published", datetime.now().isoformat()
-                                ),
-                                "source": feed.feed.get("title", "RSS Feed"),
-                                "category": "general",  # Will be classified by AI
-                                "language": article_language,
-                                "original_language": article_language,
-                                "relevance_score": 0.3,  # Lower initial score
-                                "ai_classified": False,
-                            }
-                            articles.append(processed_article)
-
-                except Exception as e:
-                    print(f"⚠️  RSS feed error ({feed_url[:50]}...): {e}")
-                    continue
-
-            return articles
-
-        except Exception as e:
-            print(f"⚠️  RSS fetching error: {e}")
-            return []
-
-    def _fetch_reddit_articles(self, interests: List[str]) -> List[Dict]:
-        """Fetch relevant articles from Reddit."""
-        if not (self.reddit_client_id and self.reddit_client_secret):
-            return []
-
-        try:
-            # Get access token
-            auth = requests.auth.HTTPBasicAuth(
-                self.reddit_client_id, self.reddit_client_secret
-            )
-            data = {"grant_type": "client_credentials"}
-            headers = {"User-Agent": "NewsFetcher/1.0"}
-
-            res = requests.post(
-                "https://www.reddit.com/api/v1/access_token",  # Исправлено: убраны лишние пробелы
-                auth=auth,
-                data=data,
-                headers=headers,
-            )
-            token = res.json().get("access_token")
-
-            if not token:
-                return []
-
-            headers["Authorization"] = f"bearer {token}"
-
-            articles = []
-            subreddits = self.sources_config["free"]["reddit"]["subreddits"]
-
-            for subreddit in subreddits[:3]:  # Limit subreddits
-                try:
-                    response = requests.get(
-                        f"https://oauth.reddit.com/r/{subreddit}/hot",  # Исправлено: убраны лишние пробелы
-                        headers=headers,
-                        params={"limit": 5},
-                    )
-
-                    if response.status_code == 200:
-                        data = response.json()
-                        for post in data["data"]["children"][:3]:
-                            post_data = post["data"]
-                            if post_data.get("title") and post_data.get("selftext"):
-                                # Skip system posts and posts with banned keywords
-                                title = post_data["title"].lower()
-                                if any(
-                                    keyword in title
-                                    for keyword in self.quality_filters[
-                                        "banned_keywords"
-                                    ]
-                                ):
-                                    continue
-
-                                # Skip posts with very low content
-                                if len(post_data["selftext"]) < 50:
-                                    continue
-
-                                processed_article = {
-                                    "title": post_data["title"],
-                                    "description": post_data["selftext"][:200] + "...",
-                                    "content": f"{post_data['title']}\n\n{post_data['selftext']}",
-                                    "url": f"https://reddit.com{post_data['permalink']}",
-                                    "published_at": datetime.fromtimestamp(
-                                        post_data["created_utc"]
-                                    ).isoformat(),
-                                    "source": f"Reddit /r/{subreddit}",
-                                    "category": "general",  # Will be classified by AI
-                                    "language": "en",
-                                    "original_language": "en",
-                                    "relevance_score": 0.4,
-                                    "upvotes": post_data.get("ups", 0),
-                                    "ai_classified": False,
-                                }
-                                articles.append(processed_article)
-
-                except Exception as e:
-                    print(f"⚠️  Reddit fetch error (r/{subreddit}): {e}")
-                    continue
-
-            return articles
-
-        except Exception as e:
-            print(f"⚠️  Reddit authentication error: {e}")
-            return []
-
-    def _detect_language(self, text: str) -> str:
-        """Simple language detection."""
-        # If langdetect is available, use it
-        if self.langdetect_available:
-            try:
-                import langdetect
-
-                return langdetect.detect(text[:100])
-            except:
-                pass
-
-        # Simple fallback detection
-        text_lower = text.lower()
-        if any(word in text_lower for word in ["der", "die", "das", "und", "ist"]):
-            return "de"
-        elif any(word in text_lower for word in ["the", "and", "is", "are"]):
-            return "en"
-        else:
-            return "en"  # Default to English
-
-    def _process_articles_pipeline(
-        self, articles: List[Dict], user_preferences: Dict
+    def _fetch_guardian_articles(
+        self, categories_to_fetch: List[str], user_locale: str
     ) -> List[Dict]:
-        """Smart processing pipeline for articles."""
-        print("⚙️  Processing articles through smart pipeline...")
+        """Fetch articles from The Guardian API."""
+        if not self.api_keys["guardian"]:
+            return []
 
-        # 1. Quality filtering
-        quality_filtered = self._filter_quality_articles(articles)
-        print(f"   ✅ Quality filter: {len(quality_filtered)}/{len(articles)} articles")
+        articles = []
+        guardian_url = "https://content.guardianapis.com/search"  # Fixed URL
 
-        # 2. Deduplication
-        deduplicated = self._deduplicate_articles(quality_filtered)
-        print(
-            f"   ✅ Deduplication: {len(deduplicated)}/{len(quality_filtered)} articles"
-        )
+        # Date for yesterday to get fresh news
+        yesterday = (datetime.utcnow() - timedelta(days=1)).strftime("%Y-%m-%d")
 
-        # 3. AI Classification - принудительный вызов с отладкой
-        print("🔍 FORCING AI classification call...")
-        try:
-            ai_classified = self._classify_articles_with_ai(deduplicated)
-            print(f"   ✅ AI Classification returned: {len(ai_classified)} articles")
-        except Exception as e:
-            print(f"   ❌ AI Classification failed: {e}")
-            import traceback
+        # Increase the number of categories fetched from Guardian
+        categories_to_fetch_limited = categories_to_fetch[:5]  # Increased from 3
 
-            traceback.print_exc()
-            # fallback to original articles
-            ai_classified = deduplicated
-        print(f"   ✅ AI Classification step completed: {len(ai_classified)} articles")
-
-        # 4. Relevance scoring
-        scored = self._score_article_relevance(ai_classified, user_preferences)
-        print(f"   ✅ Relevance scoring: {len(scored)} articles")
-
-        # 5. Translation using Mistral
-        translated = self._translate_articles_with_mistral(scored, user_preferences)
-        print(f"   ✅ Translation: {len(translated)} articles")
-
-        # Sort by relevance score
-        final_articles = sorted(
-            translated, key=lambda x: x.get("relevance_score", 0), reverse=True
-        )
-
-        return final_articles[:50]  # Limit to 50 best articles for MVP
-
-    def _filter_quality_articles(self, articles: List[Dict]) -> List[Dict]:
-        """Filter articles based on quality criteria."""
-        filtered = []
-        for article in articles:
-            content = article.get("content", "")
-            title = article.get("title", "")
-
-            # Check minimum requirements
-            if (
-                len(content) >= self.quality_filters["min_length"]
-                and len(content) <= self.quality_filters["max_length"]
-                and title
-                and not any(
-                    keyword in content.lower()
-                    for keyword in self.quality_filters["banned_keywords"]
+        for user_category in categories_to_fetch_limited:
+            # Map user category to Guardian section ID
+            guardian_section = self.guardian_category_map.get(user_category)
+            if not guardian_section:
+                print(
+                    f"  ⚠️ No Guardian section mapping for user category '{user_category}', skipping."
                 )
-                and not any(
-                    keyword in title.lower()
-                    for keyword in self.quality_filters["banned_keywords"]
-                )
-            ):
-                filtered.append(article)
+                continue
 
-        return filtered
+            # Increase page size to limit articles
+            params = {
+                "api-key": self.api_keys["guardian"],
+                "section": guardian_section,
+                "from-date": yesterday,
+                "to-date": yesterday,
+                "page-size": 15,  # Increased from 10
+                "show-fields": "headline,trailText,body",
+                "order-by": "relevance",
+            }
 
-    def _deduplicate_articles(self, articles: List[Dict]) -> List[Dict]:
-        """Remove duplicate or very similar articles."""
-        unique_articles = []
-        seen_titles = set()
-        seen_hashes = set()
-
-        for article in articles:
-            title = article["title"].lower().strip()
-            content_hash = hashlib.md5(article["content"][:200].encode()).hexdigest()
-
-            # Check for duplicates
-            if (
-                title not in seen_titles
-                and content_hash not in seen_hashes
-                and len(title) > 15
-            ):  # Avoid very short titles
-                seen_titles.add(title)
-                seen_hashes.add(content_hash)
-                unique_articles.append(article)
-
-        return unique_articles
-
-    def _classify_articles_with_ai(self, articles: List[Dict]) -> List[Dict]:
-        """Use your proven AI classifier for accurate categorization."""
-        print("🧠 Classifying articles with AI... ENTERING METHOD")
-        try:
-            # Import your classifier
-            print("   🔍 Importing classifier module...")
-            # Добавим отладку путей
-            import sys
-
-            print(
-                f"   🔍 Current sys.path: {[p for p in sys.path if 'news' in p.lower() or 'src' in p.lower()]}"
-            )
-            # Попробуем импортировать по-разному
             try:
-                import classifier
+                response = requests.get(guardian_url, params=params, timeout=15)
+                response.raise_for_status()
+                data = response.json()
 
-                print("   ✅ Imported classifier as module")
-                classify_news = classifier.classify_news
-            except ImportError as ie1:
-                print(f"   ⚠️  Failed to import classifier as module: {ie1}")
-                try:
-                    from classifier import classify_news
+                results = data.get("response", {}).get("results", [])
 
-                    print("   ✅ Imported classify_news directly")
-                except ImportError as ie2:
-                    print(f"   ❌ Failed to import classify_news directly: {ie2}")
-                    raise ie2 from ie1  # Перебрасываем внутреннее исключение
+                for item in results:
+                    article = {
+                        "source": "The Guardian",
+                        "title": item.get("webTitle", ""),
+                        "description": item.get("fields", {}).get("trailText", ""),
+                        "content": item.get("fields", {}).get("body", ""),
+                        "url": item.get("webUrl", ""),
+                        "published_at": item.get("webPublicationDate"),
+                        "category": user_category,  # Keep user's category name
+                    }
+                    # Basic check to ensure we have at least a title
+                    if article["title"]:
+                        articles.append(article)
 
-            print("   ✅ Classifier module/function imported successfully")
-            classified_articles = []
-            success_count = 0
-
-            for i, article in enumerate(articles):
-                try:
-                    # Prepare text for classification
-                    article_text = f"{article.get('title', '')}\n\n{article.get('description', '')}"
-                    print(f"   📝 Classifying article {i+1}: {article_text[:50]}...")
-
-                    # Use your classifier
-                    classification = classify_news(article_text)
-                    print(f"   🎯 Classification result: {classification}")
-
-                    # Enrich article with classification results
-                    article["category"] = classification["category"]
-                    article["confidence"] = classification["confidence"]
-                    article["classification_reasons"] = classification["reasons"]
-
-                    # Handle new importance_score field correctly
-                    if "importance_score" in classification:
-                        article["importance_score"] = classification["importance_score"]
-                        # Convert 0-100 to 1-10 scale for compatibility with existing logic
-                        article["priority_hint"] = max(
-                            1, min(10, classification["importance_score"] // 10)
-                        )
-                    else:
-                        # Fallback for older classifiers or if field is missing
-                        article["importance_score"] = (
-                            classification.get("priority_llm", 50) * 10
-                        )  # Scale 1-10 to 10-100
-                        article["priority_hint"] = classification.get("priority_llm", 5)
-
-                    article["ai_classified"] = True
-
-                    # Add contextual factors if available
-                    if "contextual_factors" in classification:
-                        article["contextual_factors"] = classification[
-                            "contextual_factors"
-                        ]
-
-                    # Add subcategories if available
-                    if classification.get("sports_subcategory"):
-                        article["subcategory"] = classification["sports_subcategory"]
-                    elif classification.get("economy_subcategory"):
-                        article["subcategory"] = classification["economy_subcategory"]
-                    elif classification.get("tech_subcategory"):
-                        article["subcategory"] = classification["tech_subcategory"]
-
-                    classified_articles.append(article)
-                    success_count += 1
-                    print(f"   ✅ Article {i+1} classified as {article['category']}")
-
-                except Exception as e:
-                    print(f"   ⚠️  AI classification failed for article {i+1}: {e}")
-                    import traceback
-
-                    traceback.print_exc()
-                    # Keep original article with fallback classification
-                    # Ensure fallback fields are present
-                    if "priority_hint" not in article:
-                        article["priority_hint"] = 5
-                    if "importance_score" not in article:
-                        article["importance_score"] = 50
-                    if "ai_classified" not in article:
-                        article["ai_classified"] = False
-                    classified_articles.append(article)
-
-            print(f"   ✅ AI classified {success_count}/{len(articles)} articles")
-            return classified_articles
-
-        except ImportError as e:
-            print(f"⚠️  AI classifier not available (ImportError): {e}")
-            import traceback
-
-            traceback.print_exc()
-            print("   Falling back to keyword-based classification...")
-            # Fallback to keyword-based classification
-            return self._classify_articles_with_keywords(articles)
-        except Exception as e:
-            print(f"⚠️  AI classification error (Other Exception): {e}")
-            import traceback
-
-            traceback.print_exc()
-            # В случае другой ошибки тоже возвращаем результат keyword-классификации
-            print("   Falling back to keyword-based classification due to error...")
-            return self._classify_articles_with_keywords(articles)
-
-    def _classify_articles_with_keywords(self, articles: List[Dict]) -> List[Dict]:
-        """Fallback keyword-based classification."""
-        print("🔤 Using keyword-based classification as fallback...")
-
-        for article in articles:
-            if not article.get("ai_classified", False):
-                # Use existing keyword-based categorization
-                category = self._categorize_article_by_keywords(article)
-                article["category"] = category
-                article["confidence"] = 0.7  # Default confidence for keyword method
-                article["ai_classified"] = False
-                # Ensure fallback fields are present
-                if "priority_hint" not in article:
-                    article["priority_hint"] = 5
-                if "importance_score" not in article:
-                    article["importance_score"] = 50
+            except requests.exceptions.RequestException as e:
+                print(
+                    f"⚠️ Guardian fetch error for category {user_category} ({guardian_section}): {e}"
+                )
+            except Exception as e:
+                print(
+                    f"⚠️ Unexpected Guardian error for category {user_category} ({guardian_section}): {e}"
+                )
 
         return articles
 
-    def _categorize_article_by_keywords(self, article: Dict) -> str:
-        """Smart categorization of articles by keywords (fallback method)."""
-        title = article.get("title", "").lower()
-        description = article.get("description", "").lower()
-        content = (title + " " + description)[:1000].lower()
+    def _fetch_rss_articles(self) -> List[Dict]:
+        """Fetch articles from RSS feeds."""
+        try:
+            import feedparser
+        except ImportError:
+            print("⚠️ feedparser not installed. Skipping RSS feeds.")
+            return []
 
-        # Category keywords mapping with improved specificity
+        articles = []
+        # Increase total RSS feeds processed to control volume
+        feeds_to_process = self.rss_feeds[:35]  # Increased from 25
+
+        for url in feeds_to_process:
+            try:
+                clean_url = url.strip()
+                if not clean_url:  # Skip empty strings
+                    continue
+                feed = feedparser.parse(clean_url)
+                # Limit articles per feed
+                for entry in feed.entries[:10]:  # Increased from 7
+                    article = {
+                        "source": getattr(feed.feed, "title", clean_url),
+                        "title": getattr(entry, "title", ""),
+                        "description": getattr(entry, "summary", ""),
+                        "content": getattr(entry, "content", [{}])[0].get("value", "")
+                        if hasattr(entry, "content")
+                        else "",
+                        "url": getattr(entry, "link", ""),
+                        "published_at": getattr(entry, "published", None),
+                    }
+                    # Prioritize content, fallback to description
+                    if not article["content"] and article["description"]:
+                        article["content"] = article["description"]
+
+                    # Basic check to ensure we have at least a title
+                    if article["title"]:
+                        articles.append(article)
+            except Exception as e:
+                # Minimal error logging for RSS to avoid spam
+                # print(f"⚠️ RSS fetch error for {url[:50]}...: {e}")
+                pass
+
+        return articles
+
+    # Reddit method removed entirely
+
+    def _is_high_quality_article(self, article: Dict) -> bool:
+        """Check if an article meets relaxed quality criteria."""
+        title = article.get("title", "")
+
+        # Must have a title
+        if not title:
+            return False
+
+        content = article.get("content", "") or article.get("description", "")
+
+        # Check minimum content length
+        if len(content) < self.quality_filters["min_length"]:
+            return False
+
+        # Check for banned keywords
+        full_text = f"{title} {content}".lower()
+        if any(
+            keyword in full_text for keyword in self.quality_filters["banned_keywords"]
+        ):
+            return False
+
+        return True
+
+    def _deduplicate_articles(self, articles: List[Dict]) -> List[Dict]:
+        """Remove duplicate articles based on title hash."""
+        seen_hashes = set()
+        unique_articles = []
+        for article in articles:
+            title_hash = hashlib.md5(article["title"].encode("utf-8")).hexdigest()
+            if title_hash not in seen_hashes:
+                seen_hashes.add(title_hash)
+                unique_articles.append(article)
+        return unique_articles
+
+    def _classify_articles(self, articles: List[Dict], user_locale: str) -> List[Dict]:
+        """Classify articles using AI or fallback keyword method."""
+        if not CLASSIFIER_AVAILABLE or not classify_news:
+            print("  ⚠️ AI classifier not available, using keyword classification")
+            return self._classify_articles_keyword_fallback(articles)
+
+        print("  🔍 FORCING AI classification call...")
+        print("  🧠 Classifying articles with AI... ENTERING METHOD")
+
+        classified_articles = []
+        for i, article in enumerate(articles):
+            # Limit the text sent for classification to reduce token usage and time
+            # Improved text preparation: Title + Description + start of Content
+            title = article.get("title", "")
+            description = article.get("description", "")
+            content = article.get("content", "")
+
+            # Prioritize content, then description, then title for text to classify
+            if content:
+                text_to_classify = f"{title}\n\n{description}\n\n{content[:2000]}"  # Limit content part
+            elif description:
+                text_to_classify = f"{title}\n\n{description}"
+            else:
+                text_to_classify = title
+
+            if not text_to_classify.strip():
+                # Fallback if everything is empty
+                text_to_classify = title or "No title"
+
+            try:
+                classification_result = classify_news(
+                    text_to_classify, user_locale=user_locale
+                )
+
+                article.update(classification_result)
+                article["ai_classified"] = True
+                classified_articles.append(article)
+                # print(f"    ✅ Article {i+1} classified as {classification_result.get('category')}") # Minimized log
+
+            except Exception as e:
+                print(
+                    f"    ⚠️ AI classification error for article {i+1} ({article.get('title', 'No Title')[:30]}...): {type(e).__name__}: {e}"
+                )
+                # Fallback to keyword classification on error
+                keyword_classified = self._classify_single_article_keyword_fallback(
+                    article
+                )
+                article.update(keyword_classified)
+                article["ai_classified"] = False
+                classified_articles.append(article)
+
+        print(f"   ✅ AI classified {len(classified_articles)}/{len(articles)} articles")
+        return classified_articles
+
+    def _classify_articles_keyword_fallback(self, articles: List[Dict]) -> List[Dict]:
+        """Fallback classification using keywords."""
+        classified_articles = []
+        for article in articles:
+            classification = self._classify_single_article_keyword_fallback(article)
+            article.update(classification)
+            article["ai_classified"] = False
+            classified_articles.append(article)
+        return classified_articles
+
+    def _classify_single_article_keyword_fallback(self, article: Dict) -> Dict:
+        """Classify a single article using keywords."""
+        text = f"{article.get('title', '')} {article.get('description', '')}".lower()
         category_keywords = {
-            "sports": [
-                "sport",
-                "game",
-                "match",
-                "player",
-                "team",
-                "championship",
-                "nba",
-                "football",
-                "soccer",
-                "basketball",
-                "formula1",
-                "olympic",
-                "world cup",
-                "premier league",
-                "epl",
-                "bundesliga",
-                "champions league",
-                "final",
-                "quarterback",
-                "pitcher",
-                "goal",
-                "touchdown",
+            "politics_geopolitics": [
+                "politic",
+                "government",
+                "election",
+                "war",
+                "sanction",
+                "diplomat",
+                "minister",
+                "president",
+                "prime minister",
+                "parliament",
+                "congress",
+                "senate",
             ],
             "economy_finance": [
                 "economy",
                 "finance",
                 "market",
                 "stock",
-                "bank",
-                "interest rate",
                 "inflation",
-                "gdp",
-                "financial",
-                "trading",
-                "investment",
                 "recession",
-                "deficit",
-                "budget",
+                "bank",
+                "trade",
+                "gdp",
                 "fiscal",
                 "monetary",
                 "currency",
-                "exchange rate",
-                "bond",
-                "dividend",
-                "earnings",
-                "profit",
-                "revenue",
-                "ceo",
-                "corporate",
-                "merger",
-                "acquisition",
-                "ipo",
-                "shares",
+                "bitcoin",
+                "crypto",
+                "fed",
+                "ecb",
             ],
             "technology_ai_science": [
                 "technology",
@@ -895,420 +393,387 @@ class SmartNewsFetcher:
                 "artificial intelligence",
                 "science",
                 "research",
-                "innovation",
                 "chip",
-                "processor",
-                "nvidia",
-                "huawei",
-                "semiconductor",
                 "software",
-                "hardware",
+                "innovation",
                 "algorithm",
-                "machine learning",
-                "deep learning",
-                "neural network",
-                "quantum",
-                "blockchain",
-                "cryptocurrency",
-                "digital",
-                "app",
-                "smartphone",
-                "computer",
-                "robot",
-                "automation",
-                "cloud",
+                "silicon valley",
+                "startup",
+                "cyber",
                 "data",
-                "cybersecurity",
-                "hacker",
-                "programming",
-                "developer",
-                "engineer",
             ],
-            "politics_geopolitics": [
-                "politics",
-                "government",
-                "election",
-                "policy",
-                "international",
-                "diplomatic",
-                "president",
-                "minister",
-                "senator",
-                "congress",
-                "parliament",
-                "democrat",
-                "republican",
-                "prime minister",
-                "diplomat",
-                "embassy",
-                "treaty",
-                "sanction",
-                "alliance",
-                "conflict",
-                "war",
-                "peace",
-                "vote",
-                "legislation",
-                "law",
-                "court",
-                "supreme court",
-                "constitution",
+            "sports": [
+                "sport",
+                "football",
+                "soccer",
+                "basketball",
+                "tennis",
+                "match",
+                "league",
+                "championship",
+                "tournament",
+                "player",
+                "champion",
+                "cup",
+                "world cup",
+                "nba",
+                "epl",
+                "bundesliga",
+                "formula 1",
+                "f1",
+            ],
+            "culture_media_entertainment": [
+                "culture",
+                "movie",
+                "film",
+                "music",
+                "celebrity",
+                "art",
+                "book",
+                "entertainment",
+                "show",
+                "actor",
+                "actress",
+                "tv",
+                "hollywood",
+                "award",
+            ],
+            "healthcare_pharma": [
+                "health",
+                "medical",
+                "disease",
+                "vaccine",
+                "hospital",
+                "doctor",
+                "pharma",
+                "treatment",
+                "covid",
+                "pandemic",
+                "drug",
+                "therapy",
+                "fda",
             ],
             "energy_climate_environment": [
                 "energy",
                 "climate",
                 "environment",
-                "sustainability",
-                "renewable",
-                "carbon",
                 "oil",
                 "gas",
+                "renewable",
                 "solar",
                 "wind",
-                "nuclear",
-                "coal",
-                "emission",
                 "pollution",
-                "recycling",
+                "carbon",
+                "emission",
                 "greenhouse",
-                "temperature",
-                "weather",
-                "disaster",
-                "flood",
-                "hurricane",
-                "earthquake",
-                "wildfire",
-                "conservation",
-                "ecosystem",
-                "biodiversity",
-                "forest",
-                "ocean",
-                "sea level",
             ],
-            "healthcare_pharma": [
-                "health",
-                "medical",
-                "hospital",
-                "doctor",
-                "pharma",
-                "drug",
-                "treatment",
-                "vaccine",
-                "medicine",
-                "patient",
-                "disease",
-                "virus",
-                "covid",
-                "pandemic",
-                "epidemic",
-                "therapy",
-                "surgery",
-                "clinical",
-                "trial",
-                "fda",
-                "fda approval",
-                "symptom",
-                "diagnosis",
-                "cure",
-                "wellness",
-                "fitness",
-                "nutrition",
-                "diet",
-                "mental health",
-                "psychology",
+            "real_estate_housing": [
+                "real estate",
+                "housing",
+                "property",
+                "mortgage",
+                "home",
+                "apartment",
+                "rent",
+                "buy house",
+                "housing market",
+            ],
+            "career_education_labour": [
+                "job",
+                "career",
+                "education",
+                "university",
+                "school",
+                "work",
+                "employment",
+                "graduate",
+                "salary",
+                "unemployment",
+                "degree",
+            ],
+            "transport_auto_aviation": [
+                "car",
+                "auto",
+                "transport",
+                "aviation",
+                "flight",
+                "airline",
+                "train",
+                "bus",
+                "traffic",
+                "tesla",
+                "electric vehicle",
             ],
         }
 
-        # Find best matching category
-        best_category = "general"
-        best_score = 0
-
+        scores = {cat: 0 for cat in category_keywords}
         for category, keywords in category_keywords.items():
-            score = sum(1 for keyword in keywords if keyword in content)
-            if score > best_score:
-                best_score = score
-                best_category = category
+            scores[category] = sum(1 for keyword in keywords if keyword in text)
 
-        return best_category
+        best_category = max(scores, key=scores.get)
+        # Avoid division by zero
+        total_score = sum(scores.values())
+        confidence = scores[best_category] / max(1, total_score)
+
+        default_contextual_factors = {
+            "time_sensitivity": 50,
+            "global_impact": 50,
+            "personal_relevance": 50,
+            "historical_significance": 50,
+            "emotional_intensity": 50,
+        }
+
+        # Map confidence to importance score (0-100)
+        importance_from_confidence = int(confidence * 60)  # Max 60 from keywords
+
+        return {
+            "category": best_category,
+            "confidence": round(confidence, 2),
+            "reasons": "Keyword-based classification",
+            "importance_score": max(
+                10, importance_from_confidence
+            ),  # Minimum importance of 10
+            "contextual_factors": default_contextual_factors,
+        }
 
     def _score_article_relevance(
-        self, articles: List[Dict], user_preferences: Dict
-    ) -> List[Dict]:
-        """Score articles based on user preferences and relevance with enhanced tech weighting."""
-        user_interests = user_preferences.get("interests", [])
-        user_locale = user_preferences.get("locale", "en")
-        user_city = user_preferences.get("city", "")
+        self, article: Dict, user_interests: List[Any], user_locale: str
+    ) -> float:
+        """
+        Calculate a personalized relevance score (0.0 to 1.0) for an article.
+        Based on importance_score (0-100) and user preferences.
+        Improved algorithm with better calibration and enhanced sports boost.
+        """
+        importance_score = article.get(
+            "importance_score", 10
+        )  # Default to 10 if missing, not 50
 
-        # Flatten user interests for easier matching (including nested dicts like sports subcategories)
-        flat_user_interests = []
-        for interest in user_preferences.get("interests", []):
-            if isinstance(interest, str):
-                flat_user_interests.append(interest)
+        # --- Relevance Score Calculation (0-100) ---
+        base_score = importance_score
+
+        interest_bonus = 0
+        # Bonus for matching user interests (slightly increased)
+        article_category = article.get("category", "")
+        article_sports_subcat = article.get("sports_subcategory", "")
+        article_econ_subcat = article.get("economy_subcategory", "")
+        article_tech_subcat = article.get("tech_subcategory", "")
+
+        # Check main categories and subcategories
+        for interest in user_interests:
+            if isinstance(interest, str) and interest == article_category:
+                interest_bonus = max(interest_bonus, 13)  # Increased from 12
+                break
             elif isinstance(interest, dict):
-                flat_user_interests.extend(interest.keys())  # e.g., 'sports'
-                # Optionally, you could also add subcategories like 'basketball_nba' if needed for finer control
+                main_cat = list(interest.keys())[0]
+                subcats = interest[main_cat]
+                if isinstance(subcats, list):
+                    # Check if article's subcategory matches user's specific interests
+                    if (main_cat == article_category) and (
+                        (article_sports_subcat and article_sports_subcat in subcats)
+                        or (article_econ_subcat and article_econ_subcat in subcats)
+                        or (article_tech_subcat and article_tech_subcat in subcats)
+                    ):
+                        interest_bonus = max(
+                            interest_bonus, 15
+                        )  # Bonus for matching specific subcategory
+                        break
+                    # Fallback to main category match if no specific subcat match
+                    elif main_cat == article_category:
+                        interest_bonus = max(interest_bonus, 13)  # Increased from 12
+                        # break # Don't break, keep checking for potentially higher subcat bonus
 
-        for article in articles:
-            score = 0.5  # Base score
+        locale_bonus = 0
+        # Bonus for locale relevance (increased potential max bonus)
+        article_content = article.get("content", "").lower()
+        article_title = article.get("title", "").lower()
+        user_locale_lower = user_locale.lower()
 
-            # --- Interest Matching ---
-            article_category = article.get("category", "general")
-            ai_confidence = article.get("confidence", 0.7)
-
-            if article_category in flat_user_interests:
-                # Boost score based on AI confidence
-                score += 0.3 * ai_confidence
-            else:
-                # Slight penalty for non-interest categories, scaled by confidence
-                score -= 0.1 * (1 - ai_confidence)
-
-            # --- Enhanced Technology Scoring ---
-            # Check for high-importance technology topics
-            is_tech = article_category == "technology_ai_science"
-            importance_score = article.get(
-                "importance_score", 50
-            )  # 0-100 scale from new classifier
-
-            if is_tech and importance_score >= 85:
-                # Significant boost for highly important tech news (e.g., geopolitical chip races, major AI breakthroughs)
-                score += 0.3
-                print(
-                    f"   🔧 Boosting high-importance tech article ({article.get('title', '')[:30]}...): +0.30 (Score now {score:.2f})"
-                )
-            elif is_tech and importance_score >= 75:
-                # Moderate boost for important tech news
-                score += 0.2
-                print(
-                    f"   🔩 Boosting important tech article ({article.get('title', '')[:30]}...): +0.20 (Score now {score:.2f})"
-                )
-            elif is_tech and importance_score >= 65:
-                # Small boost for moderately important tech news
-                score += 0.1
-                print(
-                    f"   🔧 Boosting moderate tech article ({article.get('title', '')[:30]}...): +0.10 (Score now {score:.2f})"
-                )
-
-            # --- Contextual Factors (from enhanced classifier) ---
-            # If we have detailed contextual analysis, use it
-            contextual = article.get("contextual_factors", {})
-            if contextual:
-                # Global Impact: 0-100 scale
-                global_impact = contextual.get("global_impact", 50)
-                if global_impact > 85:
-                    score += 0.20
-                elif global_impact > 70:
-                    score += 0.15
-                elif global_impact > 50:
-                    score += 0.10
-
-                # Time Sensitivity: 0-100 scale
-                time_sensitivity = contextual.get("time_sensitivity", 50)
-                if time_sensitivity > 85:
-                    score += 0.15
-                elif time_sensitivity > 70:
-                    score += 0.10
-
-                # Historical Significance for tech
-                hist_sig = contextual.get("historical_significance", 50)
-                if is_tech and hist_sig > 80:
-                    score += 0.15
-                elif is_tech and hist_sig > 60:
-                    score += 0.10
-
-            # --- Standard Factors ---
-            # Locale relevance
-            article_locale = article.get("language", "en")
-            if article_locale == user_locale:
-                score += 0.1
-            elif article_locale in ["en", "de"]:  # Major languages
-                score += 0.05
-
-            # Source quality boost (weighted slightly higher)
-            source = article.get("source", "").lower()
-            quality_sources = [
-                "guardian",
-                "bbc",
-                "reuters",
-                "cnn",
-                "bloomberg",
-                "ft",
-                "economist",
-                "financial times",
+        if user_locale_lower in article_title or user_locale_lower in article_content:
+            context_words = [
+                "in " + user_locale_lower,
+                "from " + user_locale_lower,
+                user_locale_lower + " government",
+                user_locale_lower + " president",
+                user_locale_lower + " economy",
+                user_locale_lower + " market",
             ]
-            if any(quality_source in source for quality_source in quality_sources):
-                score += 0.12  # Increased from 0.1
+            if any(
+                word in article_title or word in article_content
+                for word in context_words
+            ):
+                locale_bonus = 10  # Increased from 8
+            else:
+                locale_bonus = 5  # Increased from 3
 
-            # Recency boost (today's articles)
-            published_str = article.get("published_at", "")
-            if published_str:
-                try:
-                    published_date = datetime.fromisoformat(
-                        published_str.replace("Z", "+00:00")
-                    )
-                    if published_date.date() == datetime.now().date():
-                        score += 0.1
-                except:
-                    pass
+        category_boost = 0
+        # Boosts for specific high-value categories
+        if article_category == "technology_ai_science" and importance_score >= 80:
+            category_boost = 4
+        elif article_category == "technology_ai_science" and importance_score >= 70:
+            category_boost = 2
+        elif article_category == "economy_finance" and importance_score >= 80:
+            category_boost = 2
 
-            # --- Final Importance Score Integration ---
-            # Use the new 0-100 importance score as a significant component
-            # Scale it to contribute 0.0 - 0.3 to the final score
-            scaled_importance_contribution = (importance_score / 100.0) * 0.3
-            score += scaled_importance_contribution
+        # --- NEW: Enhanced Sports Boost ---
+        sport_high_impact_boost = 0
+        # Give an extra boost to high-importance sports news
+        if article_category == "sports" and importance_score >= 70:
+            sport_high_impact_boost = 3  # New boost for important sports events
+        # --- END NEW ---
 
-            # --- Cap and Store ---
-            # Ensure score is within 0.0 - 1.0
-            article["relevance_score"] = min(1.0, max(0.0, score))
+        low_imp_penalty = 0
+        # Penalty for low importance in generally interesting categories
+        if (
+            article_category in ["sports", "technology_ai_science", "economy_finance"]
+            and importance_score < 60
+        ):
+            low_imp_penalty = -15
 
-        return articles
+        # Additional penalty for very low importance articles that still match interests
+        if importance_score < 40 and interest_bonus > 0:
+            low_imp_penalty -= 5
 
-    def _translate_articles_with_mistral(
-        self, articles: List[Dict], user_preferences: Dict
-    ) -> List[Dict]:
-        """Translate articles using Mistral AI if needed."""
-        target_language = user_preferences.get("language", "en")
-
-        # Проверяем, есть ли статьи для перевода
-        articles_to_translate = [
-            article
-            for article in articles
-            if article.get("language", "en") != target_language
-        ]
-
-        if not articles_to_translate or not self.mistral_api_key:
-            return articles
-
-        print(
-            f"🔤 Translating {len(articles_to_translate)} articles to {target_language} using Mistral..."
+        # Calculate raw score
+        raw_score = (
+            base_score
+            + interest_bonus
+            + locale_bonus
+            + category_boost
+            + low_imp_penalty
+            + sport_high_impact_boost
         )
 
-        # Используем Mistral для перевода
-        try:
-            from mistralai import Mistral
+        # Cap the score with a softer limit
+        if raw_score > 95:
+            capped_score = 95 + (raw_score - 95) * 0.5
+        else:
+            capped_score = raw_score
 
-            client = Mistral(api_key=self.mistral_api_key)
+        final_score_0_100 = max(0, min(100, capped_score))
 
-            for article in articles_to_translate:
-                try:
-                    original_language = article.get("language", "unknown")
+        # Normalize to 0.0 - 1.0 for sorting
+        final_score_0_1 = final_score_0_100 / 100.0
 
-                    # Ограничиваем длину текста для экономии токенов
-                    title = article.get("title", "")[:200]
-                    content = article.get("content", "")[:800]  # Ограничиваем для MVP
-
-                    # Создаем промпт для перевода
-                    translation_prompt = f"""
-Translate the following news article from {original_language} to {target_language}.
-Preserve the meaning, tone, and style. Keep all proper names and technical terms accurate.
-
-Article to translate:
-Title: {title}
-Content: {content}
-"""
-
-                    response = client.chat.complete(
-                        model="mistral-small-latest",  # Используем более дешевую модель для перевода
-                        messages=[{"role": "user", "content": translation_prompt}],
-                        max_tokens=1000,
-                        temperature=0.1,  # Низкая температура для точного перевода
-                    )
-
-                    translated_text = response.choices[0].message.content
-
-                    # Парсим переведенный текст
-                    if "Title:" in translated_text and "Content:" in translated_text:
-                        parts = translated_text.split("Content:", 1)
-                        if len(parts) == 2:
-                            title_part = parts[0].replace("Title:", "").strip()
-                            content_part = parts[1].strip()
-                            article["translated_title"] = title_part
-                            article["translated_content"] = content_part
-                    else:
-                        # Если формат не распознан, используем весь текст
-                        article["translated_content"] = translated_text
-
-                    article["language"] = target_language  # Обновляем язык
-                    print(f"   ✅ Translated: {title[:30]}...")
-
-                except Exception as e:
-                    print(f"   ⚠️  Translation failed for article: {e}")
-                    # Оставляем оригинальный текст
-                    continue
-
-        except ImportError:
-            print("⚠️  Mistral AI not available, skipping translation")
-        except Exception as e:
-            print(f"⚠️  Mistral translation error: {e}")
-
-        return articles
+        article["relevance_score"] = final_score_0_1
+        # print(f"    🎯 Relevance score calculated: {final_score_0_100:.1f}/100 ({final_score_0_1:.2f})") # Minimized log
+        return final_score_0_1
 
     def _prepare_news_bundle(
-        self, articles: List[Dict], user_interests: List[str]
+        self, articles: List[Dict], user_interests: List[Any], user_locale: str
     ) -> Dict[str, List[Dict]]:
-        """Prepare final news bundle categorized by relevance."""
-        bundle = defaultdict(list)
-
-        # Categorize articles (now using AI classification)
+        """Prepare the final news bundle grouped by category."""
+        print("   ✅ Relevance scoring: ... articles", end="")  # Dynamic log
+        scored_articles = []
         for article in articles:
-            category = article.get("category", "general")
-            bundle[category].append(article)
-
-        # Limit each category to reasonable number
-        for category in bundle:
-            bundle[category] = sorted(
-                bundle[category],
-                key=lambda x: x.get("relevance_score", 0),
-                reverse=True,
-            )[
-                :15
-            ]  # Max 15 articles per category
-
-        return dict(bundle)
-
-
-# Test execution for MVP
-if __name__ == "__main__":
-    fetcher = SmartNewsFetcher()
-
-    # Test with sample user preferences (like your Maxonchik profile)
-    sample_preferences = {
-        "user_id": "Maxonchik",
-        "locale": "DE",
-        "language": "en",
-        "city": "Frankfurt",
-        "interests": [
-            "economy_finance",
-            "technology_ai_science",
-            {"sports": ["basketball_nba", "football_epl", "formula1"]},
-        ],
-    }
-
-    print("🚀 Testing SmartNewsFetcher with sample preferences...")
-    news_bundle = fetcher.fetch_daily_news_bundle(sample_preferences)
-
-    print(f"\n{'='*70}")
-    print(f"🎯 SMART NEWS BUNDLE RESULTS")
-    print(f"{'='*70}")
-
-    total_articles = sum(len(articles) for articles in news_bundle.values())
-    print(f"📊 Total articles: {total_articles}")
-
-    for category, articles in news_bundle.items():
-        print(f"\n📁 {category.upper()}: {len(articles)} articles")
-        for i, article in enumerate(articles[:3]):  # Show top 3 per category
-            print(f"   📰 {i+1}. {article['title'][:60]}...")
-            print(
-                f"      Source: {article['source']} | Score: {article.get('relevance_score', 0):.2f}"
-            )
-            print(
-                f"      Language: {article.get('language')} → {sample_preferences['language']}"
-            )
-            if article.get("ai_classified"):
-                print(
-                    f"      AI Confidence: {article.get('confidence', 0):.2f} | Importance: {article.get('importance_score', 0)}/100"
+            # Note: Errors in scoring will silently drop the article from the scored list
+            # Consider if you want a default score for articles that fail scoring
+            try:
+                score = self._score_article_relevance(
+                    article, user_interests, user_locale
                 )
-                if "contextual_factors" in article:
-                    ctx = article["contextual_factors"]
-                    print(
-                        f"      Context: Global {ctx.get('global_impact', 'N/A')}, Time {ctx.get('time_sensitivity', 'N/A')}"
-                    )
+                scored_articles.append(article)
+            except Exception as e:
+                # print(f"    ⚠️ Error scoring article '{article.get('title', 'No Title')[:30]}...': {e}") # Minimized log
+                pass  # Article dropped if scoring fails
+        print(f"\r   ✅ Relevance scoring: {len(scored_articles)} articles")
+
+        # Group articles by category
+        category_bundles = defaultdict(list)
+        for article in scored_articles:
+            category = article.get("category", "general")
+            category_bundles[category].append(article)
+
+        # Sort articles within each category by relevance score
+        for category, category_articles in category_bundles.items():
+            category_articles.sort(
+                key=lambda x: x.get("relevance_score", 0), reverse=True
+            )
+            # Limit to top 25 articles per category for the bundle (increased from 20)
+            category_bundles[category] = category_articles[:25]
+
+        print(
+            f"🎯 Final news bundle ready: {sum(len(a) for a in category_bundles.values())} articles"
+        )
+        for category, category_articles in category_bundles.items():
+            print(f"   {category.upper()}: {len(category_articles)} articles")
+
+        return dict(category_bundles)
+
+    def fetch_daily_news_bundle(self, user_preferences: Dict) -> Dict[str, List[Dict]]:
+        """
+        Fetch and process a daily news bundle for a user.
+
+        Args:
+            user_preferences: Dictionary containing user profile data.
+
+        Returns:
+            Dictionary of news articles grouped by category.
+        """
+        user_locale = user_preferences.get("locale", "US")
+        user_language = user_preferences.get("language", "en")
+        user_city = user_preferences.get("city", "")
+        user_interests = user_preferences.get("interests", [])
+
+        print(f"📡 Fetching global news bundle for user preferences:")
+        print(f"   🌍 Locale: {user_locale} | 🗣️  Language: {user_language}")
+        print(f"   🎯 Interests: {user_interests} | 🏙️  City: {user_city}")
+
+        # --- News Collection ---
+        raw_articles = []
+
+        # Fetch from Guardian
+        main_categories = [i for i in user_interests if isinstance(i, str)]
+        categories_to_fetch = list(set(main_categories))
+        if categories_to_fetch and self.api_keys["guardian"]:
+            print("🔄 Fetching from The Guardian...")
+            guardian_articles = self._fetch_guardian_articles(
+                categories_to_fetch, user_locale
+            )
+            raw_articles.extend(guardian_articles)
+
+        # Fetch from RSS
+        print("🔄 Fetching from RSS feeds...")
+        rss_articles = self._fetch_rss_articles()
+        raw_articles.extend(rss_articles)
+
+        # Reddit fetching removed
+        print(f"📦 Raw articles collected: {len(raw_articles)}")
+
+        # --- News Processing Pipeline ---
+        print("⚙️  Processing articles through smart pipeline...")
+
+        # 1. Quality Filter
+        quality_filtered = [
+            article
+            for article in raw_articles
+            if self._is_high_quality_article(article)
+        ]
+        print(
+            f"   ✅ Quality filter: {len(quality_filtered)}/{len(raw_articles)} articles"
+        )
+
+        # 2. Deduplication
+        deduplicated = self._deduplicate_articles(quality_filtered)
+        print(
+            f"   ✅ Deduplication: {len(deduplicated)}/{len(quality_filtered)} articles"
+        )
+
+        # 3. AI Classification (if available)
+        if CLASSIFIER_AVAILABLE and classify_news:
+            classified = self._classify_articles(deduplicated, user_locale)
+        else:
+            classified = self._classify_articles_keyword_fallback(deduplicated)
+        print(f"   ✅ AI Classification step completed: {len(classified)} articles")
+
+        # 4. Prepare final bundle with relevance scoring
+        final_bundle = self._prepare_news_bundle(
+            classified, user_interests, user_locale
+        )
+
+        return final_bundle
+
+
+# Example usage (if run directly) is kept minimal or removed for clarity in pipeline use
+# if __name__ == "__main__":
+#     fetcher = SmartNewsFetcher()
+#     # ... test code ...

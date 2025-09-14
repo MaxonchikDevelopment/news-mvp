@@ -1,12 +1,13 @@
 # src/news_pipeline.py
 """Complete news processing pipeline with real user integration and feedback."""
 
+import hashlib
 import os
 import sys
 import time
 from collections import defaultdict
 from datetime import datetime
-from typing import Any, Dict, List, Set
+from typing import Any, Dict, List, Set, Tuple
 
 
 def setup_paths():
@@ -24,82 +25,129 @@ setup_paths()
 # Import our modules
 try:
     from news_fetcher import SmartNewsFetcher
+
+    # print("✅ Imported SmartNewsFetcher successfully") # Minimize logs
 except ImportError as e:
     print(f"❌ Failed to import SmartNewsFetcher: {e}")
     sys.exit(1)
 
 try:
     from user_profile import USER_PROFILES, get_user_profile
+
+    # print("✅ Imported user_profile successfully") # Minimize logs
 except ImportError as e:
     print(f"❌ Failed to import user_profile: {e}")
     sys.exit(1)
 
 try:
     from cache_manager import get_cache_manager
+
+    # print("✅ Imported cache_manager successfully") # Minimize logs
 except ImportError as e:
     print(f"❌ Failed to import cache_manager: {e}")
     sys.exit(1)
 
 try:
+    # Import summarizer for YNK generation
     from summarizer import summarize_news
+
+    # print("✅ Imported summarizer successfully") # Minimize logs
 except ImportError as e:
     print(f"❌ Failed to import summarizer: {e}")
-    summarize_news = None
+    summarize_news = None  # Fallback if summarizer is not available
 
 try:
     from feedback_system import feedback_system
+
+    # print("✅ Imported feedback_system successfully") # Minimize logs
 except ImportError as e:
     print(f"❌ Failed to import feedback_system: {e}")
-    feedback_system = None
+    feedback_system = None  # Fallback if feedback system is not available
 
 
 class NewsProcessingPipeline:
     """Orchestrates the complete news processing workflow for personalized delivery."""
 
     def __init__(self, max_workers: int = 5):
+        """
+        Initialize the complete news processing pipeline.
+
+        Args:
+            max_workers: Maximum number of concurrent tasks
+        """
         self.max_workers = max_workers
-        self.fetcher = SmartNewsFetcher()
+        self.fetcher = SmartNewsFetcher()  # Use the enhanced fetcher
         self.cache = get_cache_manager()
         self.feedback_system = feedback_system
-        self.summarize_news_func = summarize_news
+        self.summarize_news_func = summarize_news  # Store the summarizer function
         self.processed_news_count = 0
         self.total_processing_time = 0.0
+        # print("🚀 NewsProcessingPipeline initialized with enhanced SmartNewsFetcher") # Minimize logs
 
     def get_all_users(self) -> List[Any]:
+        """Get all registered users from the system."""
         users = []
         for user_id in USER_PROFILES.keys():
             user = get_user_profile(user_id)
             if user:
                 users.append(user)
+        # print(f"👥 Loaded {len(users)} users from system") # Minimize logs
         return users
 
     def _generate_ynk_summary(self, article: Dict) -> str:
-        """Generates a YNK (Why Not Care) summary for an article."""
+        """Generates a YNK (Why Not Care) summary for an article using summarizer.py."""
         if not self.summarize_news_func:
-            return "Summary module not available."
+            return "Summary generation module (summarizer.py) not available."
+
         try:
+            # Use article content, description, or title
             news_text = (
                 article.get("content", "")
                 or article.get("description", "")
                 or article.get("title", "")
             )
             if not news_text.strip():
-                return "No content available."
+                return "No content, description, or title available for summary."
+
+            # Use the AI-classified category to select the correct impact aspects
             category = article.get("category", "general")
-            return self.summarize_news_func(news_text, category)
+
+            # Call summarize_news from summarizer.py
+            summary = self.summarize_news_func(news_text, category)
+            return summary
         except Exception as e:
-            return f"Summary generation failed. Error: {e}"
+            # print(f"⚠️ YNK summary generation failed for '{article.get('title', 'Unknown')}': {e}") # Minimize logs
+            return f"Could not generate summary. Error: {e}"
+
+    def _get_article_topic_key(self, article: Dict) -> Tuple[str, str]:
+        """Generate a key representing the main topic of an article to avoid duplicates."""
+        category = article.get("category", "general")
+        subcategory = (
+            article.get("sports_subcategory")
+            or article.get("economy_subcategory")
+            or article.get("tech_subcategory")
+            or "general"
+        )
+        return (category, subcategory)
 
     def _select_top_articles_for_user(
         self, news_bundle: Dict[str, List[Dict]], user_profile: Dict
     ) -> List[Dict]:
         """
-        Selects TOP-7 articles, prioritizing user's specific interests.
-        Guarantees representation from specific subcategories if possible,
-        then from main categories, then fills with top remaining articles.
+        Selects the TOP-7 articles for a specific user from the news_bundle.
+        Prioritizes user's specific interests and guarantees representation from them if possible,
+        with quality thresholds and duplicate topic avoidance.
         """
+        # --- Configuration ---
+        MIN_IMPORTANCE_FOR_GUARANTEE = 45  # Minimum importance for a guaranteed article
+        MIN_RELEVANCE_FOR_GUARANTEE = 0.40  # Minimum relevance for a guaranteed article
+        # --- End Configuration ---
+
         selected_articles = []
-        seen_titles: Set[str] = set()
+        seen_titles: Set[str] = set()  # For deduplication by title
+        selected_article_topics: Set[
+            Tuple[str, str]
+        ] = set()  # For deduplication by topic
         user_id = user_profile.get("user_id", "unknown_user")
 
         user_interests = user_profile.get("interests", [])
@@ -138,25 +186,37 @@ class NewsProcessingPipeline:
                     article_subcats = [
                         article.get("sports_subcategory"),
                         article.get("economy_subcategory"),
-                        article.get("tech_subcategory")
-                        # Add others if classifier provides them
+                        article.get("tech_subcategory"),
                     ]
                     if subcategory in article_subcats:
-                        matching_articles.append(article)
+                        # Apply quality threshold for guaranteed articles
+                        if (
+                            article.get("importance_score", 0)
+                            >= MIN_IMPORTANCE_FOR_GUARANTEE
+                            and article.get("relevance_score", 0)
+                            >= MIN_RELEVANCE_FOR_GUARANTEE
+                        ):
+                            matching_articles.append(article)
 
-            # Sort by relevance and pick the best unique one
+            # Sort by relevance and pick the best unique one that doesn't duplicate topic
             matching_articles.sort(
                 key=lambda x: x.get("relevance_score", 0), reverse=True
             )
+            article_added_for_this_subcat = False
             for article in matching_articles:
                 title_key = article.get("title", "").lower()
-                if title_key not in seen_titles and len(selected_articles) < 7:
+                topic_key = self._get_article_topic_key(article)
+                if (
+                    title_key not in seen_titles
+                    and topic_key not in selected_article_topics
+                    and len(selected_articles) < 7
+                    and not article_added_for_this_subcat
+                ):  # Only one article per subcategory guarantee
                     selected_articles.append(article)
                     seen_titles.add(title_key)
-                    # Mark the parent category as satisfied if it's in main_categories
-                    # This is a heuristic: if user likes 'football_epl', they implicitly like 'sports'
-                    # We can refine this logic later.
-                    # For now, we don't block selecting a main category article later if needed.
+                    selected_article_topics.add(topic_key)
+                    # print(f"📌 Guaranteed article for specific subcategory '{subcategory}': {article.get('title', 'No Title')[:50]}...") # Minimize logs
+                    article_added_for_this_subcat = True
                     break  # Take only the first match for this subcategory
 
         # b. Guarantee articles for main categories (that don't have specific subcats defined or weren't satisfied)
@@ -169,23 +229,42 @@ class NewsProcessingPipeline:
             )
 
         for category in sorted_main_cats:
-            # Only add if we haven't filled the quota
+            # Only add if we haven't filled the quota and this category wasn't strongly covered by subcats
             if len(selected_articles) >= 7:
                 break
 
             category_articles = news_bundle.get(category, [])
-            category_articles.sort(
+            # Apply quality threshold for guaranteed articles
+            qualified_category_articles = [
+                a
+                for a in category_articles
+                if (
+                    a.get("importance_score", 0) >= MIN_IMPORTANCE_FOR_GUARANTEE
+                    and a.get("relevance_score", 0) >= MIN_RELEVANCE_FOR_GUARANTEE
+                )
+            ]
+            qualified_category_articles.sort(
                 key=lambda x: x.get("relevance_score", 0), reverse=True
             )
 
-            for article in category_articles:
+            article_added_for_this_cat = False
+            for article in qualified_category_articles:
                 title_key = article.get("title", "").lower()
-                if title_key not in seen_titles and len(selected_articles) < 7:
+                topic_key = self._get_article_topic_key(article)
+                if (
+                    title_key not in seen_titles
+                    and topic_key not in selected_article_topics
+                    and len(selected_articles) < 7
+                    and not article_added_for_this_cat
+                ):  # Only one article per main category guarantee
                     selected_articles.append(article)
                     seen_titles.add(title_key)
+                    selected_article_topics.add(topic_key)
+                    # print(f"📌 Guaranteed article for main category '{category}': {article.get('title', 'No Title')[:50]}...") # Minimize logs
+                    article_added_for_this_cat = True
                     break  # Take only the first match for this main category
 
-        # c. Fill remaining slots with the best articles overall
+        # c. Fill remaining slots with the best articles overall, avoiding topic duplicates
         if len(selected_articles) < 7:
             all_articles_sorted = sorted(
                 [a for articles in news_bundle.values() for a in articles],
@@ -196,13 +275,30 @@ class NewsProcessingPipeline:
                 if len(selected_articles) >= 7:
                     break
                 title_key = article.get("title", "").lower()
-                if title_key not in seen_titles:
+                topic_key = self._get_article_topic_key(article)
+                if (
+                    title_key not in seen_titles
+                    and topic_key not in selected_article_topics
+                ):
                     selected_articles.append(article)
                     seen_titles.add(title_key)
+                    selected_article_topics.add(topic_key)
+                    # print(f"🔝 Added to TOP-7 (filler): {article.get('title', 'No Title')[:50]}... (Score: {article.get('relevance_score', 0):.2f})") # Minimize logs
 
+        # print(f"✅ Final TOP-7 selection complete. Total articles: {len(selected_articles)}") # Minimize logs
         return selected_articles
 
     def process_daily_news(self, user_preferences: Dict) -> Dict[str, List[Dict]]:
+        """
+        Process daily news batch for a user.
+        NOTE: This is a SYNCHRONOUS method, not async!
+
+        Args:
+            user_preferences: User profile with locale, interests, language preferences
+
+        Returns:
+            Dictionary containing the 'top_7' articles
+        """
         start_time = time.time()
         news_bundle = self.fetcher.fetch_daily_news_bundle(user_preferences)
         processing_time = time.time() - start_time
@@ -220,7 +316,7 @@ class NewsProcessingPipeline:
             news_bundle, user_preferences
         )
 
-        # Group by category for display
+        # Group articles by category for ordered display
         articles_by_category = defaultdict(list)
         for article in top_7_articles:
             category = article.get("category", "general")
@@ -256,7 +352,7 @@ class NewsProcessingPipeline:
                 if cat not in ordered_categories:
                     ordered_categories.append(cat)
 
-        # Display articles
+        # Display articles, grouped and ordered by category
         article_counter = 1
         for category in ordered_categories:
             category_articles = articles_by_category[category]
@@ -281,8 +377,10 @@ class NewsProcessingPipeline:
                         f"🔍 Context: Global {ctx.get('global_impact', 'N/A')}, Time {ctx.get('time_sensitivity', 'N/A')}"
                     )
 
+                # Generate and display YNK (now with correct format and language)
                 ynk_summary = self._generate_ynk_summary(article)
                 print(f"💡 Why Not Care (YNK) Summary:\n{ynk_summary}")
+                # Add the summary to the article object for potential later use
                 article["ynk_summary"] = ynk_summary
                 article_counter += 1
 
@@ -290,8 +388,10 @@ class NewsProcessingPipeline:
 
 
 if __name__ == "__main__":
+    # Initialize pipeline
     pipeline = NewsProcessingPipeline(max_workers=3)
 
+    # Test with sample user preferences (like your Maxonchik profile)
     sample_preferences = {
         "user_id": "Max",
         "locale": "DE",
@@ -312,5 +412,9 @@ if __name__ == "__main__":
         ],
     }
 
+    # Process daily news (SYNCHRONOUS CALL!) - now returns TOP-7
     result = pipeline.process_daily_news(sample_preferences)
-    # Result is printed inside process_daily_news
+    top_7_articles = result.get("top_7", [])
+
+    # The final output is already inside process_daily_news, so we can just finish here
+    # print(f"\n🏁 Pipeline execution completed.") # Minimize logs
