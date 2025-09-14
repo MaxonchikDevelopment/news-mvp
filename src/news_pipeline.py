@@ -1,21 +1,18 @@
 # src/news_pipeline.py
 """Complete news processing pipeline with real user integration and feedback."""
 
-import asyncio
 import os
 import sys
 import time
 from collections import defaultdict
 from datetime import datetime
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Set
 
 
-# --- Path setup ---
 def setup_paths():
     """Setup paths for correct imports."""
     current_dir = os.path.dirname(__file__)
     root_dir = os.path.dirname(current_dir)
-
     paths_to_add = [root_dir, current_dir]
     for path in paths_to_add:
         if path not in sys.path:
@@ -27,190 +24,293 @@ setup_paths()
 # Import our modules
 try:
     from news_fetcher import SmartNewsFetcher
-
-    print("✅ Imported SmartNewsFetcher successfully")
 except ImportError as e:
     print(f"❌ Failed to import SmartNewsFetcher: {e}")
     sys.exit(1)
 
 try:
     from user_profile import USER_PROFILES, get_user_profile
-
-    print("✅ Imported user_profile successfully")
 except ImportError as e:
     print(f"❌ Failed to import user_profile: {e}")
     sys.exit(1)
 
 try:
     from cache_manager import get_cache_manager
-
-    print("✅ Imported cache_manager successfully")
 except ImportError as e:
     print(f"❌ Failed to import cache_manager: {e}")
     sys.exit(1)
 
 try:
-    from feedback_system import feedback_system
+    from summarizer import summarize_news
+except ImportError as e:
+    print(f"❌ Failed to import summarizer: {e}")
+    summarize_news = None
 
-    print("✅ Imported feedback_system successfully")
+try:
+    from feedback_system import feedback_system
 except ImportError as e:
     print(f"❌ Failed to import feedback_system: {e}")
-    feedback_system = None  # Fallback если система фидбека не доступна
+    feedback_system = None
 
 
 class NewsProcessingPipeline:
-    def __init__(self, max_workers: int = 5):
-        """
-        Initialize the complete news processing pipeline.
+    """Orchestrates the complete news processing workflow for personalized delivery."""
 
-        Args:
-            max_workers: Maximum number of concurrent tasks
-        """
+    def __init__(self, max_workers: int = 5):
         self.max_workers = max_workers
-        self.fetcher = SmartNewsFetcher()  # Используем улучшенный фетчер
+        self.fetcher = SmartNewsFetcher()
         self.cache = get_cache_manager()
         self.feedback_system = feedback_system
+        self.summarize_news_func = summarize_news
         self.processed_news_count = 0
         self.total_processing_time = 0.0
-        print("🚀 NewsProcessingPipeline initialized with enhanced SmartNewsFetcher")
 
     def get_all_users(self) -> List[Any]:
-        """Get all registered users from the system."""
         users = []
         for user_id in USER_PROFILES.keys():
             user = get_user_profile(user_id)
             if user:
                 users.append(user)
-        print(f"👥 Loaded {len(users)} users from system")
         return users
 
-    def process_daily_news(self, user_preferences: Dict) -> Dict[str, List[Dict]]:
+    def _generate_ynk_summary(self, article: Dict) -> str:
+        """Generates a YNK (Why Not Care) summary for an article."""
+        if not self.summarize_news_func:
+            return "Summary module not available."
+        try:
+            news_text = (
+                article.get("content", "")
+                or article.get("description", "")
+                or article.get("title", "")
+            )
+            if not news_text.strip():
+                return "No content available."
+            category = article.get("category", "general")
+            return self.summarize_news_func(news_text, category)
+        except Exception as e:
+            return f"Summary generation failed. Error: {e}"
+
+    def _select_top_articles_for_user(
+        self, news_bundle: Dict[str, List[Dict]], user_profile: Dict
+    ) -> List[Dict]:
         """
-        Process daily news batch for all users.
-        NOTE: This is a SYNCHRONOUS method, not async!
-
-        Args:
-            user_preferences: User profile with locale, interests, language preferences
-
-        Returns:
-            Dictionary mapping user_id to their personalized feed
+        Selects TOP-7 articles, prioritizing user's specific interests.
+        Guarantees representation from specific subcategories if possible,
+        then from main categories, then fills with top remaining articles.
         """
-        print(f"\n{'='*60}")
-        print(f"📅 DAILY NEWS PROCESSING - {datetime.now().strftime('%Y-%m-%d')}")
-        print(f"📰 News items: {len(user_preferences.get('interests', []))}")
-        print(f"👥 Users: {len(self.get_all_users())}")
-        print(f"{'='*60}")
+        selected_articles = []
+        seen_titles: Set[str] = set()
+        user_id = user_profile.get("user_id", "unknown_user")
 
-        start_time = time.time()
+        user_interests = user_profile.get("interests", [])
 
-        # Get all users
-        users = self.get_all_users()
+        # 1. Extract specific subcategories (e.g., football_epl, formula1)
+        specific_subcategories = set()
+        for interest in user_interests:
+            if isinstance(interest, dict):
+                for subcats in interest.values():  # e.g., value for 'sports' key
+                    if isinstance(subcats, list):
+                        specific_subcategories.update(subcats)
 
-        # Process news using enhanced fetcher
-        print("🔄 Fetching and processing news with enhanced SmartNewsFetcher...")
-        news_bundle = self.fetcher.fetch_daily_news_bundle(user_preferences)
-
-        end_time = time.time()
-        processing_time = end_time - start_time
-
-        # Update statistics
-        self.processed_news_count += len(news_bundle)
-        self.total_processing_time += processing_time
-
-        # Print summary
-        self._print_processing_summary(news_bundle, user_preferences, processing_time)
-
-        return news_bundle
-
-    def _print_processing_summary(
-        self,
-        news_bundle: Dict[str, List[Dict]],
-        user_preferences: Dict,
-        processing_time: float,
-    ):
-        """Print detailed processing summary."""
-        print(f"\n{'='*60}")
-        print(f"📊 PROCESSING SUMMARY")
-        print(f"{'='*60}")
-        print(f"⏱️  Total time: {processing_time:.2f} seconds")
-        print(
-            f"⚡ Performance: {sum(len(articles) for articles in news_bundle.values()) / max(processing_time, 0.001):.1f} articles/second"
+        # 2. Extract main categories (e.g., technology_ai_science, economy_finance)
+        main_categories = set(
+            interest for interest in user_interests if isinstance(interest, str)
         )
-        print(f"💾 Cache items: {len(self.cache._cache)}")
 
-        print(f"\n📋 NEWS BUNDLE:")
-        total_articles = 0
-        for category, articles in news_bundle.items():
-            print(f"  📁 {category.upper()}: {len(articles)} articles")
-            total_articles += len(articles)
-            if articles:
-                top_article = max(articles, key=lambda x: x.get("relevance_score", 0))
-                print(
-                    f"     🏆 Top priority: {top_article.get('relevance_score', 0):.2f}/1.00 [{top_article.get('category')}]"
-                )
-
-        print(f"\n📈 CUMULATIVE STATS:")
-        print(f"   Total articles processed: {self.processed_news_count}")
-        print(f"   Total processing time: {self.total_processing_time:.2f} seconds")
-        if self.processed_news_count > 0:
-            print(
-                f"   Average time per article: {self.total_processing_time/self.processed_news_count:.3f} seconds"
+        # --- Selection Logic ---
+        # a. Try to guarantee articles for each specific subcategory
+        # Sort subcategories by potential preference (feedback or profile order)
+        sorted_specific_subcats = list(specific_subcategories)
+        if self.feedback_system:
+            sorted_specific_subcats.sort(
+                key=lambda subcat: self.feedback_system.get_user_preference(
+                    user_id, subcat
+                ),
+                reverse=True,
             )
 
+        for subcategory in sorted_specific_subcats:
+            # Find articles matching the specific subcategory field
+            matching_articles = []
+            for articles_in_category in news_bundle.values():
+                for article in articles_in_category:
+                    # Check for subcategory fields like 'sports_subcategory', 'economy_subcategory'
+                    article_subcats = [
+                        article.get("sports_subcategory"),
+                        article.get("economy_subcategory"),
+                        article.get("tech_subcategory")
+                        # Add others if classifier provides them
+                    ]
+                    if subcategory in article_subcats:
+                        matching_articles.append(article)
 
-# Test execution for MVP
+            # Sort by relevance and pick the best unique one
+            matching_articles.sort(
+                key=lambda x: x.get("relevance_score", 0), reverse=True
+            )
+            for article in matching_articles:
+                title_key = article.get("title", "").lower()
+                if title_key not in seen_titles and len(selected_articles) < 7:
+                    selected_articles.append(article)
+                    seen_titles.add(title_key)
+                    # Mark the parent category as satisfied if it's in main_categories
+                    # This is a heuristic: if user likes 'football_epl', they implicitly like 'sports'
+                    # We can refine this logic later.
+                    # For now, we don't block selecting a main category article later if needed.
+                    break  # Take only the first match for this subcategory
+
+        # b. Guarantee articles for main categories (that don't have specific subcats defined or weren't satisfied)
+        # Sort main categories by potential preference
+        sorted_main_cats = list(main_categories)
+        if self.feedback_system:
+            sorted_main_cats.sort(
+                key=lambda cat: self.feedback_system.get_user_preference(user_id, cat),
+                reverse=True,
+            )
+
+        for category in sorted_main_cats:
+            # Only add if we haven't filled the quota
+            if len(selected_articles) >= 7:
+                break
+
+            category_articles = news_bundle.get(category, [])
+            category_articles.sort(
+                key=lambda x: x.get("relevance_score", 0), reverse=True
+            )
+
+            for article in category_articles:
+                title_key = article.get("title", "").lower()
+                if title_key not in seen_titles and len(selected_articles) < 7:
+                    selected_articles.append(article)
+                    seen_titles.add(title_key)
+                    break  # Take only the first match for this main category
+
+        # c. Fill remaining slots with the best articles overall
+        if len(selected_articles) < 7:
+            all_articles_sorted = sorted(
+                [a for articles in news_bundle.values() for a in articles],
+                key=lambda x: x.get("relevance_score", 0),
+                reverse=True,
+            )
+            for article in all_articles_sorted:
+                if len(selected_articles) >= 7:
+                    break
+                title_key = article.get("title", "").lower()
+                if title_key not in seen_titles:
+                    selected_articles.append(article)
+                    seen_titles.add(title_key)
+
+        return selected_articles
+
+    def process_daily_news(self, user_preferences: Dict) -> Dict[str, List[Dict]]:
+        start_time = time.time()
+        news_bundle = self.fetcher.fetch_daily_news_bundle(user_preferences)
+        processing_time = time.time() - start_time
+
+        self.processed_news_count += sum(
+            len(articles) for articles in news_bundle.values()
+        )
+        self.total_processing_time += processing_time
+
+        print(
+            f"\n🎯 PERSONALIZED TOP-7 FOR USER: {user_preferences.get('user_id', 'Unknown')} (Processed in {processing_time:.1f}s)"
+        )
+
+        top_7_articles = self._select_top_articles_for_user(
+            news_bundle, user_preferences
+        )
+
+        # Group by category for display
+        articles_by_category = defaultdict(list)
+        for article in top_7_articles:
+            category = article.get("category", "general")
+            articles_by_category[category].append(article)
+
+        # Order categories by user preference
+        user_id = user_preferences.get("user_id")
+        ordered_categories = []
+        if self.feedback_system:
+            categories_in_top7 = list(articles_by_category.keys())
+            ordered_categories = sorted(
+                categories_in_top7,
+                key=lambda cat: self.feedback_system.get_user_preference(user_id, cat),
+                reverse=True,
+            )
+        else:
+            # Fallback order based on profile interests
+            user_interests = user_preferences.get("interests", [])
+            main_interests_from_profile = [
+                i for i in user_interests if isinstance(i, str)
+            ]
+            main_interests_from_profile.extend(
+                [list(i.keys())[0] for i in user_interests if isinstance(i, dict)]
+            )
+
+            for interest in main_interests_from_profile:
+                if (
+                    interest in articles_by_category
+                    and interest not in ordered_categories
+                ):
+                    ordered_categories.append(interest)
+            for cat in articles_by_category:
+                if cat not in ordered_categories:
+                    ordered_categories.append(cat)
+
+        # Display articles
+        article_counter = 1
+        for category in ordered_categories:
+            category_articles = articles_by_category[category]
+            category_articles.sort(
+                key=lambda x: x.get("relevance_score", 0), reverse=True
+            )
+
+            for article in category_articles:
+                print(
+                    f"\n--- Article {article_counter} (Category: {category.upper()}) ---"
+                )
+                print(f"📰 Title: {article.get('title')}")
+                print(f"🔗 Source: {article.get('source')}")
+                print(f"📊 Relevance Score: {article.get('relevance_score', 0):.2f}")
+                print(f"🏷️  Category: {article.get('category')}")
+                print(
+                    f"🧠 AI Confidence: {article.get('confidence', 0):.2f} | Importance: {article.get('importance_score', 0)}/100"
+                )
+                if "contextual_factors" in article:
+                    ctx = article["contextual_factors"]
+                    print(
+                        f"🔍 Context: Global {ctx.get('global_impact', 'N/A')}, Time {ctx.get('time_sensitivity', 'N/A')}"
+                    )
+
+                ynk_summary = self._generate_ynk_summary(article)
+                print(f"💡 Why Not Care (YNK) Summary:\n{ynk_summary}")
+                article["ynk_summary"] = ynk_summary
+                article_counter += 1
+
+        return {"top_7": top_7_articles}
+
+
 if __name__ == "__main__":
-    # Initialize pipeline
     pipeline = NewsProcessingPipeline(max_workers=3)
 
-    # Test with sample user preferences (like your Maxonchik profile)
     sample_preferences = {
-        "user_id": "Maxonchik",
+        "user_id": "Max",
         "locale": "DE",
         "language": "en",
         "city": "Frankfurt",
         "interests": [
             "economy_finance",
             "technology_ai_science",
-            {"sports": ["basketball_nba", "football_epl", "formula1"]},
+            "politics_geopolitics",
+            {
+                "sports": [
+                    "basketball_nba",
+                    "football_epl",
+                    "formula1",
+                    "football_bundesliga",
+                ]
+            },
         ],
     }
 
-    print("🚀 Testing NewsProcessingPipeline with sample preferences...")
-
-    # Process daily news (SYNCHRONOUS CALL!)
-    news_bundle = pipeline.process_daily_news(sample_preferences)
-
-    # Display detailed results
-    print(f"\n{'='*80}")
-    print(f"📱 DETAILED NEWS BUNDLE RESULTS")
-    print(f"{'='*80}")
-
-    total_articles = sum(len(articles) for articles in news_bundle.values())
-    print(f"📊 Total articles: {total_articles}")
-
-    for category, articles in news_bundle.items():
-        print(f"\n📁 {category.upper()}: {len(articles)} articles")
-        # Sort by relevance score for better display
-        sorted_articles = sorted(
-            articles, key=lambda x: x.get("relevance_score", 0), reverse=True
-        )
-        for i, article in enumerate(sorted_articles[:5]):  # Show top 5 per category
-            print(f"\n  📰 {i+1}. {article['title'][:60]}...")
-            print(
-                f"     Source: {article['source']} | Score: {article.get('relevance_score', 0):.2f}"
-            )
-            print(
-                f"     Language: {article.get('language')} → {sample_preferences['language']}"
-            )
-            if article.get("ai_classified"):
-                print(
-                    f"     AI Confidence: {article.get('confidence', 0):.2f} | Importance: {article.get('importance_score', 0)}/100"
-                )
-                if "contextual_factors" in article:
-                    ctx = article["contextual_factors"]
-                    print(
-                        f"     Context: Global {ctx.get('global_impact', 'N/A')}, Time {ctx.get('time_sensitivity', 'N/A')}"
-                    )
-
-    print(f"\n{'='*80}")
+    result = pipeline.process_daily_news(sample_preferences)
+    # Result is printed inside process_daily_news

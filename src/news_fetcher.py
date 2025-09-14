@@ -126,7 +126,7 @@ class SmartNewsFetcher:
         # Content quality filters
         self.quality_filters = {
             "min_length": 150,  # Minimum characters for quality content
-            "max_length": 5000,  # Maximum to avoid huge articles
+            "max_length": 50000,  # Maximum to avoid huge articles
             "required_fields": ["title", "description"],
             "banned_keywords": [
                 "advertisement",
