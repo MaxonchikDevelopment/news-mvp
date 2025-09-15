@@ -48,7 +48,19 @@ POLITICS/GEO Refinement Logic (CRITICAL for neutrality):
    - Uses inflammatory language ("massacre", "genocide", "atrocities") without clear, objective evidence.
 - For stories involving allegations of war crimes or severe human rights violations, report only if they are *substantiated by multiple credible sources* or *official investigations*.
 
-Examples (Updated for Neutrality and Specificity):
+# --- НОВОЕ: Уточнение логики для Технологий ---
+TECH Refinement Logic (CRITICAL for correct categorization of Big Tech):
+- Major Tech Companies (Google/Alphabet, Apple, Microsoft, Amazon, Meta/Facebook, Nvidia, Tesla, etc.): 
+    * News about these companies' **technology products, AI research, software innovations, major strategic tech moves, or court rulings on their tech practices** MUST be classified as `technology_ai_science`.
+    * If the news is *purely* about **stock price, quarterly earnings, or financial markets**, classify it as `economy_finance`.
+    * Hybrid cases (e.g., "Nvidia's new AI chip boosts stock price", "Court rules against Google in antitrust case"):
+        - Prioritize `technology_ai_science` if the *primary focus* is the technological breakthrough, AI advancement, or legal ruling on tech practices.
+        - Use `economy_finance` ONLY if the *primary focus* is the financial market reaction or earnings report.
+- Boost importance for globally significant tech developments:
+    - A major AI breakthrough, new chip release, or landmark tech court ruling should receive an `importance_score` of 85+.
+# --- КОНЕЦ НОВОГО ---
+
+Examples (Updated for Neutrality, Specificity, and Tech Logic):
 Input: "Verified reports of a new major ceasefire agreement in the Israel-Gaza conflict, brokered by the US and Egypt."
 Output: {"category":"politics_geopolitics","sports_subcategory":null,"economy_subcategory":null,"tech_subcategory":null,"confidence":0.95,"reasons":"major verified diplomatic development in active conflict","importance_score":85,"contextual_factors":{"time_sensitivity":80,"global_impact":85,"personal_relevance":70,"historical_significance":75,"emotional_intensity":70}}
 
@@ -60,6 +72,17 @@ Output: {"category":"economy_finance","sports_subcategory":null,"economy_subcate
 
 Input: "Nvidia releases groundbreaking AI chip for consumer market"
 Output: {"category":"technology_ai_science","sports_subcategory":null,"economy_subcategory":null,"tech_subcategory":"semiconductors","confidence":0.95,"reasons":"major tech breakthrough","importance_score":88,"contextual_factors":{"time_sensitivity":80,"global_impact":90,"personal_relevance":85,"historical_significance":75,"emotional_intensity":60}}
+
+# --- НОВЫЕ ПРИМЕРЫ ДЛЯ ТЕХНОЛОГИЙ ---
+Input: "With no DOJ breakup, Alphabet becomes a $3 trillion company"
+Output: {"category":"technology_ai_science","sports_subcategory":null,"economy_subcategory":null,"tech_subcategory":"ai_research","confidence":0.92,"reasons":"major tech company's AI strategy validated by court","importance_score":85,"contextual_factors":{"time_sensitivity":75,"global_impact":85,"personal_relevance":80,"historical_significance":70,"emotional_intensity":65}}
+
+Input: "Alphabet reports Q3 earnings beat expectations, stock jumps 5%"
+Output: {"category":"economy_finance","sports_subcategory":null,"economy_subcategory":"corporate_earnings","tech_subcategory":null,"confidence":0.95,"reasons":"corporate earnings report impacts stock market","importance_score":72,"contextual_factors":{"time_sensitivity":80,"global_impact":70,"personal_relevance":65,"historical_significance":50,"emotional_intensity":55}}
+
+Input: "Nvidia's new AI chip drives stock to all-time high"
+Output: {"category":"technology_ai_science","sports_subcategory":null,"economy_subcategory":null,"tech_subcategory":"semiconductors","confidence":0.90,"reasons":"tech breakthrough drives market reaction","importance_score":87,"contextual_factors":{"time_sensitivity":85,"global_impact":90,"personal_relevance":88,"historical_significance":75,"emotional_intensity":70}}
+# --- КОНЕЦ НОВЫХ ПРИМЕРОВ ---
 """
 
 # --- Subcategory Prompts (Unchanged structurally, but logic is guided by main prompt) ---
@@ -157,7 +180,6 @@ News:
 """
 
 # Specific YNK Prompt for Technology/AI/Science
-# Uses a fixed set of IMPACT ASPECTS tailored for tech implications.
 YNK_PROMPT_TECH = """
 You are YNotCare, a concise, human-like, actionable news analysis Expert specializing in Technology, AI, and Science. 
 Provide clear guidance on the implications of the news for individuals, businesses, and society in under 30 seconds.

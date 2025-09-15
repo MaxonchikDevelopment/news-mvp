@@ -1,6 +1,7 @@
 # src/news_pipeline.py
-"""Complete news processing pipeline with real user integration and feedback."""
+"""Complete news processing pipeline with real user integration, feedback, and data retention."""
 
+import asyncio
 import os
 import sys
 import time
@@ -9,11 +10,12 @@ from datetime import datetime
 from typing import Any, Dict, List, Set
 
 
+# --- Path setup for internal imports ---
 def setup_paths():
     """Setup paths for correct imports."""
-    current_dir = os.path.dirname(__file__)
-    root_dir = os.path.dirname(current_dir)
-    paths_to_add = [root_dir, current_dir]
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.dirname(current_dir)
+    paths_to_add = [project_root, current_dir]
     for path in paths_to_add:
         if path not in sys.path:
             sys.path.insert(0, path)
@@ -24,33 +26,66 @@ setup_paths()
 # Import our modules
 try:
     from news_fetcher import SmartNewsFetcher
+
+    print("✅ Imported SmartNewsFetcher successfully")
 except ImportError as e:
     print(f"❌ Failed to import SmartNewsFetcher: {e}")
     sys.exit(1)
 
 try:
     from user_profile import USER_PROFILES, get_user_profile
+
+    print("✅ Imported user_profile successfully")
 except ImportError as e:
     print(f"❌ Failed to import user_profile: {e}")
     sys.exit(1)
 
 try:
     from cache_manager import get_cache_manager
+
+    print("✅ Imported cache_manager successfully")
 except ImportError as e:
     print(f"❌ Failed to import cache_manager: {e}")
     sys.exit(1)
 
 try:
     from summarizer import summarize_news
+
+    print("✅ Imported summarizer successfully")
 except ImportError as e:
     print(f"❌ Failed to import summarizer: {e}")
     summarize_news = None
 
 try:
     from feedback_system import feedback_system
+
+    print("✅ Imported feedback_system successfully")
 except ImportError as e:
     print(f"❌ Failed to import feedback_system: {e}")
     feedback_system = None
+
+# --- Import Data Retention Module ---
+try:
+    from data_retention import perform_data_retention_cleanup
+
+    DATA_RETENTION_ENABLED = True
+    print("✅ Imported data_retention successfully")
+except ImportError as e:
+    print(f"⚠️ Data retention module not available: {e}. Cleanup will be skipped.")
+    perform_data_retention_cleanup = None
+    DATA_RETENTION_ENABLED = False
+
+# Import database session for data retention
+try:
+    from database import engine, get_db_session
+
+    DATABASE_AVAILABLE = True
+    print("✅ Imported database successfully")
+except ImportError as e:
+    print(f"⚠️ Database module not fully available for data retention: {e}")
+    get_db_session = None
+    engine = None
+    DATABASE_AVAILABLE = False
 
 
 class NewsProcessingPipeline:
@@ -70,64 +105,101 @@ class NewsProcessingPipeline:
         self.summarize_news_func = summarize_news
         self.processed_news_count = 0
         self.total_processing_time = 0.0
+        print("🚀 NewsProcessingPipeline initialized with enhanced SmartNewsFetcher")
 
     def get_all_users(self) -> List[Any]:
+        """Get all registered users from the system."""
         users = []
         for user_id in USER_PROFILES.keys():
             user = get_user_profile(user_id)
             if user:
                 users.append(user)
+        print(f"👥 Loaded {len(users)} users from system")
         return users
+
+    def _user_profile_to_dict(self, user_profile: Any) -> Dict[str, Any]:
+        """
+        Converts a UserProfile object to a dictionary.
+        This ensures compatibility with functions expecting a dict.
+        """
+        if hasattr(user_profile, "__dict__"):
+            # If it's an object with __dict__, convert it
+            return user_profile.__dict__
+        elif isinstance(user_profile, dict):
+            # If it's already a dict, return it
+            return user_profile
+        else:
+            # Fallback for unexpected types
+            print(
+                f"⚠️ Unexpected user profile type: {type(user_profile)}. Attempting basic conversion."
+            )
+            try:
+                # Try to get common attributes
+                return {
+                    "user_id": getattr(user_profile, "user_id", "unknown"),
+                    "locale": getattr(user_profile, "locale", "US"),
+                    "language": getattr(user_profile, "language", "en"),
+                    "city": getattr(user_profile, "city", ""),
+                    "interests": getattr(user_profile, "interests", []),
+                }
+            except Exception as e:
+                print(f"❌ Failed to convert user profile to dict: {e}")
+                return {}
 
     def _generate_ynk_summary(self, article: Dict) -> str:
         """Generates a YNK (Why Not Care) summary for an article."""
         if not self.summarize_news_func:
-            return "Summary module not available."
+            return "Summary generation module (summarizer.py) not available."
+
         try:
+            # Use article content, description, or title
             news_text = (
                 article.get("content", "")
                 or article.get("description", "")
                 or article.get("title", "")
             )
             if not news_text.strip():
-                return "No content available."
+                return "No content, description, or title available for summary."
+
+            # Use the AI-classified category to select the correct impact aspects
             category = article.get("category", "general")
-            return self.summarize_news_func(news_text, category)
+
+            # Call summarize_news from summarizer.py
+            summary = self.summarize_news_func(news_text, category)
+            return summary
         except Exception as e:
-            return f"Summary generation failed. Error: {e}"
+            # print(f"⚠️ YNK summary generation failed for '{article.get('title', 'Unknown')}': {e}") # Minimize logs
+            return f"Could not generate summary. Error: {e}"
 
     def _select_top_articles_for_user(
         self, news_bundle: Dict[str, List[Dict]], user_profile: Dict
     ) -> List[Dict]:
         """
-        Selects TOP-7 articles, prioritizing user's specific interests.
-        Guarantees representation from specific subcategories if possible,
-        then from main categories, then fills with top remaining articles.
+        Selects the TOP-7 articles for a specific user from the news_bundle.
+        Guarantees representation from specific subcategories if possible.
         """
         selected_articles = []
-        seen_titles: Set[str] = set()
-        user_id = user_profile.get("user_id", "unknown_user")
+        seen_titles: Set[str] = set()  # For deduplication within TOP-7
 
         user_interests = user_profile.get("interests", [])
-
-        # 1. Extract specific subcategories (e.g., football_epl, formula1)
-        specific_subcategories = set()
-        for interest in user_interests:
-            if isinstance(interest, dict):
-                for subcats in interest.values():  # e.g., value for 'sports' key
-                    if isinstance(subcats, list):
-                        specific_subcategories.update(subcats)
-
-        # 2. Extract main categories (e.g., technology_ai_science, economy_finance)
-        main_categories = set(
+        # Extract main interest categories (strings)
+        main_interests = [
             interest for interest in user_interests if isinstance(interest, str)
+        ]
+        # Extract keys from interest dictionaries (e.g., 'sports')
+        main_interests.extend(
+            [
+                list(interest.keys())[0]
+                for interest in user_interests
+                if isinstance(interest, dict)
+            ]
         )
 
-        # --- Selection Logic ---
-        # a. Try to guarantee articles for each specific subcategory
+        # 1. Guarantee one article from each specific subcategory
         # Sort subcategories by potential preference (feedback or profile order)
-        sorted_specific_subcats = list(specific_subcategories)
+        sorted_specific_subcats = list(main_interests)  # Simplified for now
         if self.feedback_system:
+            user_id = user_profile.get("user_id")
             sorted_specific_subcats.sort(
                 key=lambda subcat: self.feedback_system.get_user_preference(
                     user_id, subcat
@@ -136,65 +208,26 @@ class NewsProcessingPipeline:
             )
 
         for subcategory in sorted_specific_subcats:
-            # Find articles matching the specific subcategory field
-            matching_articles = []
-            for articles_in_category in news_bundle.values():
-                for article in articles_in_category:
-                    # Check for subcategory fields like 'sports_subcategory', 'economy_subcategory'
-                    article_subcats = [
-                        article.get("sports_subcategory"),
-                        article.get("economy_subcategory"),
-                        article.get("tech_subcategory")
-                        # Add others if classifier provides them
-                    ]
-                    if subcategory in article_subcats:
-                        matching_articles.append(article)
-
-            # Sort by relevance and pick the best unique one
-            matching_articles.sort(
-                key=lambda x: x.get("relevance_score", 0), reverse=True
-            )
-            for article in matching_articles:
-                title_key = article.get("title", "").lower()
-                if title_key not in seen_titles and len(selected_articles) < 7:
-                    selected_articles.append(article)
-                    seen_titles.add(title_key)
-                    # Mark the parent category as satisfied if it's in main_categories
-                    # This is a heuristic: if user likes 'football_epl', they implicitly like 'sports'
-                    # We can refine this logic later.
-                    # For now, we don't block selecting a main category article later if needed.
-                    break  # Take only the first match for this subcategory
-
-        # b. Guarantee articles for main categories (that don't have specific subcats defined or weren't satisfied)
-        # Sort main categories by potential preference
-        sorted_main_cats = list(main_categories)
-        if self.feedback_system:
-            sorted_main_cats.sort(
-                key=lambda cat: self.feedback_system.get_user_preference(user_id, cat),
+            category_articles = news_bundle.get(subcategory, [])
+            # Find the highest scoring article not already selected
+            for article in sorted(
+                category_articles,
+                key=lambda x: x.get("relevance_score", 0),
                 reverse=True,
-            )
-
-        for category in sorted_main_cats:
-            # Only add if we haven't filled the quota
-            if len(selected_articles) >= 7:
-                break
-
-            category_articles = news_bundle.get(category, [])
-            category_articles.sort(
-                key=lambda x: x.get("relevance_score", 0), reverse=True
-            )
-
-            for article in category_articles:
+            ):
                 title_key = article.get("title", "").lower()
                 if title_key not in seen_titles and len(selected_articles) < 7:
                     selected_articles.append(article)
                     seen_titles.add(title_key)
-                    break  # Take only the first match for this main category
+                    # print(f"📌 Guaranteed article for '{subcategory}': {article.get('title', 'No Title')[:50]}...") # Minimize logs
+                    break  # Take only the first (best) unique article from this subcategory
 
-        # c. Fill remaining slots with the best articles overall
+        # 2. Fill remaining slots with the best articles overall
         if len(selected_articles) < 7:
             all_articles_sorted = sorted(
-                [a for articles in news_bundle.values() for a in articles],
+                [
+                    a for cat_articles in news_bundle.values() for a in cat_articles
+                ],  # Flatten all articles
                 key=lambda x: x.get("relevance_score", 0),
                 reverse=True,
             )
@@ -205,13 +238,66 @@ class NewsProcessingPipeline:
                 if title_key not in seen_titles:
                     selected_articles.append(article)
                     seen_titles.add(title_key)
+                    # print(f"🔝 Added to TOP-7: {article.get('title', 'No Title')[:50]}... (Score: {article.get('relevance_score', 0):.2f})") # Minimize logs
 
-        return selected_articles
+        return selected_articles[:7]  # Ensure maximum of 7
 
-    def process_daily_news(self, user_preferences: Dict) -> Dict[str, List[Dict]]:
+    async def _run_data_retention_cleanup(self):
+        """Runs the data retention cleanup tasks asynchronously."""
+        if not DATA_RETENTION_ENABLED or not DATABASE_AVAILABLE or not engine:
+            print(
+                "⚠️ Data retention is disabled or database is not configured. Skipping cleanup."
+            )
+            return
+
+        print("--- Initiating Automatic Data Retention Cleanup ---")
+        try:
+            from sqlalchemy.ext.asyncio import async_sessionmaker
+
+            AsyncSessionFactory = async_sessionmaker(engine, expire_on_commit=False)
+
+            async with AsyncSessionFactory() as session:
+                # Call the function from data_retention.py
+                deleted_counts = await perform_data_retention_cleanup(session)
+                print("--- Data Retention Cleanup Summary ---")
+                for task, count in deleted_counts.items():
+                    print(f"  ✅ {task}: {count} items")
+                print("--------------------------------------")
+        except Exception as e:
+            print(f"⚠️ Data retention cleanup failed: {e}")
+
+    def process_daily_news(self, user_profile: Any) -> Dict[str, List[Dict]]:
+        """
+        Process daily news batch for a user.
+        NOTE: This is a SYNCHRONOUS method, not async!
+
+        Args:
+            user_profile: User profile object or dict.
+
+        Returns:
+            Dictionary containing the 'top_7' articles
+        """
+        # --- CRITICAL FIX: Convert UserProfile object to dict ---
+        user_preferences_dict = self._user_profile_to_dict(user_profile)
+        user_id = user_preferences_dict.get("user_id", "Unknown")
+        user_locale = user_preferences_dict.get("locale", "US")
+        user_language = user_preferences_dict.get("language", "en")
+        user_city = user_preferences_dict.get("city", "")
+        user_interests = user_preferences_dict.get("interests", [])
+        # --- END FIX ---
+
+        print(f"\n📡 Fetching global news bundle for user preferences:")
+        print(f"   🌍 Locale: {user_locale} | 🗣️  Language: {user_language}")
+        print(f"   🎯 Interests: {user_interests} | 🏙️  City: {user_city}")
+
         start_time = time.time()
-        news_bundle = self.fetcher.fetch_daily_news_bundle(user_preferences)
-        processing_time = time.time() - start_time
+
+        # Process news using enhanced fetcher
+        # Pass the converted dict, not the object
+        news_bundle = self.fetcher.fetch_daily_news_bundle(user_preferences_dict)
+
+        end_time = time.time()
+        processing_time = end_time - start_time
 
         self.processed_news_count += sum(
             len(articles) for articles in news_bundle.values()
@@ -219,21 +305,20 @@ class NewsProcessingPipeline:
         self.total_processing_time += processing_time
 
         print(
-            f"\n🎯 PERSONALIZED TOP-7 FOR USER: {user_preferences.get('user_id', 'Unknown')} (Processed in {processing_time:.1f}s)"
+            f"\n🎯 PERSONALIZED TOP-7 FOR USER: {user_id} (Processed in {processing_time:.1f}s)"
         )
 
         top_7_articles = self._select_top_articles_for_user(
-            news_bundle, user_preferences
+            news_bundle, user_preferences_dict
         )
 
-        # Group by category for display
+        # Group articles by category for ordered display
         articles_by_category = defaultdict(list)
         for article in top_7_articles:
             category = article.get("category", "general")
             articles_by_category[category].append(article)
 
         # Order categories by user preference
-        user_id = user_preferences.get("user_id")
         ordered_categories = []
         if self.feedback_system:
             categories_in_top7 = list(articles_by_category.keys())
@@ -244,7 +329,6 @@ class NewsProcessingPipeline:
             )
         else:
             # Fallback order based on profile interests
-            user_interests = user_preferences.get("interests", [])
             main_interests_from_profile = [
                 i for i in user_interests if isinstance(i, str)
             ]
@@ -262,7 +346,7 @@ class NewsProcessingPipeline:
                 if cat not in ordered_categories:
                     ordered_categories.append(cat)
 
-        # Display articles
+        # Display articles, grouped and ordered by category
         article_counter = 1
         for category in ordered_categories:
             category_articles = articles_by_category[category]
@@ -276,42 +360,6 @@ class NewsProcessingPipeline:
                 )
                 print(f"📰 Title: {article.get('title')}")
                 print(f"🔗 Source: {article.get('source')}")
-
-                # --- Добавляем дату публикации ---
-                pub_date_raw = article.get("published_at")
-                if pub_date_raw:
-                    # Пытаемся красиво отформатировать дату, если она в стандартном формате
-                    try:
-                        # Обрабатываем основные форматы, включая RFC2822 и ISO
-                        from email.utils import parsedate_to_datetime
-
-                        import dateutil.parser  # type: ignore
-
-                        if isinstance(pub_date_raw, str):
-                            # Пробуем email.utils.parsedate_to_datetime (для RFC2822)
-                            if " " in pub_date_raw and ":" in pub_date_raw:
-                                dt_obj = parsedate_to_datetime(pub_date_raw)
-                            else:
-                                # Пробуем dateutil.parser (для ISO и других)
-                                dt_obj = (
-                                    dateutil.parser.isoparse(pub_date_raw)
-                                    if pub_date_raw.endswith("Z")
-                                    or "+" in pub_date_raw
-                                    or "T" in pub_date_raw
-                                    else dateutil.parser.parse(pub_date_raw)
-                                )
-
-                            formatted_pub_date = dt_obj.strftime("%Y-%m-%d %H:%M")
-                            print(f"🕒 Published: {formatted_pub_date}")
-                        else:
-                            print(
-                                f"🕒 Published: {pub_date_raw}"
-                            )  # Если это уже объект datetime
-                    except Exception:
-                        # Если не удалось распарсить, выводим как есть
-                        print(f"🕒 Published: {pub_date_raw}")
-                # --- Конец добавления даты ---
-
                 print(f"📊 Relevance Score: {article.get('relevance_score', 0):.2f}")
                 print(f"🏷️  Category: {article.get('category')}")
                 print(
@@ -323,36 +371,56 @@ class NewsProcessingPipeline:
                         f"🔍 Context: Global {ctx.get('global_impact', 'N/A')}, Time {ctx.get('time_sensitivity', 'N/A')}"
                     )
 
+                # Generate and display YNK (now with correct format and language)
                 ynk_summary = self._generate_ynk_summary(article)
                 print(f"💡 Why Not Care (YNK) Summary:\n{ynk_summary}")
+                # Add the summary to the article object for potential later use
                 article["ynk_summary"] = ynk_summary
                 article_counter += 1
 
         return {"top_7": top_7_articles}
 
+    async def run_full_daily_pipeline(self):
+        """
+        Runs the complete daily pipeline: fetch, process, deliver, and cleanup.
+        This is the main orchestrator.
+        """
+        print("🚀 Starting Full Daily News Pipeline Run...")
+        pipeline_start_time = time.time()
+
+        # --- 1. Fetch and Process for All Users ---
+        users = self.get_all_users()
+        if not users:
+            print("⚠️ No users found. Exiting pipeline.")
+            return
+
+        for user in users:
+            # --- CRITICAL FIX: Get user_id safely from object or dict ---
+            if hasattr(user, "user_id"):
+                user_id = user.user_id
+            elif isinstance(user, dict) and "user_id" in user:
+                user_id = user["user_id"]
+            else:
+                user_id = "Unknown"
+            # --- END FIX ---
+            print(f"\n--- Processing for User: {user_id} ---")
+
+            # Process and display for each user
+            # Pass the user object, conversion happens inside process_daily_news
+            _ = self.process_daily_news(user)
+
+        # --- 2. Run Data Retention Cleanup ---
+        await self._run_data_retention_cleanup()
+
+        # --- 3. Finalize ---
+        total_pipeline_time = time.time() - pipeline_start_time
+        print(f"\n🏁 Full Daily Pipeline Run Completed in {total_pipeline_time:.1f}s")
+
 
 if __name__ == "__main__":
+    # Initialize pipeline
     pipeline = NewsProcessingPipeline(max_workers=3)
 
-    sample_preferences = {
-        "user_id": "Max",
-        "locale": "DE",
-        "language": "en",
-        "city": "Frankfurt",
-        "interests": [
-            "economy_finance",
-            "technology_ai_science",
-            "politics_geopolitics",
-            {
-                "sports": [
-                    "basketball_nba",
-                    "football_epl",
-                    "formula1",
-                    "football_bundesliga",
-                ]
-            },
-        ],
-    }
-
-    result = pipeline.process_daily_news(sample_preferences)
-    # Result is printed inside process_daily_news
+    print("\n--- Initiating Full Asynchronous Pipeline Run ---")
+    asyncio.run(pipeline.run_full_daily_pipeline())
+    print("--- Full Asynchronous Pipeline Run Finished ---")
