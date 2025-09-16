@@ -22,14 +22,14 @@ project_root = os.path.dirname(current_dir)
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
-# Import classifier module
+# Import classifier module function directly
 try:
     from src.classifier import classify_news
 
-    CLASSIFIER_AVAILABLE = True
+    CLASSIFIER_IMPORTED = True
 except ImportError as e:
-    print(f"⚠️ Classifier module not available: {e}")
-    CLASSIFIER_AVAILABLE = False
+    print(f"⚠️ Classifier function not available: {e}")
+    CLASSIFIER_IMPORTED = False
     classify_news = None
 
 # Load environment variables
@@ -49,7 +49,7 @@ class SmartNewsFetcher:
 
         # Configure quality filters - Relaxed criteria
         self.quality_filters = {
-            "min_length": 100,  # Slightly increased minimum length for better content
+            "min_length": 50,  # Slightly increased minimum length for better content
             # 'max_length': 100000, # Removed max length limit
             "required_fields": ["title"],  # Only title is strictly required now
             # Removed some overly restrictive banned keywords
@@ -166,7 +166,7 @@ class SmartNewsFetcher:
                 )
                 continue
 
-            # Increase page size to get more articles
+            # Increase page size to limit articles
             params = {
                 "api-key": self.api_keys["guardian"],
                 "section": guardian_section,
@@ -178,7 +178,9 @@ class SmartNewsFetcher:
             }
 
             try:
-                response = requests.get(guardian_url, params=params, timeout=15)
+                response = requests.get(
+                    guardian_url, params=params, timeout=15
+                )  # Increased timeout
                 response.raise_for_status()
                 data = response.json()
 
@@ -192,7 +194,7 @@ class SmartNewsFetcher:
                         "content": item.get("fields", {}).get("body", ""),
                         "url": item.get("webUrl", ""),
                         "published_at": item.get("webPublicationDate"),
-                        "category": user_category,  # Keep user's category name
+                        "category": user_category,  # Keep user's category name for consistency
                     }
                     # Basic check to ensure we have at least a title
                     if article["title"]:
@@ -209,36 +211,6 @@ class SmartNewsFetcher:
 
         return articles
 
-    def _parse_rss_date(self, date_str: Optional[str]) -> Optional[datetime]:
-        """Parse various RSS date formats to datetime object."""
-        if not date_str:
-            return None
-        # Common formats (add more if needed)
-        formats = [
-            "%a, %d %b %Y %H:%M:%S %z",  # RFC 2822 (e.g., Wed, 02 Oct 2002 15:00:00 +0200)
-            "%Y-%m-%dT%H:%M:%SZ",  # ISO 8601 UTC (e.g., 2002-10-02T15:00:00Z)
-            "%Y-%m-%dT%H:%M:%S%z",  # ISO 8601 with timezone (e.g., 2002-10-02T15:00:00+02:00)
-            "%Y-%m-%d %H:%M:%S",  # Simple format (e.g., 2002-10-02 15:00:00)
-            "%Y-%m-%d",  # Date only (e.g., 2002-10-02)
-        ]
-        for fmt in formats:
-            try:
-                # Special handling for timezone offsets like '+0100'
-                if "%z" in fmt and ("+" in date_str[-5:] or "-" in date_str[-5:]):
-                    # feedparser usually handles this, but let's be safe
-                    parsed_date = datetime.strptime(date_str, fmt)
-                else:
-                    parsed_date = datetime.strptime(date_str, fmt)
-                # Ensure timezone awareness
-                if parsed_date.tzinfo is None:
-                    parsed_date = parsed_date.replace(tzinfo=timezone.utc)
-                return parsed_date
-            except ValueError:
-                continue
-        # If parsing fails, return None
-        # print(f"  ⚠️ Could not parse date: {date_str}") # Uncomment for debugging
-        return None
-
     def _fetch_rss_articles(self) -> List[Dict]:
         """Fetch articles from RSS feeds."""
         try:
@@ -248,14 +220,7 @@ class SmartNewsFetcher:
             return []
 
         articles = []
-        # Get today's date range for filtering (in UTC)
-        now = datetime.now(timezone.utc)
-        start_of_today = now.replace(hour=0, minute=0, second=0, microsecond=0)
-        end_of_today = start_of_today.replace(
-            hour=23, minute=59, second=59, microsecond=999999
-        )
-
-        # Increase total RSS feeds processed to get more variety
+        # Increase total RSS feeds processed to control volume
         feeds_to_process = self.rss_feeds[:35]  # Increased from 25
 
         for url in feeds_to_process:
@@ -268,24 +233,6 @@ class SmartNewsFetcher:
                 entries_to_process = feed.entries[:10]  # Increased from 7
 
                 for entry in entries_to_process:
-                    published_at_raw = getattr(entry, "published", None)
-                    published_at_dt = self._parse_rss_date(published_at_raw)
-
-                    # --- NEW DATE FILTERING LOGIC ---
-                    # Include article if:
-                    # 1. Date is unknown/unclear (assume it's recent enough)
-                    # 2. Date is within TODAY (UTC)
-                    include_article = True
-                    if published_at_dt:
-                        # Normalize to UTC for comparison
-                        entry_date_utc = published_at_dt.astimezone(timezone.utc)
-                        if not (start_of_today <= entry_date_utc <= end_of_today):
-                            include_article = False
-
-                    if not include_article:
-                        continue
-                    # --- END NEW DATE FILTERING ---
-
                     article = {
                         "source": getattr(feed.feed, "title", clean_url),
                         "title": getattr(entry, "title", ""),
@@ -294,8 +241,7 @@ class SmartNewsFetcher:
                         if hasattr(entry, "content")
                         else "",
                         "url": getattr(entry, "link", ""),
-                        "published_at": published_at_raw,  # Keep original string
-                        "published_at_dt": published_at_dt,  # Add parsed datetime for potential later use
+                        "published_at": getattr(entry, "published", None),
                     }
                     # Prioritize content, fallback to description
                     if not article["content"] and article["description"]:
@@ -314,7 +260,7 @@ class SmartNewsFetcher:
     # Reddit method removed entirely
 
     def _is_high_quality_article(self, article: Dict) -> bool:
-        """Check if an article meets relaxed but reasonable quality criteria."""
+        """Check if an article meets relaxed quality criteria."""
         title = article.get("title", "")
 
         # Must have a title
@@ -349,7 +295,8 @@ class SmartNewsFetcher:
 
     def _classify_articles(self, articles: List[Dict], user_locale: str) -> List[Dict]:
         """Classify articles using AI or fallback keyword method."""
-        if not CLASSIFIER_AVAILABLE or not classify_news:
+        # Используем только импортированную функцию classify_news
+        if not classify_news:
             print("  ⚠️ AI classifier not available, using keyword classification")
             return self._classify_articles_keyword_fallback(articles)
 
@@ -358,24 +305,13 @@ class SmartNewsFetcher:
 
         classified_articles = []
         for i, article in enumerate(articles):
-            # Improved text preparation for classification: Title + Description + start of Content
-            title = article.get("title", "")
-            description = article.get("description", "")
-            content = article.get("content", "")
-
-            # Prioritize content, then description, then title for text to classify
-            if content:
-                text_to_classify = f"{title}\n\n{description}\n\n{content[:2000]}"  # Limit content part
-            elif description:
-                text_to_classify = f"{title}\n\n{description}"
-            else:
-                text_to_classify = title
-
-            if not text_to_classify.strip():
-                # Fallback if everything is empty
-                text_to_classify = title or "No title"
-
             try:
+                # Combine title and description for classification
+                text_to_classify = (
+                    f"{article.get('title', '')} {article.get('description', '')}"
+                )
+
+                # Call the imported classify_news function
                 classification_result = classify_news(
                     text_to_classify, user_locale=user_locale
                 )
@@ -383,7 +319,6 @@ class SmartNewsFetcher:
                 article.update(classification_result)
                 article["ai_classified"] = True
                 classified_articles.append(article)
-                # print(f"    ✅ Article {i+1} classified as {classification_result.get('category')}") # Minimized log
 
             except Exception as e:
                 print(
@@ -400,21 +335,9 @@ class SmartNewsFetcher:
         print(f"   ✅ AI classified {len(classified_articles)}/{len(articles)} articles")
         return classified_articles
 
-    def _classify_articles_keyword_fallback(self, articles: List[Dict]) -> List[Dict]:
-        """Fallback classification using keywords."""
-        classified_articles = []
-        for article in articles:
-            classification = self._classify_single_article_keyword_fallback(article)
-            article.update(classification)
-            article["ai_classified"] = False
-            classified_articles.append(article)
-        return classified_articles
-
     def _classify_single_article_keyword_fallback(self, article: Dict) -> Dict:
         """Classify a single article using keywords."""
         text = f"{article.get('title', '')} {article.get('description', '')}".lower()
-
-        # More detailed keywords, including subcategories for sports
         category_keywords = {
             "politics_geopolitics": [
                 "politic",
@@ -428,13 +351,6 @@ class SmartNewsFetcher:
                 "prime minister",
                 "parliament",
                 "congress",
-                "senate",
-                "ukraine",
-                "russia",
-                "china",
-                "usa",
-                "eu",
-                "nato",
             ],
             "economy_finance": [
                 "economy",
@@ -451,11 +367,6 @@ class SmartNewsFetcher:
                 "currency",
                 "bitcoin",
                 "crypto",
-                "fed",
-                "ecb",
-                "interest rate",
-                "unemployment",
-                "layoff",
             ],
             "technology_ai_science": [
                 "technology",
@@ -471,16 +382,6 @@ class SmartNewsFetcher:
                 "silicon valley",
                 "startup",
                 "cyber",
-                "data",
-                "quantum",
-                "robot",
-                "app",
-                "digital",
-                "semiconductor",
-                "nvidia",
-                "apple",
-                "google",
-                "microsoft",
             ],
             "sports": [
                 "sport",
@@ -496,16 +397,6 @@ class SmartNewsFetcher:
                 "champion",
                 "cup",
                 "world cup",
-                "nba",
-                "epl",
-                "premier league",
-                "bundesliga",
-                "formula 1",
-                "f1",
-                "nfl",
-                "atp",
-                "wta",
-                "olympic",
             ],
             "culture_media_entertainment": [
                 "culture",
@@ -521,9 +412,6 @@ class SmartNewsFetcher:
                 "actress",
                 "tv",
                 "hollywood",
-                "award",
-                "festival",
-                "concert",
             ],
             "healthcare_pharma": [
                 "health",
@@ -538,9 +426,6 @@ class SmartNewsFetcher:
                 "pandemic",
                 "drug",
                 "therapy",
-                "fda",
-                "who",
-                "mental health",
             ],
             "energy_climate_environment": [
                 "energy",
@@ -555,9 +440,6 @@ class SmartNewsFetcher:
                 "carbon",
                 "emission",
                 "greenhouse",
-                "climate change",
-                "sustainability",
-                "electric vehicle",
             ],
             "real_estate_housing": [
                 "real estate",
@@ -569,7 +451,6 @@ class SmartNewsFetcher:
                 "rent",
                 "buy house",
                 "housing market",
-                "realtor",
             ],
             "career_education_labour": [
                 "job",
@@ -583,8 +464,6 @@ class SmartNewsFetcher:
                 "salary",
                 "unemployment",
                 "degree",
-                "remote work",
-                "layoff",
             ],
             "transport_auto_aviation": [
                 "car",
@@ -598,9 +477,6 @@ class SmartNewsFetcher:
                 "traffic",
                 "tesla",
                 "electric vehicle",
-                "boeing",
-                "airbus",
-                "tesla",
             ],
         }
 
@@ -624,18 +500,23 @@ class SmartNewsFetcher:
             "emotional_intensity": 50,
         }
 
-        # Map confidence to importance score (0-100)
-        importance_from_confidence = int(confidence * 70)  # Max 70 from keywords
-
         return {
             "category": best_category,
             "confidence": round(confidence, 2),
             "reasons": "Keyword-based classification",
-            "importance_score": max(
-                10, importance_from_confidence
-            ),  # Minimum importance of 10
+            "importance_score": int(confidence * 50),  # Map confidence to 0-100 scale
             "contextual_factors": default_contextual_factors,
         }
+
+    def _classify_articles_keyword_fallback(self, articles: List[Dict]) -> List[Dict]:
+        """Fallback classification using keywords for all articles."""
+        classified_articles = []
+        for article in articles:
+            classification = self._classify_single_article_keyword_fallback(article)
+            article.update(classification)
+            article["ai_classified"] = False
+            classified_articles.append(article)
+        return classified_articles
 
     def _score_article_relevance(
         self, article: Dict, user_interests: List[Any], user_locale: str
@@ -646,8 +527,8 @@ class SmartNewsFetcher:
         Improved algorithm with better calibration and enhanced sports boost.
         """
         importance_score = article.get(
-            "importance_score", 10
-        )  # Default to 10 if missing, not 50
+            "importance_score", 50
+        )  # Default to 50 if missing
 
         # --- Relevance Score Calculation (0-100) ---
         base_score = importance_score
@@ -769,7 +650,9 @@ class SmartNewsFetcher:
             # Note: Errors in scoring will silently drop the article from the scored list
             # Consider if you want a default score for articles that fail scoring
             try:
-                self._score_article_relevance(article, user_interests, user_locale)
+                score = self._score_article_relevance(
+                    article, user_interests, user_locale
+                )
                 scored_articles.append(article)
             except Exception:
                 pass  # Article dropped if scoring fails
@@ -853,7 +736,7 @@ class SmartNewsFetcher:
         )
 
         # 3. AI Classification (if available)
-        if CLASSIFIER_AVAILABLE and classify_news:
+        if classify_news:
             classified = self._classify_articles(deduplicated, user_locale)
         else:
             classified = self._classify_articles_keyword_fallback(deduplicated)
