@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My News Feed</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        pre { background-color: #f4f4f4; padding: 15px; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <h1>My Personalized News Feed</h1>
+    <button id="fetchButton">Fetch News</button>
+    <p id="status"></p>
+    <pre id="newsOutput">Click the button to fetch news...</pre>
+
+    <script>
+        document.getElementById('fetchButton').addEventListener('click', async () => {
+            const statusElement = document.getElementById('status');
+            const outputElement = document.getElementById('newsOutput');
+            const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtYXhvbmNoaWsuZGV2ZWxvcG1lbnRAZ21haWwuY29tIiwiZXhwIjoxNzU4NTcyNjA0fQ.xwj7fNNP0FDhfEqES-wOB640qZHQKsoppdBkrXxOpvc"; // <--- ВСТАВЬ СВОЙ ТОКЕН СЮДА
+
+            if (!token) {
+                statusElement.textContent = "Error: Please add your token to the script!";
+                outputElement.textContent = "";
+                return;
+            }
+
+            statusElement.textContent = "Fetching...";
+            outputElement.textContent = "";
+
+            try {
+                const response = await fetch('http://localhost:8000/api/v1/news/today', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Authorization': `Bearer ${token}` // <-- Токен в заголовке
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                // Красиво форматируем JSON для отображения
+                outputElement.textContent = JSON.stringify(data, null, 2);
+                statusElement.textContent = "Success!";
+            } catch (error) {
+                console.error('Fetch error:', error);
+                statusElement.textContent = `Error: ${error.message}`;
+                outputElement.textContent = "Failed to load news.";
+            }
+        });
+    </script>
+</body>
+</html>

@@ -75,16 +75,20 @@ except ImportError as e:
     perform_data_retention_cleanup = None
     DATA_RETENTION_ENABLED = False
 
-# Import database session for data retention
+# Import database session and models for saving news items
 try:
-    from database import engine, get_db_session
+    from sqlalchemy import select
+
+    from src.database import AsyncSessionFactory  # Correct import
+    from src.models import NewsItem  # SQLAlchemy model
 
     DATABASE_AVAILABLE = True
-    print("✅ Imported database successfully")
+    print("✅ Imported database and models successfully")
 except ImportError as e:
-    print(f"⚠️ Database module not fully available for data retention: {e}")
-    get_db_session = None
-    engine = None
+    print(f"⚠️ Database or models not fully available for saving news items: {e}")
+    AsyncSessionFactory = None
+    NewsItem = None
+    select = None
     DATABASE_AVAILABLE = False
 
 
@@ -142,6 +146,78 @@ class NewsProcessingPipeline:
             except Exception as e:
                 print(f"❌ Failed to convert user profile to dict: {e}")
                 return {}
+
+    async def _save_news_items_to_db(self, news_bundle: dict):
+        """Сохраняет уникальные новости из news_bundle в БД и обновляет их id."""
+        if not DATABASE_AVAILABLE or not AsyncSessionFactory or not NewsItem:
+            print("⚠️ Database not configured for saving news items. Skipping.")
+            return
+
+        # Собираем все уникальные статьи из news_bundle
+        all_articles = []
+        for category_articles in news_bundle.values():
+            if isinstance(category_articles, list):
+                all_articles.extend(category_articles)
+
+        # Собираем уникальные URL'ы для проверки дубликатов
+        unique_urls = set()
+        articles_to_process = []
+        for article in all_articles:
+            url = article.get("url")
+            if url and url not in unique_urls:
+                unique_urls.add(url)
+                articles_to_process.append(article)
+
+        # Создаем временную сессию для сохранения новостей
+        async with AsyncSessionFactory() as db_session:
+            try:
+                for article in articles_to_process:
+                    # Пытаемся найти существующую новость по URL
+                    stmt = select(NewsItem).where(NewsItem.url == article["url"])
+                    result = await db_session.execute(stmt)
+                    existing_item = result.scalar_one_or_none()
+
+                    if existing_item:
+                        # Новость уже есть, используем её ID
+                        article["id"] = existing_item.id
+                        # print(f"Found existing news item: {existing_item.id}") # Для отладки
+                    else:
+                        # Создаем новую новость
+                        # --- ИСПРАВЛЕНИЕ: Обеспечить, что external_id не None ---
+                        # Используем URL как fallback для external_id, если он отсутствует
+                        external_id_from_article = article.get(
+                            "external_id"
+                        )  # Может быть None
+                        external_id_to_use = (
+                            external_id_from_article
+                            if external_id_from_article is not None
+                            else article["url"]
+                        )
+
+                        new_item = NewsItem(
+                            external_id=external_id_to_use,  # <-- ИСПРАВЛЕНО
+                            source_name=article.get(
+                                "source_name", article.get("source", "Unknown")
+                            ),
+                            title=article["title"],
+                            url=article["url"],
+                            category=article.get("category", "unknown"),
+                            subcategory=article.get("subcategory"),  # Может быть None
+                            importance_score=article.get("importance_score", 0),
+                            ai_analysis=article.get("ai_analysis", {}),
+                            # fetched_at устанавливается по умолчанию
+                        )
+                        db_session.add(new_item)
+                        await db_session.commit()  # Сохраняем
+                        await db_session.refresh(new_item)  # Получаем ID
+                        article["id"] = new_item.id
+                        # print(f"Created new news item: {new_item.id}") # Для отладки
+                # print(f"✅ Saved/Checked {len(articles_to_process)} unique news items to DB.")
+            except Exception as e:
+                print(f"⚠️ Error saving news items to DB: {e}")
+                await db_session.rollback()
+                # Можно выбросить ошибку или продолжить (осторожно!)
+                # raise
 
     def _generate_ynk_summary(self, article: Dict) -> str:
         """Generates a YNK (Why Not Care) summary for an article."""
@@ -319,7 +395,11 @@ class NewsProcessingPipeline:
 
     async def _run_data_retention_cleanup(self):
         """Runs the data retention cleanup tasks asynchronously."""
-        if not DATA_RETENTION_ENABLED or not DATABASE_AVAILABLE or not engine:
+        if (
+            not DATA_RETENTION_ENABLED
+            or not DATABASE_AVAILABLE
+            or not AsyncSessionFactory
+        ):
             print(
                 "⚠️ Data retention is disabled or database is not configured. Skipping cleanup."
             )
@@ -327,10 +407,7 @@ class NewsProcessingPipeline:
 
         print("--- Initiating Automatic Data Retention Cleanup ---")
         try:
-            from sqlalchemy.ext.asyncio import async_sessionmaker
-
-            AsyncSessionFactory = async_sessionmaker(engine, expire_on_commit=False)
-
+            # Use the imported AsyncSessionFactory
             async with AsyncSessionFactory() as session:
                 # Call the function from data_retention.py
                 deleted_counts = await perform_data_retention_cleanup(session)
@@ -341,20 +418,20 @@ class NewsProcessingPipeline:
         except Exception as e:
             print(f"⚠️ Data retention cleanup failed: {e}")
 
-    def process_daily_news(
+    async def process_daily_news(
         self, user_preferences: Union[Dict, Any]
     ) -> Dict[str, List[Dict]]:
         """
         Process daily news batch for a user.
-        NOTE: This is a SYNCHRONOUS method, not async!
+        NOTE: This method is now ASYNC!
 
         Args:
             user_preferences: User profile (object or dict) with locale, interests, language preferences
 
         Returns:
-            Dictionary containing the 'top_7' articles
+            Dictionary containing the 'top_7' articles with real DB IDs
         """
-        # Ensure user_preferences is a dict for internal use
+        # Ensure user_preferences is a dict for internal use AND for passing to fetcher
         user_prefs_dict = self._convert_user_profile_to_dict(user_preferences)
 
         user_id = user_prefs_dict.get("user_id", "Unknown")
@@ -369,12 +446,15 @@ class NewsProcessingPipeline:
 
         start_time = time.time()
 
-        # Get all users (for context, though we process for one)
-        users = self.get_all_users()
-
         # Process news using enhanced fetcher
-        # Pass the dict version of user preferences
+        # PASS THE DICT VERSION OF USER PREFERENCES HERE
         news_bundle = self.fetcher.fetch_daily_news_bundle(user_prefs_dict)
+
+        # --- ИЗМЕНЕНИЕ 2: await instead of asyncio.run ---
+        # Save news items to DB and update IDs in news_bundle
+        print("💾 Saving news items to database...")
+        await self._save_news_items_to_db(news_bundle)
+        # --- КОНЕЦ ИЗМЕНЕНИЯ 2 ---
 
         end_time = time.time()
         processing_time = end_time - start_time
@@ -394,6 +474,7 @@ class NewsProcessingPipeline:
             news_bundle, user_prefs_dict
         )
 
+        # --- Остальная логика метода без изменений ---
         # Group articles by category for ordered display
         articles_by_category = defaultdict(list)
         for article in top_7_articles:
@@ -452,6 +533,7 @@ class NewsProcessingPipeline:
                 print(f"🔗 Source: {article.get('source')}")
                 print(f"📊 Relevance Score: {article.get('relevance_score', 0):.2f}")
                 print(f"🏷️  Category: {article.get('category')}")
+                print(f"🆔 ID: {article.get('id', 'N/A')}")  # Show the DB ID
                 print(
                     f"🧠 AI Confidence: {article.get('confidence', 0):.2f} | Importance: {article.get('importance_score', 0)}/100"
                 )
@@ -492,8 +574,23 @@ class NewsProcessingPipeline:
                 user_id = getattr(user, "user_id", "Unknown")
             print(f"\n--- Processing for User: {user_id} ---")
 
-            # Process and display for each user
+            # Convert user to dict for processing
+            user_dict = self._convert_user_profile_to_dict(user)
+
+            # --- Fetch news bundle ---
+            news_bundle = self.fetcher.fetch_daily_news_bundle(user_dict)
+
+            # --- Save news items to DB (async) ---
+            await self._save_news_items_to_db(news_bundle)
+
+            # --- Process and display for each user ---
             # The conversion to dict is handled inside process_daily_news now
+            # But since we already have news_bundle and saved items, we can optimize
+            # However, for simplicity and reusing logic, we call process_daily_news
+            # It will re-fetch, but for MVP it's okay. In production, refactor.
+            # Let's pass the pre-fetched and saved bundle.
+            # This requires modifying process_daily_news to accept a pre-fetched bundle.
+            # That's a bigger change. For now, we re-fetch.
             _ = self.process_daily_news(user)
 
         # --- 2. Run Data Retention Cleanup ---
@@ -533,6 +630,7 @@ if __name__ == "__main__":
 
     print("\n--- Initiating Full Asynchronous Pipeline Run ---")
     # Process daily news (SYNCHRONOUS CALL inside the ASYNC pipeline runner!)
+    # The DB saving logic inside process_daily_news will handle the async part for testing.
     result = pipeline.process_daily_news(sample_preferences)
     top_7_articles = result.get("top_7", [])
 

@@ -172,7 +172,7 @@ class SmartNewsFetcher:
                 "section": guardian_section,
                 "from-date": yesterday,
                 "to-date": yesterday,
-                "page-size": 15,  # Increased from 10
+                "page-size": 5,  # Increased from 10, make 15 to add more
                 "show-fields": "headline,trailText,body",
                 "order-by": "relevance",
             }
@@ -221,7 +221,7 @@ class SmartNewsFetcher:
 
         articles = []
         # Increase total RSS feeds processed to control volume
-        feeds_to_process = self.rss_feeds[:35]  # Increased from 25
+        feeds_to_process = self.rss_feeds[:5]  # Increased from 25, 35 for more volume
 
         for url in feeds_to_process:
             try:
