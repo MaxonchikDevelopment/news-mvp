@@ -1,0 +1,790 @@
+2025-09-29 22:30:55 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "report on potential democratic governance issues",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 50,
+    "personal_relevance": 55,
+    "historical_significance": 60,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 22:30:55 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'report on potential democratic governance issues', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 50, 'personal_relevance': 55, 'historical_significance': 60, 'emotional_intensity': 50}}
+2025-09-29 22:30:57 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK energy minister's statement on social media platform",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 45,
+    "personal_relevance": 30,
+    "historical_significance": 20,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:30:57 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': "UK energy minister's statement on social media platform", 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 45, 'personal_relevance': 30, 'historical_significance': 20, 'emotional_intensity': 60}}
+2025-09-29 22:30:58 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "political commentary at a major conference",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 20,
+    "personal_relevance": 60,
+    "historical_significance": 30,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 22:30:58 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'political commentary at a major conference', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 20, 'personal_relevance': 60, 'historical_significance': 30, 'emotional_intensity': 50}}
+2025-09-29 22:31:00 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": "other_economy",
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK political announcement on education and labor",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 20,
+    "personal_relevance": 30,
+    "historical_significance": 40,
+    "emotional_intensity": 35
+  }
+}
+```
+2025-09-29 22:31:00 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': 'other_economy', 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'UK political announcement on education and labor', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 20, 'personal_relevance': 30, 'historical_significance': 40, 'emotional_intensity': 35}}
+2025-09-29 22:31:01 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK political conference statements on immigration policy",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 40,
+    "personal_relevance": 55,
+    "historical_significance": 45,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:31:01 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'UK political conference statements on immigration policy', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 40, 'personal_relevance': 55, 'historical_significance': 45, 'emotional_intensity': 60}}
+2025-09-29 22:31:05 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": "other_tech",
+  "confidence": 0.95,
+  "reasons": "opinion piece by web inventor on tech philosophy",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 20,
+    "global_impact": 60,
+    "personal_relevance": 50,
+    "historical_significance": 70,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-29 22:31:05 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'other_tech', 'confidence': 0.95, 'reasons': 'opinion piece by web inventor on tech philosophy', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 20, 'global_impact': 60, 'personal_relevance': 50, 'historical_significance': 70, 'emotional_intensity': 40}}
+2025-09-29 22:31:07 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": "other_economy",
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "analysis of economic policies and international support",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 60,
+    "personal_relevance": 55,
+    "historical_significance": 50,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-29 22:31:07 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': 'other_economy', 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'analysis of economic policies and international support', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 60, 'personal_relevance': 55, 'historical_significance': 50, 'emotional_intensity': 40}}
+2025-09-29 22:31:08 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "healthcare_pharma",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "legal action against major pharmaceutical company",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 60,
+    "personal_relevance": 80,
+    "historical_significance": 50,
+    "emotional_intensity": 75
+  }
+}
+```
+2025-09-29 22:31:08 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'healthcare_pharma', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'legal action against major pharmaceutical company', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 60, 'personal_relevance': 80, 'historical_significance': 50, 'emotional_intensity': 75}}
+2025-09-29 22:31:10 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "economy_subcategory": "markets",
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "alternative data sources challenge official inflation figures",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 65,
+    "personal_relevance": 80,
+    "historical_significance": 50,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-29 22:31:10 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'other_economy', 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'alternative data sources challenge official inflation figures', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 65, 'personal_relevance': 80, 'historical_significance': 50, 'emotional_intensity': 40}}
+2025-09-29 22:31:12 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "economy_subcategory": "corporate_earnings",
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "corporate earnings report with financial impact",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 20,
+    "personal_relevance": 30,
+    "historical_significance": 20,
+    "emotional_intensity": 10
+  }
+}
+```
+2025-09-29 22:31:12 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'corporate_earnings', 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'corporate earnings report with financial impact', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 20, 'personal_relevance': 30, 'historical_significance': 20, 'emotional_intensity': 10}}
+2025-09-29 22:31:13 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "economy_subcategory": "other_economy",
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK chancellor's statement on economic policy",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 50,
+    "personal_relevance": 60,
+    "historical_significance": 40,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 22:31:14 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'other_economy', 'tech_subcategory': None, 'confidence': 0.85, 'reasons': "UK chancellor's statement on economic policy", 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 50, 'personal_relevance': 60, 'historical_significance': 40, 'emotional_intensity': 50}}
+2025-09-29 22:31:15 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK government policy announcement on immigration",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 50,
+    "personal_relevance": 40,
+    "historical_significance": 55,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:31:15 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'UK government policy announcement on immigration', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 50, 'personal_relevance': 40, 'historical_significance': 55, 'emotional_intensity': 60}}
+2025-09-29 22:31:17 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "ongoing investigation into a significant violent incident",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 40,
+    "personal_relevance": 60,
+    "historical_significance": 50,
+    "emotional_intensity": 75
+  }
+}
+```
+2025-09-29 22:31:17 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'ongoing investigation into a significant violent incident', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 40, 'personal_relevance': 60, 'historical_significance': 50, 'emotional_intensity': 75}}
+2025-09-29 22:31:18 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "verified statement from a sports figure about future role",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 30,
+    "personal_relevance": 50,
+    "historical_significance": 20,
+    "emotional_intensity": 45
+  }
+}
+```
+2025-09-29 22:31:19 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'verified statement from a sports figure about future role', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 30, 'personal_relevance': 50, 'historical_significance': 20, 'emotional_intensity': 45}}
+2025-09-29 22:31:20 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "culture_media_entertainment",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "controversial stunt by major influencer",
+  "importance_score": 45,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 40,
+    "personal_relevance": 30,
+    "historical_significance": 20,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:31:20 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'culture_media_entertainment', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'controversial stunt by major influencer', 'importance_score': 45, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 40, 'personal_relevance': 30, 'historical_significance': 20, 'emotional_intensity': 60}}
+2025-09-29 22:31:22 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "culture_media_entertainment",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "public dispute between high-profile figures",
+  "importance_score": 45,
+  "contextual_factors": {
+    "time_sensitivity": 30,
+    "global_impact": 40,
+    "personal_relevance": 35,
+    "historical_significance": 20,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:31:22 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'culture_media_entertainment', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'public dispute between high-profile figures', 'importance_score': 45, 'contextual_factors': {'time_sensitivity': 30, 'global_impact': 40, 'personal_relevance': 35, 'historical_significance': 20, 'emotional_intensity': 60}}
+2025-09-29 22:31:23 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "career_education_labour",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "government policy change based on court rulings",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 20,
+    "personal_relevance": 50,
+    "historical_significance": 40,
+    "emotional_intensity": 30
+  }
+}
+```
+2025-09-29 22:31:23 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'career_education_labour', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'government policy change based on court rulings', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 20, 'personal_relevance': 50, 'historical_significance': 40, 'emotional_intensity': 30}}
+2025-09-29 22:31:25 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "healthcare_pharma",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "healthcare system warning on patient safety",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 40,
+    "personal_relevance": 75,
+    "historical_significance": 30,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 22:31:25 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'healthcare_pharma', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'healthcare system warning on patient safety', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 40, 'personal_relevance': 75, 'historical_significance': 30, 'emotional_intensity': 50}}
+2025-09-29 22:31:26 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "serious crime with significant local impact",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 20,
+    "personal_relevance": 60,
+    "historical_significance": 30,
+    "emotional_intensity": 80
+  }
+}
+```
+2025-09-29 22:31:26 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'serious crime with significant local impact', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 20, 'personal_relevance': 60, 'historical_significance': 30, 'emotional_intensity': 80}}
+2025-09-29 22:31:27 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "potential shift in US military aid policy",
+  "importance_score": 78,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-29 22:31:27 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'potential shift in US military aid policy', 'importance_score': 78, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 70}}
+2025-09-29 22:31:29 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "major political statement in ongoing conflict",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:31:29 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'major political statement in ongoing conflict', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 60}}
+2025-09-29 22:31:30 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": "cricket",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "sports event with political implications",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 50,
+    "personal_relevance": 30,
+    "historical_significance": 55,
+    "emotional_intensity": 75
+  }
+}
+```
+2025-09-29 22:31:30 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'sports event with political implications', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 50, 'personal_relevance': 30, 'historical_significance': 55, 'emotional_intensity': 75}}
+2025-09-29 22:31:32 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "unverified single-source claim in active conflict",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 50,
+    "personal_relevance": 45,
+    "historical_significance": 40,
+    "emotional_intensity": 65
+  }
+}
+```
+2025-09-29 22:31:32 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'unverified single-source claim in active conflict', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 50, 'personal_relevance': 45, 'historical_significance': 40, 'emotional_intensity': 65}}
+2025-09-29 22:31:33 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "major US political figure's proposal on active conflict",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-29 22:31:33 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': "major US political figure's proposal on active conflict", 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 70}}
+2025-09-29 22:31:35 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "verified diplomatic apology with global implications",
+  "importance_score": 78,
+  "contextual_factors": {
+    "time_sensitivity": 75,
+    "global_impact": 70,
+    "personal_relevance": 50,
+    "historical_significance": 60,
+    "emotional_intensity": 65
+  }
+}
+```
+2025-09-29 22:31:35 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'verified diplomatic apology with global implications', 'importance_score': 78, 'contextual_factors': {'time_sensitivity': 75, 'global_impact': 70, 'personal_relevance': 50, 'historical_significance': 60, 'emotional_intensity': 65}}
+2025-09-29 22:31:36 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "major political statement in ongoing conflict",
+  "importance_score": 78,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-29 22:31:36 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'major political statement in ongoing conflict', 'importance_score': 78, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 70}}
+2025-09-29 22:31:37 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "unverified single-source claim in active conflict",
+  "importance_score": 40,
+  "contextual_factors": {
+    "time_sensitivity": 65,
+    "global_impact": 35,
+    "personal_relevance": 25,
+    "historical_significance": 15,
+    "emotional_intensity": 85
+  }
+}
+```
+2025-09-29 22:31:37 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'unverified single-source claim in active conflict', 'importance_score': 40, 'contextual_factors': {'time_sensitivity': 65, 'global_impact': 35, 'personal_relevance': 25, 'historical_significance': 15, 'emotional_intensity': 85}}
+2025-09-29 22:31:39 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "unverified proposal in active conflict",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 50,
+    "personal_relevance": 45,
+    "historical_significance": 40,
+    "emotional_intensity": 65
+  }
+}
+```
+2025-09-29 22:31:39 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'unverified proposal in active conflict', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 50, 'personal_relevance': 45, 'historical_significance': 40, 'emotional_intensity': 65}}
+2025-09-29 22:31:40 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "Canada's designation of a foreign entity as terrorist",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 55,
+    "personal_relevance": 40,
+    "historical_significance": 50,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:31:40 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': "Canada's designation of a foreign entity as terrorist", 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 55, 'personal_relevance': 40, 'historical_significance': 50, 'emotional_intensity': 60}}
+2025-09-29 22:31:42 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "economy_subcategory": "other_economy",
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "major trade policy announcement",
+  "importance_score": 78,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 75,
+    "personal_relevance": 70,
+    "historical_significance": 65,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:31:43 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'other_economy', 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'major trade policy announcement', 'importance_score': 78, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 75, 'personal_relevance': 70, 'historical_significance': 65, 'emotional_intensity': 60}}
+2025-09-29 22:31:43 [DEBUG] summarizer: Raw news (first 100 chars): Israel&#039;s Benjamin Netanyahu has said he supports US President Trump’s 20-point plan to end the ...
+2025-09-29 22:31:43 [DEBUG] summarizer: Category for summarization: politics_geopolitics
+2025-09-29 22:31:43 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 22:31:43 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 22:31:44 [DEBUG] summarizer: Generated summary (first 150 chars): **Netanyahu Backs Trump's Gaza War Plan**
+
+YNotCare: Israel's PM supports Trump's 20-point plan to end Gaza war.
+- Political Impact: May influence int...
+2025-09-29 22:31:44 [DEBUG] summarizer: Raw news (first 100 chars): US President Donald Trump has outlined a plan to end Israel’s war on Gaza....
+2025-09-29 22:31:44 [DEBUG] summarizer: Category for summarization: politics_geopolitics
+2025-09-29 22:31:44 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 22:31:44 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 22:31:46 [DEBUG] summarizer: Generated summary (first 150 chars): **Trump Proposes Plan to End Israel-Gaza War**
+
+YNotCare: Trump has proposed a plan to end the ongoing conflict between Israel and Gaza. The plan incl...
+2025-09-29 22:31:46 [DEBUG] summarizer: Raw news (first 100 chars): President says Israel has &#039;full backing&#039; of US to take steps to defeat Hamas if it doesn&#...
+2025-09-29 22:31:46 [DEBUG] summarizer: Category for summarization: politics_geopolitics
+2025-09-29 22:31:46 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 22:31:46 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 22:31:47 [DEBUG] summarizer: Generated summary (first 150 chars): **US Pledges Full Support to Israel if Hamas Rejects Peace Deal**
+
+YNotCare: The US president has stated that Israel has full American backing to take...
+2025-09-29 22:31:47 [DEBUG] summarizer: Raw news (first 100 chars): Vance's comments come as Ukraine's deputy defence minister tells the BBC Western weapons could force...
+2025-09-29 22:31:47 [DEBUG] summarizer: Category for summarization: politics_geopolitics
+2025-09-29 22:31:47 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 22:31:47 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 22:31:49 [DEBUG] summarizer: Generated summary (first 150 chars): **Vance's remarks suggest Western weapons may push Russia to negotiate.**
+
+YNotCare: Ukraine's deputy defence minister hints that Western weapons migh...
+2025-09-29 22:31:49 [DEBUG] summarizer: Raw news (first 100 chars): Netanyahu also apologises for violating Qatari sovereignty, which drew global condemnation....
+2025-09-29 22:31:49 [DEBUG] summarizer: Category for summarization: politics_geopolitics
+2025-09-29 22:31:49 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 22:31:49 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 22:31:50 [DEBUG] summarizer: Generated summary (first 150 chars): **Netanyahu Apologizes for Violating Qatari Sovereignty**
+
+YNotCare: Netanyahu apologized for violating Qatari sovereignty, sparking global condemnati...
+2025-09-29 22:31:50 [DEBUG] summarizer: Raw news (first 100 chars): <div id="block-68d967f48f08c0f8b6cd79a2" class="block is-summary" data-block-contributor=""> 
+ <p cl...
+2025-09-29 22:31:50 [DEBUG] summarizer: Category for summarization: politics_geopolitics
+2025-09-29 22:31:50 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 22:31:50 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 22:31:58 [DEBUG] summarizer: Generated summary (first 150 chars): **Starmer Urges Labour to Focus on Fighting Reform UK**
+
+YNotCare: Keir Starmer has called on Labour members to stop "navel-gazing" and focus on the "...
+2025-09-29 22:31:58 [DEBUG] summarizer: Raw news (first 100 chars): <p>The independence of the Electoral Commission must be fully restored to protect the UK’s electoral...
+2025-09-29 22:31:58 [DEBUG] summarizer: Category for summarization: politics_geopolitics
+2025-09-29 22:31:58 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 22:31:58 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 22:31:59 [DEBUG] summarizer: Generated summary (first 150 chars): **UK Government Urged to Restore Electoral Commission's Independence**
+
+YNotCare: The UK government is urged to restore the Electoral Commission's ind...
+2025-09-29 22:31:59 [DEBUG] summarizer: Raw news (first 100 chars): <p>Rachel Reeves will deliver a library in every primary school in England as part of Labour’s plans...
+2025-09-29 22:31:59 [DEBUG] summarizer: Category for summarization: politics_geopolitics
+2025-09-29 22:31:59 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 22:31:59 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 22:32:00 [DEBUG] summarizer: Generated summary (first 150 chars): **Labour Plans Libraries in Every Primary School and Youth Employment Guarantee**
+
+YNotCare: Labour plans to fund libraries in all primary schools and...
+2025-09-29 22:32:00 [DEBUG] summarizer: Raw news (first 100 chars): <p>“We’re backing him 100%. We think he’s done a fantastic job. Like us, he inherited a mess.” Donal...
+2025-09-29 22:32:00 [DEBUG] summarizer: Category for summarization: politics_geopolitics
+2025-09-29 22:32:00 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 22:32:00 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 22:32:02 [DEBUG] summarizer: Generated summary (first 150 chars): **US to potentially offer Argentina $20bn support amid financial crisis**
+
+YNotCare: The US may provide Argentina with a $20bn swap line or buy its bo...
+2025-09-29 22:32:02 [DEBUG] summarizer: Raw news (first 100 chars): The move will enable asset seizures and prosecutions of Bishnoi gang that has been accused of target...
+2025-09-29 22:32:02 [DEBUG] summarizer: Category for summarization: politics_geopolitics
+2025-09-29 22:32:02 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 22:32:02 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 22:32:04 [DEBUG] summarizer: Generated summary (first 150 chars): **UK to Strengthen Laws Against Bishnoi Gang**
+
+YNotCare: The UK is planning to strengthen its laws to enable asset seizures and prosecutions of the B...
+2025-09-29 22:32:04 [DEBUG] summarizer: Raw news (first 100 chars): New tests will include learning English to a high standard, paying National Insurance and not claimi...
+2025-09-29 22:32:04 [DEBUG] summarizer: Category for summarization: politics_geopolitics
+2025-09-29 22:32:04 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 22:32:04 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 22:32:06 [DEBUG] summarizer: Generated summary (first 150 chars): **UK Tightens Citizenship Requirements with New Tests**
+
+YNotCare: The UK is introducing stricter citizenship tests, including English proficiency, Na...
+2025-09-29 22:32:06 [DEBUG] summarizer: Raw news (first 100 chars): Officials have interviewed more than 100 people as they work to establish why a gunman attacked a ch...
+2025-09-29 22:32:06 [DEBUG] summarizer: Category for summarization: politics_geopolitics
+2025-09-29 22:32:06 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 22:32:06 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 22:32:08 [DEBUG] summarizer: Generated summary (first 150 chars): **Investigation Expands in Church Arson and Shooting Case**
+
+YNotCare: Officials are interviewing over 100 people to determine the motive behind a chu...
+2025-09-29 22:32:08 [DEBUG] summarizer: Raw news (first 100 chars): The children were found with fatal knife wounds to their necks and chests at their home in Bristol....
+2025-09-29 22:32:08 [DEBUG] summarizer: Category for summarization: politics_geopolitics
+2025-09-29 22:32:08 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 22:32:08 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 22:32:09 [DEBUG] summarizer: Generated summary (first 150 chars): **Bristol Tragedy: Children Found Dead with Knife Wounds**
+
+YNotCare: Two children were found dead with fatal knife wounds at their Bristol home.
+- **...
+2025-09-29 22:32:09 [DEBUG] summarizer: Raw news (first 100 chars): India’s cricket team hoisted an imaginary trophy after winning the 2025 Asia Cup against Pakistan....
+2025-09-29 22:32:09 [DEBUG] summarizer: Category for summarization: politics_geopolitics
+2025-09-29 22:32:09 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 22:32:09 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 22:32:12 [DEBUG] summarizer: Generated summary (first 150 chars): **India Celebrates Imaginary Asia Cup Victory Over Pakistan**
+
+YNotCare: India's cricket team celebrated a hypothetical win against Pakistan in the 20...
+2025-09-29 22:32:12 [DEBUG] summarizer: Raw news (first 100 chars): <p>It’s “possible” the government should come off X, Ed Miliband has said, because Elon Musk is a “d...
+2025-09-29 22:32:12 [DEBUG] summarizer: Category for summarization: politics_geopolitics
+2025-09-29 22:32:12 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 22:32:12 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 22:32:14 [DEBUG] summarizer: Generated summary (first 150 chars): **UK Government Considers Leaving X Over Elon Musk's Influence**
+
+YNotCare: Ed Miliband suggests the UK government may leave X (formerly Twitter) due ...
+2025-09-29 22:32:14 [DEBUG] summarizer: Raw news (first 100 chars): <p>Rightwing populists threaten working-class people’s protections under the rule of law, the attorn...
+2025-09-29 22:32:14 [DEBUG] summarizer: Category for summarization: politics_geopolitics
+2025-09-29 22:32:14 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 22:32:14 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 22:32:15 [DEBUG] summarizer: Generated summary (first 150 chars): **Attorney General Warns of Populist Threats to Legal Protections**
+
+YNotCare: The attorney general warns that rightwing populists are endangering wor...
+2025-09-29 22:32:15 [DEBUG] summarizer: Raw news (first 100 chars): The strike is the latest in a string of Israeli attacks despite a ceasefire announced in November....
+2025-09-29 22:32:15 [DEBUG] summarizer: Category for summarization: politics_geopolitics
+2025-09-29 22:32:15 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 22:32:15 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 22:32:16 [DEBUG] summarizer: Generated summary (first 150 chars): **Israeli strikes continue despite ceasefire**
+
+YNotCare: Israeli forces have conducted airstrikes in Gaza, violating the November ceasefire. This esc...
+2025-09-29 22:32:16 [DEBUG] summarizer: Raw news (first 100 chars): Trump&#039;s 21-point plan is said to have Netanyahu on board, but Hamas says it&#039;s not received...
+2025-09-29 22:32:16 [DEBUG] summarizer: Category for summarization: politics_geopolitics
+2025-09-29 22:32:16 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 22:32:16 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 22:32:19 [DEBUG] summarizer: Generated summary (first 150 chars): **Trump's 21-point plan gains Netanyahu's support, but Hamas claims no proposal received.**
+
+YNotCare: Trump's proposed Middle East peace plan has Isr...
+2025-09-29 22:32:19 [DEBUG] summarizer: Raw news (first 100 chars): Video shows the moment a Palestinian nurse was shot in the head at one of the few hospitals still op...
+2025-09-29 22:32:19 [DEBUG] summarizer: Category for summarization: politics_geopolitics
+2025-09-29 22:32:19 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 22:32:19 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 22:32:20 [DEBUG] summarizer: Generated summary (first 150 chars): **Palestinian Nurse Shot in Gaza Hospital**
+
+YNotCare: A Palestinian nurse was shot in the head at a Gaza hospital. The incident highlights the escala...
+2025-09-29 22:32:20 [DEBUG] summarizer: Raw news (first 100 chars): <p>I was 34 years old when I first had the idea for the world wide web. I took every opportunity to ...
+2025-09-29 22:32:20 [DEBUG] summarizer: Category for summarization: technology_ai_science
+2025-09-29 22:32:20 [DEBUG] summarizer: Using YNK_PROMPT_TECH for technology_ai_science
+2025-09-29 22:32:20 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert specializing in Technology, AI, and Science. 
+Provide clear guidance on the implications of the news for individuals, business...
+2025-09-29 22:32:22 [DEBUG] summarizer: Generated summary (first 150 chars): **Tim Berners-Lee Calls for a Free and Empowered Web, Urges AI Governance**
+
+YNotCare: Tim Berners-Lee reflects on the web's evolution, criticizes dat...
+2025-09-29 22:32:22 [DEBUG] summarizer: Raw news (first 100 chars): <p>The drugmaker Pfizer faces a US lawsuit brought on behalf of women who developed brain tumours, w...
+2025-09-29 22:32:22 [DEBUG] summarizer: Category for summarization: healthcare_pharma
+2025-09-29 22:32:22 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 22:32:22 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 22:32:24 [DEBUG] summarizer: Generated summary (first 150 chars): **Pfizer Faces US Lawsuit Over Alleged Brain Tumor Risks from Contraceptive Injection**
+
+YNotCare: Pfizer is being sued by women who claim Depo-Prover...
+2025-09-29 22:32:24 [DEBUG] summarizer: Raw news (first 100 chars): GPs are concerned they will be at the end of an "online triage tsunami" when the new system launches...
+2025-09-29 22:32:24 [DEBUG] summarizer: Category for summarization: healthcare_pharma
+2025-09-29 22:32:24 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 22:32:24 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...

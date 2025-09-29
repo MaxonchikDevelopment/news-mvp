@@ -26,8 +26,8 @@ async def cleanup_old_news_items(
     session: AsyncSession, days_old: int = NEWS_RETENTION_DAYS
 ) -> int:
     """
-    Deletes old news items that are not referenced in feedback or user caches.
-    This prevents deleting news that users might still interact with or have cached.
+    Deletes ALL old news items, regardless of references.
+    This aligns with the concept that news is only relevant for one day.
 
     Args:
         session: An active SQLAlchemy async session.
@@ -40,63 +40,33 @@ async def cleanup_old_news_items(
         logger.info("News retention days set to 0 or less, skipping cleanup.")
         return 0
 
-    logger.info(f"Starting cleanup of news items older than {days_old} days...")
+    logger.info(f"Starting cleanup of ALL news items older than {days_old} days...")
     try:
-        # Use a subquery or CTE to identify unreferenced news items
-        # This query selects news items older than the threshold that
-        # are NOT present in the feedback or user_news_cache tables.
-        sql_delete = text(
-            """
-            WITH old_news AS (
-                SELECT id FROM news_items
-                WHERE fetched_at < NOW() - INTERVAL ':days_old DAYS'
-            ),
-            referenced_news AS (
-                SELECT DISTINCT news_item_id AS id FROM feedback
-                UNION
-                SELECT DISTINCT news_item_id AS id FROM user_news_cache
-            )
-            DELETE FROM news_items
-            WHERE id IN (SELECT id FROM old_news)
-            AND id NOT IN (SELECT COALESCE(id, -1) FROM referenced_news); -- COALESCE handles potential NULLs
-        """
-        )
-
-        # Note: Direct binding of interval might not work as expected in all drivers.
-        # A safer approach is to calculate the date in Python and bind it.
-        # Let's revise the query.
-
+        # --- ИСПРАВЛЕНИЕ: Удаление ВСЕХ старых новостей ---
+        # Рассчитываем дату отсечки
         cutoff_date = datetime.utcnow() - timedelta(days=days_old)
 
-        sql_delete_safe = text(
+        # Простой и эффективный SQL-запрос для удаления
+        sql_delete = text(
             """
-            WITH old_news AS (
-                SELECT id FROM news_items
-                WHERE fetched_at < :cutoff_date
-            ),
-            referenced_news AS (
-                SELECT DISTINCT news_item_id AS id FROM feedback
-                UNION
-                SELECT DISTINCT news_item_id AS id FROM user_news_cache
-            )
             DELETE FROM news_items
-            WHERE id IN (SELECT id FROM old_news)
-            AND id NOT IN (SELECT COALESCE(id, -1) FROM referenced_news);
-        """
+            WHERE fetched_at < :cutoff_date;
+            """
         )
 
-        result = await session.execute(sql_delete_safe, {"cutoff_date": cutoff_date})
+        result = await session.execute(sql_delete, {"cutoff_date": cutoff_date})
         deleted_count = result.rowcount
         await session.commit()  # Important: Commit the transaction
-        logger.info(f"Deleted {deleted_count} old news items.")
+        logger.info(
+            f"Deleted {deleted_count} old news items (regardless of references)."
+        )
         return deleted_count
+        # --- КОНЕЦ ИСПРАВЛЕНИЯ ---
 
     except Exception as e:
         logger.error(f"Failed to cleanup old news items: {e}")
         await session.rollback()  # Rollback on error
-        # Depending on your error handling strategy, you might want to re-raise
-        # raise # Re-raise if you want the pipeline to stop on cleanup failure
-        return 0  # Or return 0 to continue pipeline despite cleanup error
+        return 0
 
 
 async def cleanup_expired_user_cache(
@@ -122,8 +92,8 @@ async def cleanup_expired_user_cache(
         sql_delete = text(
             """
             DELETE FROM user_news_cache
-            WHERE generated_at < :cutoff_date;
-        """
+            WHERE news_date < :cutoff_date;
+            """
         )
         result = await session.execute(sql_delete, {"cutoff_date": cutoff_date})
         deleted_count = result.rowcount
@@ -137,14 +107,9 @@ async def cleanup_expired_user_cache(
         return 0
 
 
-# Placeholder for future cleanup functions
-# async def cleanup_old_feedback(...):
-#     ...
-# async def archive_aggregated_feedback(...):
-#     ...
-
-
 # --- Main Cleanup Orchestrator ---
+
+
 async def perform_data_retention_cleanup(session: AsyncSession) -> Dict[str, int]:
     """
     Performs all configured data retention cleanup tasks.
@@ -156,3 +121,23 @@ async def perform_data_retention_cleanup(session: AsyncSession) -> Dict[str, int
         A dictionary with counts of deleted items for each task.
     """
     logger.info("--- Starting Data Retention Cleanup Tasks ---")
+
+    # Словарь для подсчета удаленных элементов
+    deleted_counts: Dict[str, int] = {}
+
+    try:
+        # Выполняем задачи очистки
+        count_news = await cleanup_old_news_items(session, NEWS_RETENTION_DAYS)
+        deleted_counts["cleanup_old_news_items"] = count_news
+
+        count_cache = await cleanup_expired_user_cache(
+            session, USER_CACHE_RETENTION_DAYS
+        )
+        deleted_counts["cleanup_expired_user_cache"] = count_cache
+
+        logger.info("--- Data Retention Cleanup Tasks Completed ---")
+        return deleted_counts
+
+    except Exception as e:
+        logger.critical(f"Critical failure during data retention cleanup: {e}")
+        return deleted_counts  # Возвращаем то, что успели собрать

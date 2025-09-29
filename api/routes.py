@@ -2,7 +2,8 @@
 """API routes for users, news, and feedback."""
 
 import logging
-from datetime import timedelta
+from datetime import date, timedelta  # <-- Добавлен импорт date
+from typing import Dict  # <-- Добавлен импорт Dict
 
 from fastapi import (  # <-- Form для /login
     APIRouter,
@@ -11,9 +12,12 @@ from fastapi import (  # <-- Form для /login
     HTTPException,
     status,
 )
-from sqlalchemy import select
+
+# --- Исправленные импорты ---
+from sqlalchemy import select  # <-- Добавлен импорт select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+# --- Импорты из api ---
 from api.auth import (
     ACCESS_TOKEN_EXPIRE_MINUTES,
     create_access_token,
@@ -23,25 +27,41 @@ from api.auth import (
 )
 
 # --- Исправленный импорт: добавлен NewsItem из schemas ---
-from api.schemas import UserProfile  # <-- Используем основную схему профиля для ответа
-from api.schemas import (  # UserLogin,; UserProfileResponse, # <-- Убираем, если не создавали отдельную
+from api.schemas import (  # <-- Упрощен и исправлен импорт
     FeedbackCreate,
     NewsBundleResponse,
     NewsItem,
     Token,
     UserCreate,
+    UserProfile,
     UserProfileCreate,
 )
-from src.database import get_db_session
 
-# --- Импорты моделей SQLAlchemy ---
+# --- Импорты из src ---
+from src.database import (  # <-- Добавлен импорт AsyncSessionFactory
+    AsyncSessionFactory,
+    get_db_session,
+)
 from src.models import Feedback as DBFeedback
-from src.models import User as DBUser
+from src.models import User as DBUser  # <-- Добавлен импорт UserNewsCache
+from src.models import UserNewsCache
 from src.models import UserProfile as DBUserProfile
+
+# --- Импорт NewsProcessingPipeline ---
 from src.news_pipeline import NewsProcessingPipeline
+
+# --- КОНЕЦ Исправленных импортов ---
+
+
+# --- КОНЕЦ Импортов ---
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
+
+# --- Инициализация пайплайна ---
+# Создаем один экземпляр пайплайна для всего приложения
+news_pipeline = NewsProcessingPipeline()
+# --- КОНЕЦ Инициализации ---
 
 
 @router.post("/register", response_model=Token, status_code=status.HTTP_201_CREATED)
@@ -128,7 +148,7 @@ async def read_users_me(
 
     logger.debug(f"Returning profile data for user {current_user.id}")
     # SQLAlchemy ORM объект автоматически преобразуется в Pydantic модель
-    # благодаря настройке Config(from_attributes=True)
+    # благодаря настройке Config(from_attributes=True) в схеме UserProfile
     return profile
 
 
@@ -176,80 +196,83 @@ async def create_or_update_profile(
 
 
 @router.get("/news/today", response_model=NewsBundleResponse)
-# --- ИЗМЕНЕНИЕ 3: async def для эндпоинта ---
-async def get_personalized_news(
-    current_user: DBUser = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db_session),  # <-- Сессия уже здесь
-):
+async def get_personalized_news(current_user: DBUser = Depends(get_current_user)):
     """Get the personalized news bundle for the current user."""
     logger.info(f"Generating news bundle for user ID: {current_user.id}")
 
     # Получение профиля пользователя из БД
-    # Используем уже существующую сессию `db`
-    result = await db.execute(
-        select(DBUserProfile).where(DBUserProfile.user_id == current_user.id)
-    )
-    db_profile = result.scalar_one_or_none()
+    async with AsyncSessionFactory() as db_session:  # <-- Используем AsyncSessionFactory напрямую
+        try:
+            result = await db_session.execute(
+                select(DBUserProfile).where(DBUserProfile.user_id == current_user.id)
+            )
+            db_profile = result.scalar_one_or_none()
 
-    if not db_profile:
-        logger.warning(
-            f"Profile not found for user ID: {current_user.id} for news generation"
-        )
-        raise HTTPException(
-            status_code=404, detail="User profile not found. Cannot generate news."
-        )
+            if not db_profile:
+                logger.warning(
+                    f"Profile not found for user ID: {current_user.id} for news generation"
+                )
+                raise HTTPException(
+                    status_code=404,
+                    detail="User profile not found. Cannot generate news.",
+                )
 
-    # Подготавливаем данные профиля для пайплайна
-    # Предполагаем, что модель DBUserProfile имеет атрибуты locale, interests
-    user_profile_data = {
-        "user_id": current_user.id,
-        "locale": db_profile.locale,
-        "language": "en",  # Фиксировано, как в моделях
-        "city": None,  # Не хранится, как в моделях
-        "interests": db_profile.interests,  # Это поле JSONB
-    }
-    logger.debug(f"Using profile data for news generation: {user_profile_data}")
+            # Подготавливаем данные профиля для пайплайна
+            # Предполагаем, что модель DBUserProfile имеет атрибуты locale, interests
+            user_profile_data = {
+                "user_id": current_user.id,
+                "locale": db_profile.locale,
+                "language": "en",  # Фиксировано, как в моделях
+                "city": None,  # Не хранится, как в моделях
+                "interests": db_profile.interests,  # Это поле JSONB
+            }
+            logger.debug(f"Using profile data for news generation: {user_profile_data}")
 
-    # Использование NewsProcessingPipeline
-    try:
-        pipeline = NewsProcessingPipeline()
-        # --- ИЗМЕНЕНИЕ 4: await ---
-        result = await pipeline.process_daily_news(
-            user_profile_data
-        )  # Теперь асинхронный
-        # --- КОНЕЦ ИЗМЕНЕНИЯ 4 ---
-        logger.info("News pipeline executed successfully")
-    except Exception as e:
-        logger.error(
-            f"Error running news pipeline for user {current_user.id}: {e}",
-            exc_info=True,
-        )
-        raise HTTPException(
-            status_code=500, detail="Error generating personalized news feed"
-        )
+            # --- ИСПРАВЛЕНИЕ: Используем уже инициализированный news_pipeline ---
+            # Использование NewsProcessingPipeline
+            try:
+                # result = await news_pipeline.process_daily_news(user_profile_data) # Если асинхронный
+                result = await news_pipeline.process_daily_news(
+                    user_profile_data
+                )  # <-- ИСПРАВЛЕНО: news_pipeline уже инициализирован
+                logger.info("News pipeline executed successfully")
+            except Exception as e:
+                logger.error(
+                    f"Error running news pipeline for user {current_user.id}: {e}",
+                    exc_info=True,
+                )
+                raise HTTPException(
+                    status_code=500, detail="Error generating personalized news feed"
+                )
 
-    # Преобразование результата в формат NewsBundleResponse
-    top_7_articles = result.get("top_7", [])
-    news_items = []
-    for article in top_7_articles:
-        # Создаем объект NewsItem из данных статьи
-        news_item = NewsItem(
-            # id=article.get('id'), # Если ID есть в статье
-            title=article["title"],
-            url=article["url"],
-            category=article["category"],
-            relevance_score=article.get("relevance_score"),
-            importance_score=article.get("importance_score"),
-            ynk_summary=article.get(
-                "ynk_summary", "Summary not available."
-            ),  # Предполагаем, что pipeline добавляет это
-        )
-        news_items.append(news_item)
+            # Преобразование результата в формат NewsBundleResponse
+            top_7_articles = result.get("top_7", [])
+            news_items = []
+            for article in top_7_articles:
+                # Создаем объект NewsItem из данных статьи
+                news_item = NewsItem(
+                    # id=article.get('id'), # Если ID есть в статье
+                    title=article["title"],
+                    url=article["url"],
+                    category=article["category"],
+                    relevance_score=article.get("relevance_score"),
+                    importance_score=article.get("importance_score"),
+                    ynk_summary=article.get(
+                        "ynk_summary", "Summary not available."
+                    ),  # Предполагаем, что pipeline добавляет это
+                )
+                news_items.append(news_item)
 
-    logger.debug(
-        f"Returning {len(news_items)} news items in bundle for user {current_user.id}"
-    )
-    return NewsBundleResponse(top_7=news_items)
+            logger.debug(
+                f"Returning {len(news_items)} news items in bundle for user {current_user.id}"
+            )
+            return NewsBundleResponse(top_7=news_items)
+        except Exception as e:
+            logger.error(
+                f"Error fetching user profile or generating news for user {current_user.id}: {e}",
+                exc_info=True,
+            )
+            raise HTTPException(status_code=500, detail="Internal server error")
 
 
 @router.post("/feedback", status_code=status.HTTP_201_CREATED)
@@ -275,3 +298,54 @@ async def submit_feedback(
     logger.info(f"Feedback ID {new_feedback.id} saved to database")
 
     return {"message": "Feedback submitted successfully"}
+
+
+# --- Новый эндпоинт для получения подкаста ---
+@router.get(
+    "/podcast/script/today", response_model=Dict[str, str]
+)  # <-- Используем Dict[str, str] для ответа
+async def get_personalized_podcast_script(
+    current_user: DBUser = Depends(get_current_user),
+):
+    """
+    Get the personalized podcast script for the current premium user.
+    """
+    logger.info(f"🎙️  Podcast script requested for user ID: {current_user.id}")
+
+    # --- TODO: Проверка на премиум-статус ---
+    # is_premium = await check_user_premium_status(current_user.id, db) # Реальная проверка
+    is_premium = True  # <-- Заглушка для теста. Заменить на реальную проверку!
+    if not is_premium:
+        logger.warning(
+            f"🚫 User {current_user.id} is not a premium user. Access denied to podcast script."
+        )
+        raise HTTPException(
+            status_code=403,
+            detail="Access to podcast script is restricted to premium users.",
+        )
+    # --- КОНЕЦ TODO ---
+
+    # --- ИСПРАВЛЕНИЕ: Используем news_pipeline для получения подкаста ---
+    try:
+        # Вызываем метод из NewsProcessingPipeline
+        podcast_result = await news_pipeline.get_cached_podcast_script_for_user(
+            current_user.id
+        )
+
+        if podcast_result and "script" in podcast_result:
+            logger.info(f"✅ Found cached podcast script for user ID {current_user.id}.")
+            return {"script": podcast_result["script"]}
+        else:
+            logger.warning(
+                f"⚠️ No cached podcast script found for user ID {current_user.id}."
+            )
+            raise HTTPException(
+                status_code=404,
+                detail="Podcast script not available. It might still be generating.",
+            )
+    except Exception as e:
+        logger.error(
+            f"⚠️ Error fetching podcast script for user {current_user.id}: {e}"
+        )
+        raise HTTPException(status_code=500, detail="Error retrieving podcast script.")
+    # --- КОНЕЦ ИСПРАВЛЕНИЯ ---

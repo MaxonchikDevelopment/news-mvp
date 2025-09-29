@@ -55,6 +55,7 @@ class User(Base):
 # ----------------------------
 # Таблица: user_profiles
 # ----------------------------
+# src/models.py (фрагмент)
 class UserProfile(Base):
     __tablename__ = "user_profiles"
 
@@ -66,6 +67,7 @@ class UserProfile(Base):
         JSONB, nullable=False, default={}
     )  # Храним как есть: ["sports", {"sports": [...]}]
     # preferences не храним, фиксированы
+    is_premium = Column(Boolean, nullable=False, default=False)  # <-- НОВОЕ ПОЛЕ
 
     created_at = Column(DateTime, nullable=False, default=func.now())
     updated_at = Column(
@@ -76,7 +78,7 @@ class UserProfile(Base):
     user = relationship("User", back_populates="profile", lazy="selectin")
 
     def __repr__(self):
-        return f"<UserProfile(user_id={self.user_id}, locale='{self.locale}')>"
+        return f"<UserProfile(user_id={self.user_id}, locale='{self.locale}', is_premium={self.is_premium})>"  # <-- Обновлено для отладки
 
 
 # ----------------------------
