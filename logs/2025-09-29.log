@@ -788,3 +788,2962 @@ YNotCare: Pfizer is being sued by women who claim Depo-Prover...
 
 You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
 Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 22:41:51 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "post-tournament analysis of England's rugby team performance",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 30,
+    "personal_relevance": 50,
+    "historical_significance": 45,
+    "emotional_intensity": 30
+  }
+}
+```
+2025-09-29 22:41:52 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': "post-tournament analysis of England's rugby team performance", 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 30, 'personal_relevance': 50, 'historical_significance': 45, 'emotional_intensity': 30}}
+2025-09-29 22:41:53 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "AFL premiership results and reactions",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 10,
+    "personal_relevance": 30,
+    "historical_significance": 20,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-29 22:41:53 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'AFL premiership results and reactions', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 10, 'personal_relevance': 30, 'historical_significance': 20, 'emotional_intensity': 40}}
+2025-09-29 22:41:55 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "verified incident involving a high-profile athlete",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 30,
+    "personal_relevance": 50,
+    "historical_significance": 20,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-29 22:41:56 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'verified incident involving a high-profile athlete', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 30, 'personal_relevance': 50, 'historical_significance': 20, 'emotional_intensity': 70}}
+2025-09-29 22:41:58 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "major international sports event result",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 40,
+    "personal_relevance": 60,
+    "historical_significance": 50,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:41:58 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'major international sports event result', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 40, 'personal_relevance': 60, 'historical_significance': 50, 'emotional_intensity': 60}}
+2025-09-29 22:42:00 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "end of a dominant sports dynasty",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 20,
+    "personal_relevance": 70,
+    "historical_significance": 65,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 22:42:00 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'end of a dominant sports dynasty', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 20, 'personal_relevance': 70, 'historical_significance': 65, 'emotional_intensity': 50}}
+2025-09-29 22:42:01 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": "other_tech",
+  "confidence": 0.95,
+  "reasons": "opinion piece by inventor of the web on its philosophy",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 30,
+    "global_impact": 70,
+    "personal_relevance": 50,
+    "historical_significance": 80,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-29 22:42:02 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'other_tech', 'confidence': 0.95, 'reasons': 'opinion piece by inventor of the web on its philosophy', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 30, 'global_impact': 70, 'personal_relevance': 50, 'historical_significance': 80, 'emotional_intensity': 40}}
+2025-09-29 22:42:03 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "report on potential democratic governance issues",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 40,
+    "personal_relevance": 60,
+    "historical_significance": 55,
+    "emotional_intensity": 45
+  }
+}
+```
+2025-09-29 22:42:03 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'report on potential democratic governance issues', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 40, 'personal_relevance': 60, 'historical_significance': 55, 'emotional_intensity': 45}}
+2025-09-29 22:42:05 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "political speech at major conference",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 20,
+    "personal_relevance": 30,
+    "historical_significance": 25,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-29 22:42:05 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'political speech at major conference', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 20, 'personal_relevance': 30, 'historical_significance': 25, 'emotional_intensity': 40}}
+2025-09-29 22:42:06 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK energy minister's statement on X platform",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 45,
+    "personal_relevance": 30,
+    "historical_significance": 20,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:42:06 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': "UK energy minister's statement on X platform", 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 45, 'personal_relevance': 30, 'historical_significance': 20, 'emotional_intensity': 60}}
+2025-09-29 22:42:08 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": "other_economy",
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK political announcement on education and employment",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 20,
+    "personal_relevance": 30,
+    "historical_significance": 40,
+    "emotional_intensity": 35
+  }
+}
+```
+2025-09-29 22:42:08 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': 'other_economy', 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'UK political announcement on education and employment', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 20, 'personal_relevance': 30, 'historical_significance': 40, 'emotional_intensity': 35}}
+2025-09-29 22:42:10 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "political criticism within a major party",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 20,
+    "personal_relevance": 40,
+    "historical_significance": 30,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 22:42:10 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'political criticism within a major party', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 20, 'personal_relevance': 40, 'historical_significance': 30, 'emotional_intensity': 50}}
+2025-09-29 22:42:11 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": "other_economy",
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "analysis of economic policies and international support",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 60,
+    "personal_relevance": 55,
+    "historical_significance": 50,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-29 22:42:11 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': 'other_economy', 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'analysis of economic policies and international support', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 60, 'personal_relevance': 55, 'historical_significance': 50, 'emotional_intensity': 40}}
+2025-09-29 22:42:13 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "healthcare_pharma",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "major legal action against pharmaceutical company",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 65,
+    "personal_relevance": 80,
+    "historical_significance": 60,
+    "emotional_intensity": 75
+  }
+}
+```
+2025-09-29 22:42:13 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'healthcare_pharma', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'major legal action against pharmaceutical company', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 65, 'personal_relevance': 80, 'historical_significance': 60, 'emotional_intensity': 75}}
+2025-09-29 22:42:15 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "economy_subcategory": "markets",
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "alternative inflation data analysis",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 60,
+    "personal_relevance": 75,
+    "historical_significance": 50,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-29 22:42:15 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'other_economy', 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'alternative inflation data analysis', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 60, 'personal_relevance': 75, 'historical_significance': 50, 'emotional_intensity': 40}}
+2025-09-29 22:42:16 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "economy_subcategory": "corporate_earnings",
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "corporate earnings report with notable profit",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 20,
+    "personal_relevance": 30,
+    "historical_significance": 25,
+    "emotional_intensity": 15
+  }
+}
+```
+2025-09-29 22:42:17 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'corporate_earnings', 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'corporate earnings report with notable profit', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 20, 'personal_relevance': 30, 'historical_significance': 25, 'emotional_intensity': 15}}
+2025-09-29 22:42:20 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "economy_subcategory": "other_economy",
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK chancellor's statement on economic policy",
+  "importance_score": 72,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 65,
+    "personal_relevance": 60,
+    "historical_significance": 50,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-29 22:42:20 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'other_economy', 'tech_subcategory': None, 'confidence': 0.85, 'reasons': "UK chancellor's statement on economic policy", 'importance_score': 72, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 65, 'personal_relevance': 60, 'historical_significance': 50, 'emotional_intensity': 40}}
+2025-09-29 22:42:21 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK government policy announcement on immigration",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 50,
+    "personal_relevance": 40,
+    "historical_significance": 50,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:42:21 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'UK government policy announcement on immigration', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 50, 'personal_relevance': 40, 'historical_significance': 50, 'emotional_intensity': 60}}
+2025-09-29 22:42:22 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "ongoing investigation into a significant violent incident",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 40,
+    "personal_relevance": 60,
+    "historical_significance": 50,
+    "emotional_intensity": 75
+  }
+}
+```
+2025-09-29 22:42:22 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'ongoing investigation into a significant violent incident', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 40, 'personal_relevance': 60, 'historical_significance': 50, 'emotional_intensity': 75}}
+2025-09-29 22:42:24 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "verified statement from a prominent sports figure",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 30,
+    "personal_relevance": 50,
+    "historical_significance": 20,
+    "emotional_intensity": 45
+  }
+}
+```
+2025-09-29 22:42:24 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'verified statement from a prominent sports figure', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 30, 'personal_relevance': 50, 'historical_significance': 20, 'emotional_intensity': 45}}
+2025-09-29 22:42:26 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "culture_media_entertainment",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "controversial stunt by major internet personality",
+  "importance_score": 45,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 30,
+    "personal_relevance": 40,
+    "historical_significance": 20,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:42:26 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'culture_media_entertainment', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'controversial stunt by major internet personality', 'importance_score': 45, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 30, 'personal_relevance': 40, 'historical_significance': 20, 'emotional_intensity': 60}}
+2025-09-29 22:42:27 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "culture_media_entertainment",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "public dispute between high-profile figures",
+  "importance_score": 45,
+  "contextual_factors": {
+    "time_sensitivity": 30,
+    "global_impact": 40,
+    "personal_relevance": 35,
+    "historical_significance": 20,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:42:27 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'culture_media_entertainment', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'public dispute between high-profile figures', 'importance_score': 45, 'contextual_factors': {'time_sensitivity': 30, 'global_impact': 40, 'personal_relevance': 35, 'historical_significance': 20, 'emotional_intensity': 60}}
+2025-09-29 22:42:28 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "government policy change following court rulings",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 30,
+    "personal_relevance": 50,
+    "historical_significance": 40,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:42:28 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'government policy change following court rulings', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 30, 'personal_relevance': 50, 'historical_significance': 40, 'emotional_intensity': 60}}
+2025-09-29 22:42:30 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "healthcare_pharma",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "healthcare system warning on patient safety",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 40,
+    "personal_relevance": 75,
+    "historical_significance": 30,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 22:42:30 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'healthcare_pharma', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'healthcare system warning on patient safety', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 40, 'personal_relevance': 75, 'historical_significance': 30, 'emotional_intensity': 50}}
+2025-09-29 22:42:31 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "serious crime with significant local impact",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 20,
+    "personal_relevance": 50,
+    "historical_significance": 30,
+    "emotional_intensity": 80
+  }
+}
+```
+2025-09-29 22:42:31 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'serious crime with significant local impact', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 20, 'personal_relevance': 50, 'historical_significance': 30, 'emotional_intensity': 80}}
+2025-09-29 22:42:33 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "potential shift in US military aid policy",
+  "importance_score": 78,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-29 22:42:33 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'potential shift in US military aid policy', 'importance_score': 78, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 70}}
+2025-09-29 22:42:34 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "statement by a head of state on a major international conflict",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:42:34 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'statement by a head of state on a major international conflict', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 60}}
+2025-09-29 22:42:35 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": "cricket",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "sports event with political implications",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 50,
+    "personal_relevance": 30,
+    "historical_significance": 40,
+    "emotional_intensity": 75
+  }
+}
+```
+2025-09-29 22:42:35 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'sports event with political implications', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 50, 'personal_relevance': 30, 'historical_significance': 40, 'emotional_intensity': 75}}
+2025-09-29 22:42:37 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "unverified single-source claim in active conflict",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 50,
+    "personal_relevance": 40,
+    "historical_significance": 45,
+    "emotional_intensity": 65
+  }
+}
+```
+2025-09-29 22:42:37 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'unverified single-source claim in active conflict', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 50, 'personal_relevance': 40, 'historical_significance': 45, 'emotional_intensity': 65}}
+2025-09-29 22:42:39 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "major political figure's proposal in ongoing conflict",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-29 22:42:39 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': "major political figure's proposal in ongoing conflict", 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 70}}
+2025-09-29 22:42:41 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "apology from a head of state for a significant diplomatic incident",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:42:41 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'apology from a head of state for a significant diplomatic incident', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 60}}
+2025-09-29 22:42:46 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "statement by US president on active conflict",
+  "importance_score": 78,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-29 22:42:46 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'statement by US president on active conflict', 'importance_score': 78, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 70}}
+2025-09-29 22:42:48 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "unverified single-source claim in active conflict",
+  "importance_score": 40,
+  "contextual_factors": {
+    "time_sensitivity": 65,
+    "global_impact": 35,
+    "personal_relevance": 25,
+    "historical_significance": 15,
+    "emotional_intensity": 85
+  }
+}
+```
+2025-09-29 22:42:48 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'unverified single-source claim in active conflict', 'importance_score': 40, 'contextual_factors': {'time_sensitivity': 65, 'global_impact': 35, 'personal_relevance': 25, 'historical_significance': 15, 'emotional_intensity': 85}}
+2025-09-29 22:42:49 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "unverified proposal in active conflict",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 50,
+    "personal_relevance": 45,
+    "historical_significance": 40,
+    "emotional_intensity": 65
+  }
+}
+```
+2025-09-29 22:42:49 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'unverified proposal in active conflict', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 50, 'personal_relevance': 45, 'historical_significance': 40, 'emotional_intensity': 65}}
+2025-09-29 22:42:51 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "Canada's designation of a foreign group as terrorist",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 60,
+    "personal_relevance": 50,
+    "historical_significance": 55,
+    "emotional_intensity": 65
+  }
+}
+```
+2025-09-29 22:42:51 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': "Canada's designation of a foreign group as terrorist", 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 60, 'personal_relevance': 50, 'historical_significance': 55, 'emotional_intensity': 65}}
+2025-09-29 22:42:52 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "economy_subcategory": "other_economy",
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "major trade policy announcement",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 70,
+    "personal_relevance": 65,
+    "historical_significance": 60,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 22:42:57 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'other_economy', 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'major trade policy announcement', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 70, 'personal_relevance': 65, 'historical_significance': 60, 'emotional_intensity': 50}}
+2025-09-29 22:42:57 [DEBUG] summarizer: Raw news (first 100 chars): <p>An emotional Rory McIlroy opened up on the abuse he received during the Ryder Cup after Europe se...
+2025-09-29 22:42:57 [DEBUG] summarizer: Category for summarization: sports
+2025-09-29 22:42:57 [DEBUG] summarizer: Using YNK_PROMPT_SPORTS for sports
+2025-09-29 22:42:57 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert specializing in Sports. 
+Provide clear guidance on the significance and implications of the sports news for fans, athletes, an...
+2025-09-29 22:42:59 [DEBUG] summarizer: Generated summary (first 150 chars): **Rory McIlroy Speaks Out on Ryder Cup Abuse, Europe Wins**
+
+YNotCare: Rory McIlroy condemned the fan abuse during the Ryder Cup, highlighting inciden...
+2025-09-29 22:42:59 [DEBUG] summarizer: Raw news (first 100 chars): <h2><strong>Props</strong></h2> <p><strong>Hannah Botterman</strong> <em>Bristol Bears</em> Wanted t...
+2025-09-29 22:42:59 [DEBUG] summarizer: Category for summarization: sports
+2025-09-29 22:42:59 [DEBUG] summarizer: Using YNK_PROMPT_SPORTS for sports
+2025-09-29 22:42:59 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert specializing in Sports. 
+Provide clear guidance on the significance and implications of the sports news for fans, athletes, an...
+2025-09-29 22:43:01 [DEBUG] summarizer: Generated summary (first 150 chars): **England's Rugby Stars Shine in World Cup Victory**
+
+YNotCare: England's rugby team delivered standout performances in their World Cup victory, with ...
+2025-09-29 22:43:01 [DEBUG] summarizer: Raw news (first 100 chars): <p>Brisbane coach Chris Fagan has described the Lions’ <a href="https://www.theguardian.com/sport/bl...
+2025-09-29 22:43:01 [DEBUG] summarizer: Category for summarization: sports
+2025-09-29 22:43:01 [DEBUG] summarizer: Using YNK_PROMPT_SPORTS for sports
+2025-09-29 22:43:01 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert specializing in Sports. 
+Provide clear guidance on the significance and implications of the sports news for fans, athletes, an...
+2025-09-29 22:43:03 [DEBUG] summarizer: Generated summary (first 150 chars): **Brisbane Lions Secure Historic Back-to-Back AFL Premierships**
+
+YNotCare: Brisbane Lions dominated the AFL Grand Final, defeating Geelong by 47 poin...
+2025-09-29 22:43:03 [DEBUG] summarizer: Raw news (first 100 chars): <p>Two points. Two miserly points from 11 matches. So easy to say, much harder to actually accomplis...
+2025-09-29 22:43:03 [DEBUG] summarizer: Category for summarization: sports
+2025-09-29 22:43:03 [DEBUG] summarizer: Using YNK_PROMPT_SPORTS for sports
+2025-09-29 22:43:03 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert specializing in Sports. 
+Provide clear guidance on the significance and implications of the sports news for fans, athletes, an...
+2025-09-29 22:43:05 [DEBUG] summarizer: Generated summary (first 150 chars): **Europe Retains Ryder Cup in Thrilling Finale**
+
+YNotCare: Europe narrowly retained the Ryder Cup 15-13 against the USA, with Shane Lowry's crucial p...
+2025-09-29 22:43:05 [DEBUG] summarizer: Raw news (first 100 chars): <p>And so it is over. Rome has fallen.</p> <p>A total of 1,457 days after they beat South Sydney Rab...
+2025-09-29 22:43:05 [DEBUG] summarizer: Category for summarization: sports
+2025-09-29 22:43:05 [DEBUG] summarizer: Using YNK_PROMPT_SPORTS for sports
+2025-09-29 22:43:05 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert specializing in Sports. 
+Provide clear guidance on the significance and implications of the sports news for fans, athletes, an...
+2025-09-29 22:43:10 [DEBUG] summarizer: Generated summary (first 150 chars): **Penrith Panthers' historic NRL reign ends with loss to Brisbane Broncos**
+
+YNotCare: The Penrith Panthers' four-year reign as NRL premiers concluded...
+2025-09-29 22:43:10 [DEBUG] summarizer: Raw news (first 100 chars): <p>Andy Burnham has said there is a climate of fear in Labour and it needs to change, as he defended...
+2025-09-29 22:43:10 [DEBUG] summarizer: Category for summarization: politics_geopolitics
+2025-09-29 22:43:10 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 22:43:10 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 22:43:12 [DEBUG] summarizer: Generated summary (first 150 chars): **Andy Burnham Accuses Labour of Fear Culture, Challenges Starmer's Leadership**
+
+YNotCare: Andy Burnham has criticized Labour's internal culture, cal...
+2025-09-29 22:48:46 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": "other_tech",
+  "confidence": 0.9,
+  "reasons": "opinion piece by web inventor on tech philosophy",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 30,
+    "global_impact": 60,
+    "personal_relevance": 50,
+    "historical_significance": 70,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-29 22:48:47 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'other_tech', 'confidence': 0.9, 'reasons': 'opinion piece by web inventor on tech philosophy', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 30, 'global_impact': 60, 'personal_relevance': 50, 'historical_significance': 70, 'emotional_intensity': 40}}
+2025-09-29 22:48:48 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "political commentary at a major conference",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 20,
+    "personal_relevance": 40,
+    "historical_significance": 30,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 22:48:48 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'political commentary at a major conference', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 20, 'personal_relevance': 40, 'historical_significance': 30, 'emotional_intensity': 50}}
+2025-09-29 22:48:50 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "report on potential democratic governance issues",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 50,
+    "personal_relevance": 70,
+    "historical_significance": 60,
+    "emotional_intensity": 55
+  }
+}
+```
+2025-09-29 22:48:50 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'report on potential democratic governance issues', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 50, 'personal_relevance': 70, 'historical_significance': 60, 'emotional_intensity': 55}}
+2025-09-29 22:48:51 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK energy minister's statement on X platform",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 45,
+    "personal_relevance": 30,
+    "historical_significance": 20,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:48:51 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': "UK energy minister's statement on X platform", 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 45, 'personal_relevance': 30, 'historical_significance': 20, 'emotional_intensity': 60}}
+2025-09-29 22:48:53 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK political announcement on education and employment",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 20,
+    "personal_relevance": 30,
+    "historical_significance": 40,
+    "emotional_intensity": 35
+  }
+}
+```
+2025-09-29 22:48:53 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'UK political announcement on education and employment', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 20, 'personal_relevance': 30, 'historical_significance': 40, 'emotional_intensity': 35}}
+2025-09-29 22:48:54 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK political conference with significant rhetoric",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 30,
+    "personal_relevance": 45,
+    "historical_significance": 40,
+    "emotional_intensity": 65
+  }
+}
+```
+2025-09-29 22:48:54 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'UK political conference with significant rhetoric', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 30, 'personal_relevance': 45, 'historical_significance': 40, 'emotional_intensity': 65}}
+2025-09-29 22:48:56 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "economy_subcategory": "other_economy",
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK chancellor hints at tax rises due to economic challenges",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 60,
+    "personal_relevance": 65,
+    "historical_significance": 50,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-29 22:48:57 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'other_economy', 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'UK chancellor hints at tax rises due to economic challenges', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 60, 'personal_relevance': 65, 'historical_significance': 50, 'emotional_intensity': 40}}
+2025-09-29 22:48:58 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK government policy announcement on immigration",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 50,
+    "personal_relevance": 40,
+    "historical_significance": 55,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:48:58 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'UK government policy announcement on immigration', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 50, 'personal_relevance': 40, 'historical_significance': 55, 'emotional_intensity': 60}}
+2025-09-29 22:49:00 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "ongoing investigation into a significant violent incident",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 40,
+    "personal_relevance": 60,
+    "historical_significance": 50,
+    "emotional_intensity": 75
+  }
+}
+```
+2025-09-29 22:49:00 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'ongoing investigation into a significant violent incident', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 40, 'personal_relevance': 60, 'historical_significance': 50, 'emotional_intensity': 75}}
+2025-09-29 22:49:01 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "verified statement from a sports figure",
+  "importance_score": 45,
+  "contextual_factors": {
+    "time_sensitivity": 30,
+    "global_impact": 20,
+    "personal_relevance": 40,
+    "historical_significance": 25,
+    "emotional_intensity": 30
+  }
+}
+```
+2025-09-29 22:49:02 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'verified statement from a sports figure', 'importance_score': 45, 'contextual_factors': {'time_sensitivity': 30, 'global_impact': 20, 'personal_relevance': 40, 'historical_significance': 25, 'emotional_intensity': 30}}
+2025-09-29 22:49:03 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "culture_media_entertainment",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "controversial stunt by major influencer",
+  "importance_score": 45,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 40,
+    "personal_relevance": 30,
+    "historical_significance": 20,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:49:03 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'culture_media_entertainment', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'controversial stunt by major influencer', 'importance_score': 45, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 40, 'personal_relevance': 30, 'historical_significance': 20, 'emotional_intensity': 60}}
+2025-09-29 22:49:04 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "culture_media_entertainment",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "public dispute between high-profile figures",
+  "importance_score": 45,
+  "contextual_factors": {
+    "time_sensitivity": 30,
+    "global_impact": 40,
+    "personal_relevance": 35,
+    "historical_significance": 20,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:49:04 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'culture_media_entertainment', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'public dispute between high-profile figures', 'importance_score': 45, 'contextual_factors': {'time_sensitivity': 30, 'global_impact': 40, 'personal_relevance': 35, 'historical_significance': 20, 'emotional_intensity': 60}}
+2025-09-29 22:49:06 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "career_education_labour",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "government policy change based on court rulings",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 20,
+    "personal_relevance": 50,
+    "historical_significance": 40,
+    "emotional_intensity": 30
+  }
+}
+```
+2025-09-29 22:49:06 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'career_education_labour', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'government policy change based on court rulings', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 20, 'personal_relevance': 50, 'historical_significance': 40, 'emotional_intensity': 30}}
+2025-09-29 22:49:07 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "healthcare_pharma",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "healthcare system warning on patient safety",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 40,
+    "personal_relevance": 75,
+    "historical_significance": 30,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 22:49:07 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'healthcare_pharma', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'healthcare system warning on patient safety', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 40, 'personal_relevance': 75, 'historical_significance': 30, 'emotional_intensity': 50}}
+2025-09-29 22:49:09 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "serious crime with significant local impact",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 20,
+    "personal_relevance": 60,
+    "historical_significance": 30,
+    "emotional_intensity": 80
+  }
+}
+```
+2025-09-29 22:49:09 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'serious crime with significant local impact', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 20, 'personal_relevance': 60, 'historical_significance': 30, 'emotional_intensity': 80}}
+2025-09-29 22:49:10 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "potential shift in US military aid policy",
+  "importance_score": 78,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-29 22:49:10 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'potential shift in US military aid policy', 'importance_score': 78, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 70}}
+2025-09-29 22:49:12 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "statement by a head of state on a major international conflict",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:49:12 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'statement by a head of state on a major international conflict', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 60}}
+2025-09-29 22:49:13 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": "cricket",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "sports event with political implications",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 50,
+    "personal_relevance": 40,
+    "historical_significance": 55,
+    "emotional_intensity": 75
+  }
+}
+```
+2025-09-29 22:49:13 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'sports event with political implications', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 50, 'personal_relevance': 40, 'historical_significance': 55, 'emotional_intensity': 75}}
+2025-09-29 22:49:15 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "unverified single-source claim in active conflict",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 50,
+    "personal_relevance": 40,
+    "historical_significance": 30,
+    "emotional_intensity": 65
+  }
+}
+```
+2025-09-29 22:49:15 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'unverified single-source claim in active conflict', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 50, 'personal_relevance': 40, 'historical_significance': 30, 'emotional_intensity': 65}}
+2025-09-29 22:49:17 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "major political figure's proposal in ongoing conflict",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-29 22:49:17 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': "major political figure's proposal in ongoing conflict", 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 70}}
+2025-09-29 22:49:18 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "verified diplomatic apology with global implications",
+  "importance_score": 72,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 22:49:18 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'verified diplomatic apology with global implications', 'importance_score': 72, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 50}}
+2025-09-29 22:49:19 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "statement by US president on ongoing conflict",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-29 22:49:19 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'statement by US president on ongoing conflict', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 70}}
+2025-09-29 22:49:21 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "unverified single-source claim in active conflict",
+  "importance_score": 40,
+  "contextual_factors": {
+    "time_sensitivity": 65,
+    "global_impact": 35,
+    "personal_relevance": 25,
+    "historical_significance": 15,
+    "emotional_intensity": 85
+  }
+}
+```
+2025-09-29 22:49:21 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'unverified single-source claim in active conflict', 'importance_score': 40, 'contextual_factors': {'time_sensitivity': 65, 'global_impact': 35, 'personal_relevance': 25, 'historical_significance': 15, 'emotional_intensity': 85}}
+2025-09-29 22:49:22 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "unverified proposal in active conflict",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 50,
+    "personal_relevance": 45,
+    "historical_significance": 30,
+    "emotional_intensity": 65
+  }
+}
+```
+2025-09-29 22:49:22 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'unverified proposal in active conflict', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 50, 'personal_relevance': 45, 'historical_significance': 30, 'emotional_intensity': 65}}
+2025-09-29 22:49:23 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "Canada's designation of a foreign entity as terrorist",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 60,
+    "personal_relevance": 50,
+    "historical_significance": 55,
+    "emotional_intensity": 65
+  }
+}
+```
+2025-09-29 22:49:23 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': "Canada's designation of a foreign entity as terrorist", 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 60, 'personal_relevance': 50, 'historical_significance': 55, 'emotional_intensity': 65}}
+2025-09-29 22:49:25 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "economy_subcategory": "other_economy",
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "major trade policy announcement by US president",
+  "importance_score": 78,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 75,
+    "personal_relevance": 65,
+    "historical_significance": 60,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 22:49:25 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'other_economy', 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'major trade policy announcement by US president', 'importance_score': 78, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 75, 'personal_relevance': 65, 'historical_significance': 60, 'emotional_intensity': 50}}
+2025-09-29 22:50:35 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "technology_ai_science",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": "other_tech",
+  "confidence": 0.9,
+  "reasons": "opinion piece by web inventor on tech philosophy",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 30,
+    "global_impact": 60,
+    "personal_relevance": 40,
+    "historical_significance": 70,
+    "emotional_intensity": 30
+  }
+}
+```
+2025-09-29 22:50:36 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'technology_ai_science', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': 'other_tech', 'confidence': 0.9, 'reasons': 'opinion piece by web inventor on tech philosophy', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 30, 'global_impact': 60, 'personal_relevance': 40, 'historical_significance': 70, 'emotional_intensity': 30}}
+2025-09-29 22:50:37 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "post-tournament analysis of national team performance",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 30,
+    "personal_relevance": 50,
+    "historical_significance": 40,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 22:50:37 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'post-tournament analysis of national team performance', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 30, 'personal_relevance': 50, 'historical_significance': 40, 'emotional_intensity': 50}}
+2025-09-29 22:50:39 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "AFL premiership results and reactions",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 10,
+    "personal_relevance": 40,
+    "historical_significance": 30,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:50:39 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'AFL premiership results and reactions', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 10, 'personal_relevance': 40, 'historical_significance': 30, 'emotional_intensity': 60}}
+2025-09-29 22:50:44 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "verified incident involving a high-profile athlete",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 30,
+    "personal_relevance": 50,
+    "historical_significance": 20,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-29 22:50:45 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'verified incident involving a high-profile athlete', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 30, 'personal_relevance': 50, 'historical_significance': 20, 'emotional_intensity': 70}}
+2025-09-29 22:50:46 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "major international sports event result",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 10,
+    "global_impact": 30,
+    "personal_relevance": 60,
+    "historical_significance": 40,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 22:50:46 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'major international sports event result', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 10, 'global_impact': 30, 'personal_relevance': 60, 'historical_significance': 40, 'emotional_intensity': 50}}
+2025-09-29 22:50:48 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "end of a dominant sports team's reign",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 10,
+    "personal_relevance": 60,
+    "historical_significance": 50,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-29 22:50:48 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': "end of a dominant sports team's reign", 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 10, 'personal_relevance': 60, 'historical_significance': 50, 'emotional_intensity': 40}}
+2025-09-29 22:50:49 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK political commentary at Labour conference",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 20,
+    "personal_relevance": 30,
+    "historical_significance": 40,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 22:50:49 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'UK political commentary at Labour conference', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 20, 'personal_relevance': 30, 'historical_significance': 40, 'emotional_intensity': 50}}
+2025-09-29 22:50:53 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "report on democratic governance and potential future risks",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 40,
+    "personal_relevance": 60,
+    "historical_significance": 55,
+    "emotional_intensity": 45
+  }
+}
+```
+2025-09-29 22:50:53 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'report on democratic governance and potential future risks', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 40, 'personal_relevance': 60, 'historical_significance': 55, 'emotional_intensity': 45}}
+2025-09-29 22:50:54 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK energy minister's statement on X platform",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 45,
+    "personal_relevance": 30,
+    "historical_significance": 20,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:50:54 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': "UK energy minister's statement on X platform", 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 45, 'personal_relevance': 30, 'historical_significance': 20, 'emotional_intensity': 60}}
+2025-09-29 22:50:56 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "UK political announcement on education and labor",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 20,
+    "personal_relevance": 30,
+    "historical_significance": 40,
+    "emotional_intensity": 35
+  }
+}
+```
+2025-09-29 22:50:56 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'UK political announcement on education and labor', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 20, 'personal_relevance': 30, 'historical_significance': 40, 'emotional_intensity': 35}}
+2025-09-29 22:50:57 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK political conference statements on immigration policy",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 30,
+    "personal_relevance": 45,
+    "historical_significance": 35,
+    "emotional_intensity": 65
+  }
+}
+```
+2025-09-29 22:50:57 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'UK political conference statements on immigration policy', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 30, 'personal_relevance': 45, 'historical_significance': 35, 'emotional_intensity': 65}}
+2025-09-29 22:50:58 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "economy_subcategory": "other_economy",
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK chancellor's statement on economic policy",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 65,
+    "personal_relevance": 60,
+    "historical_significance": 50,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-29 22:50:59 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'other_economy', 'tech_subcategory': None, 'confidence': 0.85, 'reasons': "UK chancellor's statement on economic policy", 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 65, 'personal_relevance': 60, 'historical_significance': 50, 'emotional_intensity': 40}}
+2025-09-29 22:51:00 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK government policy announcement on immigration",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 50,
+    "personal_relevance": 40,
+    "historical_significance": 55,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:51:00 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'UK government policy announcement on immigration', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 50, 'personal_relevance': 40, 'historical_significance': 55, 'emotional_intensity': 60}}
+2025-09-29 22:51:02 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "ongoing investigation into a significant violent incident",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 40,
+    "personal_relevance": 60,
+    "historical_significance": 50,
+    "emotional_intensity": 75
+  }
+}
+```
+2025-09-29 22:51:02 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'ongoing investigation into a significant violent incident', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 40, 'personal_relevance': 60, 'historical_significance': 50, 'emotional_intensity': 75}}
+2025-09-29 22:51:04 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "verifiable sports news about a high-profile coach",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 30,
+    "personal_relevance": 50,
+    "historical_significance": 20,
+    "emotional_intensity": 45
+  }
+}
+```
+2025-09-29 22:51:04 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'verifiable sports news about a high-profile coach', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 30, 'personal_relevance': 50, 'historical_significance': 20, 'emotional_intensity': 45}}
+2025-09-29 22:51:05 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "culture_media_entertainment",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "controversial stunt by major influencer",
+  "importance_score": 45,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 40,
+    "personal_relevance": 35,
+    "historical_significance": 20,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:51:05 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'culture_media_entertainment', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'controversial stunt by major influencer', 'importance_score': 45, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 40, 'personal_relevance': 35, 'historical_significance': 20, 'emotional_intensity': 60}}
+2025-09-29 22:51:07 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "culture_media_entertainment",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "public dispute between celebrities",
+  "importance_score": 35,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 30,
+    "personal_relevance": 35,
+    "historical_significance": 20,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 22:51:07 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'culture_media_entertainment', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'public dispute between celebrities', 'importance_score': 35, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 30, 'personal_relevance': 35, 'historical_significance': 20, 'emotional_intensity': 50}}
+2025-09-29 22:51:08 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "government policy change following court rulings",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 40,
+    "personal_relevance": 50,
+    "historical_significance": 55,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:51:08 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'government policy change following court rulings', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 40, 'personal_relevance': 50, 'historical_significance': 55, 'emotional_intensity': 60}}
+2025-09-29 22:51:09 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "healthcare_pharma",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "healthcare system warning on patient safety",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 40,
+    "personal_relevance": 75,
+    "historical_significance": 30,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 22:51:09 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'healthcare_pharma', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'healthcare system warning on patient safety', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 40, 'personal_relevance': 75, 'historical_significance': 30, 'emotional_intensity': 50}}
+2025-09-29 22:51:11 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "serious crime with significant local impact",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 20,
+    "personal_relevance": 60,
+    "historical_significance": 30,
+    "emotional_intensity": 80
+  }
+}
+```
+2025-09-29 22:51:11 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'serious crime with significant local impact', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 20, 'personal_relevance': 60, 'historical_significance': 30, 'emotional_intensity': 80}}
+2025-09-29 22:51:12 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "potential shift in US military aid policy",
+  "importance_score": 78,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 22:51:12 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'potential shift in US military aid policy', 'importance_score': 78, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 50}}
+2025-09-29 22:51:14 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "statement by a head of state on a major international conflict",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:51:14 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'statement by a head of state on a major international conflict', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 60}}
+2025-09-29 22:51:15 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "cricket",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "sports event with political implications",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 40,
+    "personal_relevance": 30,
+    "historical_significance": 50,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-29 22:51:15 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'sports event with political implications', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 40, 'personal_relevance': 30, 'historical_significance': 50, 'emotional_intensity': 70}}
+2025-09-29 22:51:17 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "unverified single-source claim in active conflict",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 50,
+    "personal_relevance": 40,
+    "historical_significance": 45,
+    "emotional_intensity": 65
+  }
+}
+```
+2025-09-29 22:51:17 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'unverified single-source claim in active conflict', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 50, 'personal_relevance': 40, 'historical_significance': 45, 'emotional_intensity': 65}}
+2025-09-29 22:51:19 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "major political figure's proposal in ongoing conflict",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-29 22:51:19 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': "major political figure's proposal in ongoing conflict", 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 70}}
+2025-09-29 22:51:20 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "apology from a head of state for a significant diplomatic incident",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:51:20 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'apology from a head of state for a significant diplomatic incident', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 60}}
+2025-09-29 22:51:22 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "statement by US president on active conflict",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-29 22:51:22 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'statement by US president on active conflict', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 70}}
+2025-09-29 22:51:23 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "unverified single-source claim in active conflict",
+  "importance_score": 40,
+  "contextual_factors": {
+    "time_sensitivity": 65,
+    "global_impact": 35,
+    "personal_relevance": 25,
+    "historical_significance": 15,
+    "emotional_intensity": 85
+  }
+}
+```
+2025-09-29 22:51:23 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'unverified single-source claim in active conflict', 'importance_score': 40, 'contextual_factors': {'time_sensitivity': 65, 'global_impact': 35, 'personal_relevance': 25, 'historical_significance': 15, 'emotional_intensity': 85}}
+2025-09-29 22:51:26 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "unverified proposal in active conflict",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 50,
+    "personal_relevance": 45,
+    "historical_significance": 40,
+    "emotional_intensity": 65
+  }
+}
+```
+2025-09-29 22:51:26 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'unverified proposal in active conflict', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 50, 'personal_relevance': 45, 'historical_significance': 40, 'emotional_intensity': 65}}
+2025-09-29 22:51:27 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "Canada's official designation of a foreign group as terrorist",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 50,
+    "personal_relevance": 40,
+    "historical_significance": 55,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 22:51:27 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': "Canada's official designation of a foreign group as terrorist", 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 50, 'personal_relevance': 40, 'historical_significance': 55, 'emotional_intensity': 60}}
+2025-09-29 22:51:29 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "economy_subcategory": "other_economy",
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "major trade policy announcement",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 70,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 22:51:29 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'other_economy', 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'major trade policy announcement', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 70, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 50}}
+2025-09-29 23:03:16 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "political commentary at major conference",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 20,
+    "personal_relevance": 40,
+    "historical_significance": 30,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 23:03:16 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'political commentary at major conference', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 20, 'personal_relevance': 40, 'historical_significance': 30, 'emotional_intensity': 50}}
+2025-09-29 23:03:17 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "report on potential democratic governance issues",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 40,
+    "personal_relevance": 30,
+    "historical_significance": 55,
+    "emotional_intensity": 45
+  }
+}
+```
+2025-09-29 23:03:17 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'report on potential democratic governance issues', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 40, 'personal_relevance': 30, 'historical_significance': 55, 'emotional_intensity': 45}}
+2025-09-29 23:03:19 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK energy minister's statement on X platform",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 40,
+    "personal_relevance": 30,
+    "historical_significance": 20,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 23:03:19 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': "UK energy minister's statement on X platform", 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 40, 'personal_relevance': 30, 'historical_significance': 20, 'emotional_intensity': 60}}
+2025-09-29 23:03:21 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK political announcement on education and labor",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 20,
+    "personal_relevance": 30,
+    "historical_significance": 40,
+    "emotional_intensity": 30
+  }
+}
+```
+2025-09-29 23:03:21 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'UK political announcement on education and labor', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 20, 'personal_relevance': 30, 'historical_significance': 40, 'emotional_intensity': 30}}
+2025-09-29 23:03:22 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK political conference statements on immigration policy",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 20,
+    "personal_relevance": 40,
+    "historical_significance": 30,
+    "emotional_intensity": 65
+  }
+}
+```
+2025-09-29 23:03:22 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'UK political conference statements on immigration policy', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 20, 'personal_relevance': 40, 'historical_significance': 30, 'emotional_intensity': 65}}
+2025-09-29 23:03:23 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": "other_economy",
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "analysis of economic policies and international support",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 60,
+    "personal_relevance": 55,
+    "historical_significance": 50,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-29 23:03:23 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': 'other_economy', 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'analysis of economic policies and international support', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 60, 'personal_relevance': 55, 'historical_significance': 50, 'emotional_intensity': 40}}
+2025-09-29 23:03:25 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "healthcare_pharma",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "major legal action against pharmaceutical company",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 65,
+    "personal_relevance": 80,
+    "historical_significance": 50,
+    "emotional_intensity": 75
+  }
+}
+```
+2025-09-29 23:03:25 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'healthcare_pharma', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'major legal action against pharmaceutical company', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 65, 'personal_relevance': 80, 'historical_significance': 50, 'emotional_intensity': 75}}
+2025-09-29 23:03:26 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "economy_subcategory": "markets",
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "alternative data sources provide nuanced inflation picture",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 65,
+    "personal_relevance": 80,
+    "historical_significance": 50,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-29 23:03:27 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'other_economy', 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'alternative data sources provide nuanced inflation picture', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 65, 'personal_relevance': 80, 'historical_significance': 50, 'emotional_intensity': 40}}
+2025-09-29 23:03:28 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "economy_subcategory": "corporate_earnings",
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "corporate earnings report with notable profit",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 20,
+    "personal_relevance": 30,
+    "historical_significance": 25,
+    "emotional_intensity": 20
+  }
+}
+```
+2025-09-29 23:03:28 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'corporate_earnings', 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'corporate earnings report with notable profit', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 20, 'personal_relevance': 30, 'historical_significance': 25, 'emotional_intensity': 20}}
+2025-09-29 23:03:30 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "post-tournament analysis of national team performance",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 30,
+    "personal_relevance": 50,
+    "historical_significance": 45,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 23:03:31 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'post-tournament analysis of national team performance', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 30, 'personal_relevance': 50, 'historical_significance': 45, 'emotional_intensity': 50}}
+2025-09-29 23:03:33 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "AFL premiership results and reactions",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 20,
+    "personal_relevance": 40,
+    "historical_significance": 30,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 23:03:34 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'AFL premiership results and reactions', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 20, 'personal_relevance': 40, 'historical_significance': 30, 'emotional_intensity': 50}}
+2025-09-29 23:03:35 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "Ryder Cup incident involving a prominent athlete",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 30,
+    "personal_relevance": 60,
+    "historical_significance": 20,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-29 23:03:35 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'Ryder Cup incident involving a prominent athlete', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 30, 'personal_relevance': 60, 'historical_significance': 20, 'emotional_intensity': 70}}
+2025-09-29 23:03:37 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "major international sports event result",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 60,
+    "personal_relevance": 70,
+    "historical_significance": 65,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-29 23:03:38 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'major international sports event result', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 60, 'personal_relevance': 70, 'historical_significance': 65, 'emotional_intensity': 70}}
+2025-09-29 23:03:40 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "NRL is a major sports league in Australia, but less relevant in the US",
+  "importance_score": 35,
+  "contextual_factors": {
+    "time_sensitivity": 20,
+    "global_impact": 10,
+    "personal_relevance": 30,
+    "historical_significance": 40,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 23:03:40 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'NRL is a major sports league in Australia, but less relevant in the US', 'importance_score': 35, 'contextual_factors': {'time_sensitivity': 20, 'global_impact': 10, 'personal_relevance': 30, 'historical_significance': 40, 'emotional_intensity': 50}}
+2025-09-29 23:03:42 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "economy_subcategory": "other_economy",
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK chancellor's statement on economic policy",
+  "importance_score": 72,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 65,
+    "personal_relevance": 60,
+    "historical_significance": 50,
+    "emotional_intensity": 40
+  }
+}
+```
+2025-09-29 23:03:42 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'other_economy', 'tech_subcategory': None, 'confidence': 0.85, 'reasons': "UK chancellor's statement on economic policy", 'importance_score': 72, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 65, 'personal_relevance': 60, 'historical_significance': 50, 'emotional_intensity': 40}}
+2025-09-29 23:03:44 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK government policy announcement on immigration",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 50,
+    "personal_relevance": 70,
+    "historical_significance": 55,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 23:03:44 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'UK government policy announcement on immigration', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 50, 'personal_relevance': 70, 'historical_significance': 55, 'emotional_intensity': 60}}
+2025-09-29 23:03:46 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "ongoing investigation into a significant domestic attack",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 40,
+    "personal_relevance": 60,
+    "historical_significance": 50,
+    "emotional_intensity": 75
+  }
+}
+```
+2025-09-29 23:03:46 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'ongoing investigation into a significant domestic attack', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 40, 'personal_relevance': 60, 'historical_significance': 50, 'emotional_intensity': 75}}
+2025-09-29 23:03:47 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "verified statement from a sports figure",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 30,
+    "personal_relevance": 50,
+    "historical_significance": 20,
+    "emotional_intensity": 45
+  }
+}
+```
+2025-09-29 23:03:47 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'verified statement from a sports figure', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 30, 'personal_relevance': 50, 'historical_significance': 20, 'emotional_intensity': 45}}
+2025-09-29 23:03:49 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "culture_media_entertainment",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "controversial stunt by major influencer",
+  "importance_score": 45,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 40,
+    "personal_relevance": 35,
+    "historical_significance": 20,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 23:03:49 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'culture_media_entertainment', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'controversial stunt by major influencer', 'importance_score': 45, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 40, 'personal_relevance': 35, 'historical_significance': 20, 'emotional_intensity': 60}}
+2025-09-29 23:03:51 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "culture_media_entertainment",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "public dispute between celebrities on social issue",
+  "importance_score": 45,
+  "contextual_factors": {
+    "time_sensitivity": 30,
+    "global_impact": 35,
+    "personal_relevance": 40,
+    "historical_significance": 20,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 23:03:51 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'culture_media_entertainment', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'public dispute between celebrities on social issue', 'importance_score': 45, 'contextual_factors': {'time_sensitivity': 30, 'global_impact': 35, 'personal_relevance': 40, 'historical_significance': 20, 'emotional_intensity': 60}}
+2025-09-29 23:03:52 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "government policy change based on court rulings",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 30,
+    "personal_relevance": 50,
+    "historical_significance": 40,
+    "emotional_intensity": 55
+  }
+}
+```
+2025-09-29 23:03:52 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'government policy change based on court rulings', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 30, 'personal_relevance': 50, 'historical_significance': 40, 'emotional_intensity': 55}}
+2025-09-29 23:03:55 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "healthcare_pharma",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "healthcare system warning on patient safety",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 30,
+    "personal_relevance": 75,
+    "historical_significance": 40,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 23:03:55 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'healthcare_pharma', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'healthcare system warning on patient safety', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 30, 'personal_relevance': 75, 'historical_significance': 40, 'emotional_intensity': 60}}
+2025-09-29 23:03:56 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "serious crime with significant local impact",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 20,
+    "personal_relevance": 60,
+    "historical_significance": 30,
+    "emotional_intensity": 80
+  }
+}
+```
+2025-09-29 23:03:56 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'serious crime with significant local impact', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 20, 'personal_relevance': 60, 'historical_significance': 30, 'emotional_intensity': 80}}
+2025-09-29 23:03:57 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "potential shift in US military aid policy",
+  "importance_score": 78,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-29 23:03:57 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'potential shift in US military aid policy', 'importance_score': 78, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 70}}
+2025-09-29 23:04:00 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "legal proceedings in high-profile murder case",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 10,
+    "personal_relevance": 50,
+    "historical_significance": 20,
+    "emotional_intensity": 65
+  }
+}
+```
+2025-09-29 23:04:00 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'legal proceedings in high-profile murder case', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 10, 'personal_relevance': 50, 'historical_significance': 20, 'emotional_intensity': 65}}
+2025-09-29 23:04:02 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "official statement on nuclear policy",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 60,
+    "personal_relevance": 40,
+    "historical_significance": 55,
+    "emotional_intensity": 45
+  }
+}
+```
+2025-09-29 23:04:02 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'official statement on nuclear policy', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 60, 'personal_relevance': 40, 'historical_significance': 55, 'emotional_intensity': 45}}
+2025-09-29 23:04:04 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "major diplomatic proposal in active conflict",
+  "importance_score": 78,
+  "contextual_factors": {
+    "time_sensitivity": 85,
+    "global_impact": 80,
+    "personal_relevance": 75,
+    "historical_significance": 70,
+    "emotional_intensity": 75
+  }
+}
+```
+2025-09-29 23:04:04 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'major diplomatic proposal in active conflict', 'importance_score': 78, 'contextual_factors': {'time_sensitivity': 85, 'global_impact': 80, 'personal_relevance': 75, 'historical_significance': 70, 'emotional_intensity': 75}}
+2025-09-29 23:04:05 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "statement by a head of state on a major international conflict",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 23:04:05 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'statement by a head of state on a major international conflict', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 60}}
+2025-09-29 23:04:07 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": "cricket",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "sports event with political implications",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 50,
+    "personal_relevance": 30,
+    "historical_significance": 60,
+    "emotional_intensity": 75
+  }
+}
+```
+2025-09-29 23:04:07 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'sports event with political implications', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 50, 'personal_relevance': 30, 'historical_significance': 60, 'emotional_intensity': 75}}
+2025-09-29 23:04:08 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "unverified single-source claim in active conflict",
+  "importance_score": 40,
+  "contextual_factors": {
+    "time_sensitivity": 65,
+    "global_impact": 35,
+    "personal_relevance": 25,
+    "historical_significance": 15,
+    "emotional_intensity": 85
+  }
+}
+```
+2025-09-29 23:04:08 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'unverified single-source claim in active conflict', 'importance_score': 40, 'contextual_factors': {'time_sensitivity': 65, 'global_impact': 35, 'personal_relevance': 25, 'historical_significance': 15, 'emotional_intensity': 85}}
+2025-09-29 23:04:09 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "major political figure's proposal in ongoing conflict",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-29 23:04:09 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': "major political figure's proposal in ongoing conflict", 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 70}}
+2025-09-29 23:04:11 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "apology from a head of state for a significant diplomatic incident",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 75,
+    "personal_relevance": 50,
+    "historical_significance": 60,
+    "emotional_intensity": 65
+  }
+}
+```
+2025-09-29 23:04:11 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'apology from a head of state for a significant diplomatic incident', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 75, 'personal_relevance': 50, 'historical_significance': 60, 'emotional_intensity': 65}}
+2025-09-29 23:04:12 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "statement by a major political figure on an active conflict",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-29 23:04:12 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'statement by a major political figure on an active conflict', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 70}}
+2025-09-29 23:04:14 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "unverified single-source claim in active conflict",
+  "importance_score": 40,
+  "contextual_factors": {
+    "time_sensitivity": 65,
+    "global_impact": 35,
+    "personal_relevance": 25,
+    "historical_significance": 15,
+    "emotional_intensity": 85
+  }
+}
+```
+2025-09-29 23:04:14 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'unverified single-source claim in active conflict', 'importance_score': 40, 'contextual_factors': {'time_sensitivity': 65, 'global_impact': 35, 'personal_relevance': 25, 'historical_significance': 15, 'emotional_intensity': 85}}
+2025-09-29 23:04:14 [DEBUG] summarizer: Raw news (first 100 chars): The White House says its proposal would end the war on Gaza immediately if both sides accept....
+2025-09-29 23:04:14 [DEBUG] summarizer: Category for summarization: politics_geopolitics
+2025-09-29 23:04:14 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 23:04:14 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 23:04:15 [DEBUG] summarizer: Generated summary (first 150 chars): **White House Proposes Immediate Gaza Ceasefire if Both Sides Agree**
+
+YNotCare: The White House has proposed a plan to end the war on Gaza immediatel...
+2025-09-29 23:04:15 [DEBUG] summarizer: Raw news (first 100 chars): North Korea&#039;s Vice Foreign Minister Kim Son Gyong staunchly defended the country’s nuclear prog...
+2025-09-29 23:04:15 [DEBUG] summarizer: Category for summarization: politics_geopolitics
+2025-09-29 23:04:15 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 23:04:15 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 23:04:17 [DEBUG] summarizer: Generated summary (first 150 chars): **North Korea Defends Nuclear Program Amid Tensions**
+
+YNotCare: North Korea's Vice Foreign Minister Kim Son Gyong reaffirmed the country's commitment...
+2025-09-29 23:04:17 [DEBUG] summarizer: Raw news (first 100 chars): Amount of evidence in Charlie Kirk murder case is &#039;voluminous&#039;, both prosecutors and defen...
+2025-09-29 23:04:17 [DEBUG] summarizer: Category for summarization: politics_geopolitics
+2025-09-29 23:04:17 [DEBUG] summarizer: Using YNK_PROMPT_GENERAL with aspects: ['General Impact']
+2025-09-29 23:04:17 [DEBUG] summarizer: Final prompt used (first 200 chars):
+
+You are YNotCare, a concise, human-like, actionable news analysis Expert with a degree in Journalism, Politics and Economics. 
+Provide clear guidance anyone can read, understand, and act on in under ...
+2025-09-29 23:04:18 [DEBUG] summarizer: Generated summary (first 150 chars): **Prosecutors and Defense Agree: Evidence in Charlie Kirk Murder Case is 'Voluminous'**
+
+YNotCare: The Charlie Kirk murder case has an overwhelming am...
+2025-09-29 23:19:59 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "political commentary at a major conference",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 20,
+    "personal_relevance": 40,
+    "historical_significance": 30,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 23:19:59 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'political commentary at a major conference', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 20, 'personal_relevance': 40, 'historical_significance': 30, 'emotional_intensity': 50}}
+2025-09-29 23:20:02 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK political governance and democracy concerns",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 40,
+    "personal_relevance": 30,
+    "historical_significance": 60,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 23:20:02 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'UK political governance and democracy concerns', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 40, 'personal_relevance': 30, 'historical_significance': 60, 'emotional_intensity': 50}}
+2025-09-29 23:20:05 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK energy minister's statement on X platform",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 50,
+    "global_impact": 45,
+    "personal_relevance": 30,
+    "historical_significance": 20,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 23:20:05 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': "UK energy minister's statement on X platform", 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 50, 'global_impact': 45, 'personal_relevance': 30, 'historical_significance': 20, 'emotional_intensity': 60}}
+2025-09-29 23:20:07 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK political announcement on education and employment",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 30,
+    "personal_relevance": 40,
+    "historical_significance": 50,
+    "emotional_intensity": 45
+  }
+}
+```
+2025-09-29 23:20:07 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'UK political announcement on education and employment', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 30, 'personal_relevance': 40, 'historical_significance': 50, 'emotional_intensity': 45}}
+2025-09-29 23:20:08 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK political rhetoric during Labour conference",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 20,
+    "personal_relevance": 30,
+    "historical_significance": 25,
+    "emotional_intensity": 65
+  }
+}
+```
+2025-09-29 23:20:08 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'UK political rhetoric during Labour conference', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 20, 'personal_relevance': 30, 'historical_significance': 25, 'emotional_intensity': 65}}
+2025-09-29 23:20:10 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "economy_finance",
+  "sports_subcategory": null,
+  "economy_subcategory": "other_economy",
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK chancellor's statement on economic challenges",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 55,
+    "personal_relevance": 50,
+    "historical_significance": 40,
+    "emotional_intensity": 45
+  }
+}
+```
+2025-09-29 23:20:13 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'economy_finance', 'sports_subcategory': None, 'economy_subcategory': 'other_economy', 'tech_subcategory': None, 'confidence': 0.85, 'reasons': "UK chancellor's statement on economic challenges", 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 55, 'personal_relevance': 50, 'historical_significance': 40, 'emotional_intensity': 45}}
+2025-09-29 23:20:16 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "UK government policy announcement on immigration",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 50,
+    "personal_relevance": 60,
+    "historical_significance": 40,
+    "emotional_intensity": 55
+  }
+}
+```
+2025-09-29 23:20:16 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'UK government policy announcement on immigration', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 50, 'personal_relevance': 60, 'historical_significance': 40, 'emotional_intensity': 55}}
+2025-09-29 23:20:17 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "ongoing investigation into a significant violent incident",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 40,
+    "personal_relevance": 60,
+    "historical_significance": 50,
+    "emotional_intensity": 75
+  }
+}
+```
+2025-09-29 23:20:17 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'ongoing investigation into a significant violent incident', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 40, 'personal_relevance': 60, 'historical_significance': 50, 'emotional_intensity': 75}}
+2025-09-29 23:20:19 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "sports",
+  "sports_subcategory": "other_sports",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "verified statement from a sports figure",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 40,
+    "global_impact": 30,
+    "personal_relevance": 50,
+    "historical_significance": 20,
+    "emotional_intensity": 45
+  }
+}
+```
+2025-09-29 23:20:19 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'sports', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'verified statement from a sports figure', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 40, 'global_impact': 30, 'personal_relevance': 50, 'historical_significance': 20, 'emotional_intensity': 45}}
+2025-09-29 23:20:21 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "culture_media_entertainment",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "controversial stunt by major influencer",
+  "importance_score": 45,
+  "contextual_factors": {
+    "time_sensitivity": 30,
+    "global_impact": 40,
+    "personal_relevance": 50,
+    "historical_significance": 20,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 23:20:21 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'culture_media_entertainment', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'controversial stunt by major influencer', 'importance_score': 45, 'contextual_factors': {'time_sensitivity': 30, 'global_impact': 40, 'personal_relevance': 50, 'historical_significance': 20, 'emotional_intensity': 60}}
+2025-09-29 23:20:22 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "culture_media_entertainment",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.95,
+  "reasons": "public dispute between high-profile figures",
+  "importance_score": 45,
+  "contextual_factors": {
+    "time_sensitivity": 30,
+    "global_impact": 40,
+    "personal_relevance": 35,
+    "historical_significance": 20,
+    "emotional_intensity": 60
+  }
+}
+```
+2025-09-29 23:20:22 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'culture_media_entertainment', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.95, 'reasons': 'public dispute between high-profile figures', 'importance_score': 45, 'contextual_factors': {'time_sensitivity': 30, 'global_impact': 40, 'personal_relevance': 35, 'historical_significance': 20, 'emotional_intensity': 60}}
+2025-09-29 23:20:24 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "career_education_labour",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.9,
+  "reasons": "government policy change based on court rulings",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 20,
+    "personal_relevance": 50,
+    "historical_significance": 40,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 23:20:24 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'career_education_labour', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.9, 'reasons': 'government policy change based on court rulings', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 20, 'personal_relevance': 50, 'historical_significance': 40, 'emotional_intensity': 50}}
+2025-09-29 23:20:25 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "healthcare_pharma",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "healthcare system warning with potential patient safety impact",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 40,
+    "personal_relevance": 75,
+    "historical_significance": 30,
+    "emotional_intensity": 50
+  }
+}
+```
+2025-09-29 23:20:25 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'healthcare_pharma', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'healthcare system warning with potential patient safety impact', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 40, 'personal_relevance': 75, 'historical_significance': 30, 'emotional_intensity': 50}}
+2025-09-29 23:20:27 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "serious crime with significant local impact",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 20,
+    "personal_relevance": 60,
+    "historical_significance": 30,
+    "emotional_intensity": 80
+  }
+}
+```
+2025-09-29 23:20:27 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'serious crime with significant local impact', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 20, 'personal_relevance': 60, 'historical_significance': 30, 'emotional_intensity': 80}}
+2025-09-29 23:20:28 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "potential shift in US military aid policy",
+  "importance_score": 78,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-29 23:20:28 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'potential shift in US military aid policy', 'importance_score': 78, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 70}}
+2025-09-29 23:20:29 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "legal proceedings in high-profile murder case",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 10,
+    "personal_relevance": 50,
+    "historical_significance": 20,
+    "emotional_intensity": 65
+  }
+}
+```
+2025-09-29 23:20:29 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'legal proceedings in high-profile murder case', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 10, 'personal_relevance': 50, 'historical_significance': 20, 'emotional_intensity': 65}}
+2025-09-29 23:20:31 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "official statement on nuclear policy",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 70,
+    "personal_relevance": 50,
+    "historical_significance": 65,
+    "emotional_intensity": 55
+  }
+}
+```
+2025-09-29 23:20:31 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'official statement on nuclear policy', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 70, 'personal_relevance': 50, 'historical_significance': 65, 'emotional_intensity': 55}}
+2025-09-29 23:20:32 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "major diplomatic proposal in active conflict",
+  "importance_score": 78,
+  "contextual_factors": {
+    "time_sensitivity": 85,
+    "global_impact": 80,
+    "personal_relevance": 70,
+    "historical_significance": 75,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-29 23:20:32 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'major diplomatic proposal in active conflict', 'importance_score': 78, 'contextual_factors': {'time_sensitivity': 85, 'global_impact': 80, 'personal_relevance': 70, 'historical_significance': 75, 'emotional_intensity': 70}}
+2025-09-29 23:20:34 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "statement by a head of state on a major international conflict",
+  "importance_score": 75,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-29 23:20:34 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'statement by a head of state on a major international conflict', 'importance_score': 75, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 70}}
+2025-09-29 23:20:35 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": "cricket",
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "sports event with political implications",
+  "importance_score": 65,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 50,
+    "personal_relevance": 40,
+    "historical_significance": 55,
+    "emotional_intensity": 75
+  }
+}
+```
+2025-09-29 23:20:35 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': 'other_sports', 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'sports event with political implications', 'importance_score': 65, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 50, 'personal_relevance': 40, 'historical_significance': 55, 'emotional_intensity': 75}}
+2025-09-29 23:20:37 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "unverified single-source claim in active conflict",
+  "importance_score": 55,
+  "contextual_factors": {
+    "time_sensitivity": 60,
+    "global_impact": 50,
+    "personal_relevance": 40,
+    "historical_significance": 45,
+    "emotional_intensity": 65
+  }
+}
+```
+2025-09-29 23:20:37 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'unverified single-source claim in active conflict', 'importance_score': 55, 'contextual_factors': {'time_sensitivity': 60, 'global_impact': 50, 'personal_relevance': 40, 'historical_significance': 45, 'emotional_intensity': 65}}
+2025-09-29 23:20:38 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "major US president's proposal in active conflict",
+  "importance_score": 78,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 75,
+    "personal_relevance": 60,
+    "historical_significance": 65,
+    "emotional_intensity": 70
+  }
+}
+```
+2025-09-29 23:20:38 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': "major US president's proposal in active conflict", 'importance_score': 78, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 75, 'personal_relevance': 60, 'historical_significance': 65, 'emotional_intensity': 70}}
+2025-09-29 23:20:39 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "apology from a head of state for a significant diplomatic incident",
+  "importance_score": 72,
+  "contextual_factors": {
+    "time_sensitivity": 70,
+    "global_impact": 65,
+    "personal_relevance": 50,
+    "historical_significance": 60,
+    "emotional_intensity": 55
+  }
+}
+```
+2025-09-29 23:20:39 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'apology from a head of state for a significant diplomatic incident', 'importance_score': 72, 'contextual_factors': {'time_sensitivity': 70, 'global_impact': 65, 'personal_relevance': 50, 'historical_significance': 60, 'emotional_intensity': 55}}
+2025-09-29 23:20:41 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.85,
+  "reasons": "major political proposal in ongoing conflict",
+  "importance_score": 78,
+  "contextual_factors": {
+    "time_sensitivity": 80,
+    "global_impact": 75,
+    "personal_relevance": 85,
+    "historical_significance": 70,
+    "emotional_intensity": 75
+  }
+}
+```
+2025-09-29 23:20:41 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.85, 'reasons': 'major political proposal in ongoing conflict', 'importance_score': 78, 'contextual_factors': {'time_sensitivity': 80, 'global_impact': 75, 'personal_relevance': 85, 'historical_significance': 70, 'emotional_intensity': 75}}
+2025-09-29 23:20:43 [DEBUG] src.classifier: Raw classifier response: ```json
+{
+  "category": "politics_geopolitics",
+  "sports_subcategory": null,
+  "economy_subcategory": null,
+  "tech_subcategory": null,
+  "confidence": 0.75,
+  "reasons": "unverified single-source claim in active conflict",
+  "importance_score": 40,
+  "contextual_factors": {
+    "time_sensitivity": 65,
+    "global_impact": 35,
+    "personal_relevance": 25,
+    "historical_significance": 15,
+    "emotional_intensity": 85
+  }
+}
+```
+2025-09-29 23:20:43 [DEBUG] src.classifier: Final classification with subcategory: {'category': 'politics_geopolitics', 'sports_subcategory': None, 'economy_subcategory': None, 'tech_subcategory': None, 'confidence': 0.75, 'reasons': 'unverified single-source claim in active conflict', 'importance_score': 40, 'contextual_factors': {'time_sensitivity': 65, 'global_impact': 35, 'personal_relevance': 25, 'historical_significance': 15, 'emotional_intensity': 85}}

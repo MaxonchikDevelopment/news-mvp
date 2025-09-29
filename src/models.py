@@ -1,6 +1,7 @@
 # src/models.py
 """SQLAlchemy ORM models for the news application."""
 
+from sqlalchemy import func  # <-- Добавлен импорт func
 from sqlalchemy import (
     SMALLINT,
     Boolean,
@@ -17,9 +18,11 @@ from sqlalchemy import (
 )
 from sqlalchemy.dialects.postgresql import JSONB  # Используем JSONB для PostgreSQL
 from sqlalchemy.orm import relationship
-from sqlalchemy.sql import func
 
-from src.database import Base  # Импортируем Base из database.py
+# --- ИСПРАВЛЕНИЕ: Импортируем Base из database.py ---
+from src.database import Base  # <-- Исправлено
+
+# --- КОНЕЦ ИСПРАВЛЕНИЯ ---
 
 
 # ----------------------------
@@ -55,7 +58,6 @@ class User(Base):
 # ----------------------------
 # Таблица: user_profiles
 # ----------------------------
-# src/models.py (фрагмент)
 class UserProfile(Base):
     __tablename__ = "user_profiles"
 
